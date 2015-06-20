@@ -1,0 +1,4 @@
+%h1 All lists:
+%ul
+  -@lists.each do |list|
+    %li=link_to list.title, list

@@ -1,0 +1,9 @@
+%h3="List titel: #{@list.title}"
+%h4 List description:
+%p=@list.description
+
+%h4 List items:
+
+%ul
+  -@list.list_items.each do |item|
+    %li=item.title
