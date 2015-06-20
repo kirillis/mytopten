@@ -3,7 +3,7 @@ Mytopten::Application.routes.draw do
 
   resources :lists
 
-  root 'static#index'
+  root 'lists#index'
 end
 
 
