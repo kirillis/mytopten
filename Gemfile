@@ -15,5 +15,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :development do
+  gem "binding_of_caller"
+  gem "better_errors"
+end
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
