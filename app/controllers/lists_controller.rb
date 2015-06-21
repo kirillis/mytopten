@@ -11,6 +11,10 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @new_list_item = @list.list_items.build
+    respond_to do |format|
+      format.html
+      format.json { render json: @list }
+    end
   end
 
   def create
