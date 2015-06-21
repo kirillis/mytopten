@@ -7,6 +7,7 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'autoprefixer-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
+gem 'react-rails'
 gem 'jbuilder', '~> 1.2'
 
 
