@@ -1,3 +1,4 @@
+=link_to "<- back to lists", lists_path
 %h3="List titel: #{@list.title}"
 %h4 List description:
 %p=@list.description
@@ -7,3 +8,12 @@
 %ul
   -@list.list_items.each do |item|
     %li=item.title
+
+=form_for @list do |f|
+  =f.fields_for :list_items, @new_list_item do |item_form|
+    %p Title:
+    %p=item_form.text_field :title
+    %p Description:
+    %p=item_form.text_area :description, size: "60x12"
+  %p=f.submit "Submit"
+
