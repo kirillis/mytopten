@@ -13,7 +13,7 @@ class ListsController < ApplicationController
     @new_list_item = @list.list_items.build
     respond_to do |format|
       format.html
-      format.json { render json: @list }
+      format.json { render json: @list.to_json(:include => :list_items) }
     end
   end
 

@@ -1,13 +1,8 @@
-=link_to "<- back to lists", lists_path
-%h3="List titel: #{@list.title}"
-%h4 List description:
-%p=@list.description
+%p=link_to "<- back to lists", lists_path
 
-%h4 List items:
+=react_component 'ListContainer', listPath: list_path(@list)
 
-%ul
-  -@list.list_items.each do |item|
-    %li=item.title
+%p --------------------------------------------------------
 
 =form_for @list do |f|
   =f.fields_for :list_items, @new_list_item do |item_form|
@@ -17,4 +12,3 @@
     %p=item_form.text_area :description, size: "60x12"
   %p=f.submit "Submit"
 
-=react_component 'List', @list.to_json
