@@ -1,14 +1,15 @@
 %p=link_to "<- back to lists", lists_path
 
-=react_component 'ListContainer', listPath: list_path(@list)
+=react_component 'ListContainer', listId: list_path(params[:id])
 
 %p --------------------------------------------------------
 
-=form_for @list do |f|
-  =f.fields_for :list_items, @new_list_item do |item_form|
-    %p Title:
-    %p=item_form.text_field :title
-    %p Description:
-    %p=item_form.text_area :description, size: "60x12"
-  %p=f.submit "Submit"
+-##
+  =form_for @list do |f|
+    =f.fields_for :list_items, @new_list_item do |item_form|
+      %p Title:
+      %p=item_form.text_field :title
+      %p Description:
+      %p=item_form.text_area :description, size: "60x12"
+    %p=f.submit "Submit"
 
