@@ -13,8 +13,8 @@ class ListsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        @list = List.find(params[:id])
-        render json: @list.to_json(:include => :list_items)
+        list = List.find(params[:id]).to_json(:include => :list_items)
+        render json: list
       }
     end
   end
@@ -29,7 +29,12 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @list.update(list_params)
     @list.save
-    redirect_to @list
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @list.to_json(:include => :list_items)
+      }
+    end
   end
 
   private
