@@ -1,4 +1,3 @@
 class List < ActiveRecord::Base
-  has_many :list_items
-  accepts_nested_attributes_for :list_items, reject_if: lambda {|attributes| attributes['title'].blank?}
+  has_many :list_items, dependent: :delete_all
 end
