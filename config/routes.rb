@@ -3,6 +3,9 @@ Mytopten::Application.routes.draw do
 
   resources :lists
 
+  get 'search/amazon/' => 'search#amazon', as: :search_amazon
+  get 'search/' => 'search#index'
+
   root 'lists#index'
 end
 

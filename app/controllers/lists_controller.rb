@@ -9,7 +9,6 @@ class ListsController < ApplicationController
   end
 
   def show
-    #@new_list_item = @list.list_items.build
     respond_to do |format|
       format.html
       format.json {
