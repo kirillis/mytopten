@@ -9,7 +9,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'react-rails'
 gem 'jbuilder', '~> 1.2'
-
+gem 'vacuum'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
