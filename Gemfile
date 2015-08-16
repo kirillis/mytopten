@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.4'
-gem 'sqlite3'
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.2'
 gem 'autoprefixer-rails'
@@ -22,6 +21,7 @@ group :production do
 end
 
 group :development do
+  gem 'sqlite3'
   gem "binding_of_caller"
   gem "better_errors"
   gem "meta_request"
