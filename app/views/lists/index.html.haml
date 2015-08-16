@@ -1,0 +1,11 @@
+%h1 All lists:
+%ul
+  -@lists.each do |list|
+    %li=link_to list.title, list
+
+=form_for @new_list do |f|
+  %p Title:
+  %p=f.text_field :title
+  %p Description:
+  %p=f.text_area :description, size: "60x12"
+  %p=f.submit "Submit"
