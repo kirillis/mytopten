@@ -3,6 +3,7 @@ var ListItem = React.createClass({
     this.state.hasChanged = true;
     this.setState({ value: event.target.value });
   },
+
   saveData: function() {
     if(this.state.hasChanged) {
       this.state.item.title = this.state.value;
@@ -25,12 +26,14 @@ var ListItem = React.createClass({
       });
     }
   },
+
   getInitialState: function() {
     return {
       item: this.props.data,
       hasChanged: false
     }
   },
+
   render: function() {
     var saveButton = this.state.hasChanged ? <button onClick={ this.saveData } >Save</button> : '';
     return (
