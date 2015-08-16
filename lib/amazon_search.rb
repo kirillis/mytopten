@@ -9,9 +9,9 @@ class AmazonSearch
   def get_amazon_request
     request = Vacuum.new(@locale)
     request.configure(
-        aws_access_key_id: 'AKIAIMNUYZUH5QMGF6PA',
-        aws_secret_access_key: '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',
-        associate_tag: 'tag'
+      aws_access_key_id: ENV['AWS_KEY'],
+      aws_secret_access_key: ENV['AWS_SECRET'],
+      associate_tag: 'tag'
     )
     request
   end
@@ -41,7 +41,7 @@ class AmazonSearch
     authors = items['ItemAttributes']['Author']
     if authors.is_a?(Array) then authors = authors.join(', ') end
     thumb_url = items.has_key?('MediumImage') ? items['MediumImage']['URL'] : false
-    return { 
+    return {
         title: items['ItemAttributes']['Title'],
         author: authors,
         thumbnail_url: thumb_url,
