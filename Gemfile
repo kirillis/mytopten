@@ -16,6 +16,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
+
 group :development do
   gem "binding_of_caller"
   gem "better_errors"
@@ -24,3 +29,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+ruby '2.1.5'
