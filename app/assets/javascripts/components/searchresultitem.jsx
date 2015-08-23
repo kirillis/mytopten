@@ -1,4 +1,4 @@
-var SearchResultItem = React.createClass({
+  var SearchResultItem = React.createClass({
   render: function() {
     return (
       <li className="SearchResult-item">

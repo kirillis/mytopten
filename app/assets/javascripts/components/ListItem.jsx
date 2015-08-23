@@ -9,7 +9,6 @@ var ListItem = React.createClass({
       this.state.item.title = this.state.value;
       var stringData = JSON.stringify(this.state.item);
       var path = '/list_items/' + this.state.item.id;
-      console.log(path);
       $.ajax({
         url: path,
         method: 'put',

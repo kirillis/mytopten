@@ -1,14 +1,15 @@
 var List = React.createClass({
-  componentWillMount:  function() {
+  componentWillMount: function() {
     this.fetchListItems();
   },
+
   fetchListItems: function() {
     var _this = this;
     $.getJSON(
       this.props.listPath,
       function(data) {
         if(_this.isMounted()) {
-          _this.setState({ 
+          _this.setState({
             listItems: data.list_items,
             title: data.title
           });
@@ -16,13 +17,15 @@ var List = React.createClass({
       }
     )
   },
+
   getInitialState: function() {
-    return { 
+    return {
       listItems: [],
       list: {},
       title: ''
     };
   },
+
   render: function() {
     var _this = this;
     var listItems = this.state.listItems.map(function(item) {
