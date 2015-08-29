@@ -1,4 +1,11 @@
   var SearchResultItem = React.createClass({
+  mixins: [FluxMixin],
+
+  handleAddItemClick: function() {
+    console.log('handleAddItemClick');
+    this.getFlux().actions.addItem(this.props.data.title);
+  },
+
   render: function() {
     return (
       <li className="SearchResult-item">
@@ -14,7 +21,7 @@
             </p>
           </div>
         </div>
-        <button>Add to list</button>
+        <button onClick={ this.handleAddItemClick }>Add to list</button>
       </li>
     );
   }

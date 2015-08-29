@@ -14,7 +14,29 @@ ReactListView.listStore = Fluxxor.createStore({
   },
 
   onAddItem: function(payload) {
-    console.log('Implmenet "onAddItem()"');
+    console.log('ReactListView.listStore.list', this.list);
+    var _this = this;
+    var newListItem = {
+      title: payload.itemTitle,
+      description: 'new item',
+      list_id: this.list.id
+    }
+    var stringData = JSON.stringify(newListItem)
+    $.ajax({
+      url: '/list_items.json',
+      method: 'post',
+      data: stringData,
+      dataType: 'json',
+      contentType: 'application/json',
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log('error', errorThrown);
+      },
+      success: function(data, textStatus, jqXHR) {
+        console.log('_this', _this, this);
+        _this.list.list_items.push(newListItem);
+        _this.emit('change');
+      }
+    });
   },
 
   onUpdateItem: function(payload) {
