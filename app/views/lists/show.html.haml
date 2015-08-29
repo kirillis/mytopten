@@ -1,5 +1,12 @@
+:javascript
+  $(document).ready(function() {
+    window.loadListView(#{@list_json});
+  });
+
 %p=link_to "<- back to lists", lists_path
 
+#js-react-listContainer
+
 =#react_component 'List', listId: list_path(params[:id])
-=react_component 'ListView', listPath: list_path(params[:id])
+=#react_component 'ListView', listPath: list_path(params[:id])
 
