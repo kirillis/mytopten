@@ -21,6 +21,7 @@ group :production do
 end
 
 group :development do
+  gem 'awesome_print'
   gem 'sqlite3'
   gem "binding_of_caller"
   gem "better_errors"
