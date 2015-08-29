@@ -14,6 +14,7 @@
             </p>
           </div>
         </div>
+        <button>Add to list</button>
       </li>
     );
   }
