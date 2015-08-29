@@ -17,6 +17,7 @@
 //= require react
 //= require react_ujs
 //= require flux/constants.js
+//= require flux/mixins.js
 //= require_tree ./flux/.
 //= require components
 //= require reactListView.js
