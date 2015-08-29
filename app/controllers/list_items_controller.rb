@@ -5,6 +5,21 @@ class ListItemsController < ApplicationController
     render json: listItem
   end
 
+  def create
+    @new_list_item = ListItem.create(list_item_params)
+    @new_list_item.save
+
+    respond_to do |format|
+      if @new_list_item.save
+        format.html { redirect_to @new_list_item, notice: 'User was successfully created.' }
+        format.json { render json: @new_list_item, status: :created, location: @new_list_item }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @new_list_item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def update
     @list_item = ListItem.find(params[:id])
     @list_item.update(list_item_params)
@@ -18,6 +33,6 @@ class ListItemsController < ApplicationController
 
   private
     def list_item_params
-      params.require(:list_item).permit(:title, :description)
+      params.require(:list_item).permit(:title, :description, :rank, :list_id)
     end
 end
