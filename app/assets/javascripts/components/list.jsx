@@ -1,6 +1,3 @@
-var FluxMixin = Fluxxor.FluxMixin(React),
-    StoreWatchMixin = Fluxxor.StoreWatchMixin;
-
 var List = React.createClass({
   /* Update this component when the Fluxxor store is updated */
   mixins: [FluxMixin, StoreWatchMixin("ListStore")],
@@ -45,31 +42,8 @@ var List = React.createClass({
         <ol>
           { listItems }
         </ol>
+        <SearchContainer />
       </div>
     );
   }
 });
-
-ReactListView.init = function(list) {
-  var tempStore = {
-    ListStore: new ReactListView.store({
-      list: list
-    })
-  };
-  ReactListView.flux = new Fluxxor.Flux(tempStore, ReactListView.actions);
-  ReactListView.flux.on("dispatch", function(type, payload) {
-    if (console && console.log) {
-      console.log("[Dispatch]", type, payload);
-    }
-  });
-
-  console.log(this);
-}
-
-window.loadListView = function(list) {
-  ReactListView.init(list);
-  React.render(
-    <List flux={ ReactListView.flux } />,
-    document.getElementById('js-react-listContainer')
-  );
-}
