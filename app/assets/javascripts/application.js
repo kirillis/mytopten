@@ -12,7 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+
+//= require vendor/fluxxor.min.js
 //= require react
 //= require react_ujs
+//= require flux/constants.js
+//= require_tree ./flux/.
 //= require components
+//= require reactListView.js
+
 //= require_tree .
