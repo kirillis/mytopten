@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require classnames
 //= require vendor/fluxxor.min.js
 //= require react
 //= require react_ujs
