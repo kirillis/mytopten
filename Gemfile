@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'react-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'vacuum'
+gem 'classnames-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
