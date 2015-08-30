@@ -7,11 +7,11 @@ ReactListView.actions = {
   },
 
   addNewItem: function(itemTitle) {
-    var reactId = ReactListView.makeId();
+    var listItemID = ReactListView.makeId();
     // Optimistically add item to UI.
     this.dispatch(
       ReactListView.constants.ITEM_ADD,
-      {reactId: reactId, itemTitle: itemTitle}
+      {listItemID: listItemID, itemTitle: itemTitle}
     );
 
     ReactListView.addItem(
@@ -19,13 +19,13 @@ ReactListView.actions = {
       function() {
         this.dispatch(
           ReactListView.constants.ITEM_ADD_SUCCESS,
-          {reactId: reactId}
+          {listItemID: listItemID}
         )
       }.bind(this),
       function(error) {
         this.dispatch(
           ReactListView.constants.ITEM_ADD_FAILURE,
-          {reactId: reactId, error: error}
+          {listItemID: listItemID, error: 'Fehler beim Speichern von: ' + itemTitle + '('+ error + ')'}
         )
       }.bind(this)
     );

@@ -1,6 +1,7 @@
 ReactListView.listStore = Fluxxor.createStore({
   initialize: function(options) {
     this.list = options.list || [];
+    this.itemsToSave = [];
     this.bindActions(
       ReactListView.constants.ITEM_ADD, this.onItemAdd,
       ReactListView.constants.ITEM_ADD_SUCCESS, this.onItemAddSuccess,
@@ -12,28 +13,37 @@ ReactListView.listStore = Fluxxor.createStore({
   getState: function() {
     return {
       list: this.list,
+      itemsToSave: this.itemsToSave
     };
   },
 
   onItemAddFailure: function(payload) {
-    console.log('Implement onItemAddFailure:', payload);
+    var _this = this;
+    this.itemsToSave.splice( $.inArray(payload.listItemID, this.itemsToSave), 1 );
+    this.list.list_items.forEach(function(listItem, index) {
+      if(listItem.listItemID != undefined && listItem.listItemID == payload.listItemID) {
+        _this.list.list_items.splice(index, 1);
+        alert(payload.error);
+        return false;
+      }
+    });
+    this.emit('change');
   },
 
   onItemAddSuccess: function(payload) {
-    console.log('Implement onItemAddSuccess on ID:', payload.reactId);
+    this.itemsToSave.splice( $.inArray(payload.listItemID, this.itemsToSave), 1 );
+    this.emit('change');
   },
 
   onItemAdd: function(payload) {
-    console.log('ReactListView.listStore.list', this.list);
-    var _this = this;
     var newListItem = {
-      reactId: payload.reactId,
+      listItemID: payload.listItemID,
       title: payload.itemTitle,
       description: 'new item',
-      list_id: this.list.id,
-      isSaving: true
+      list_id: this.list.id
     };
     this.list.list_items.push(newListItem);
+    this.itemsToSave.push(newListItem.listItemID);
     this.emit('change');
   },
 

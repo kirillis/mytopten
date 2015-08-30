@@ -1,28 +1,32 @@
 var List = React.createClass({
-  /* Update this component when the Fluxxor store is updated */
   mixins: [FluxMixin, StoreWatchMixin("ListStore")],
 
-  /* Get the ingredients list from the store */
   getStateFromFlux: function() {
     var flux = this.getFlux();
     var listItems = flux.store("ListStore").getState().list.list_items;
     return {
-      list: flux.store("ListStore").getState().list
+      list: flux.store("ListStore").getState().list,
+      itemsToSave: flux.store("ListStore").getState().itemsToSave,
     };
   },
 
   render: function() {
     var props = this.props;
+    var state = this.state;
     var listItems = this.state.list.list_items.map(function(item) {
+      var isSaving = false;
+      if(item.listItemID != undefined && $.inArray(item.listItemID, state.itemsToSave) != -1) {
+        isSaving = true;
+      }
       return <ListItem
-              title={ item.title }
-              data={ item }
-              key={ item.id }
-              flux={ props.flux }
+              isSaving = { isSaving }
+              data = { item }
+              key = { item.id }
+              flux = { props.flux }
             />;
     })
     return (
-      <div className="List">
+      <div className="c-listContainer">
         <h2>{ this.state.list.title }</h2>
         <ol>
           { listItems }

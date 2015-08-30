@@ -2,7 +2,6 @@
   mixins: [FluxMixin],
 
   handleAddItemClick: function() {
-    console.log('handleAddItemClick');
     this.getFlux().actions.addNewItem(this.props.data.title);
   },
 

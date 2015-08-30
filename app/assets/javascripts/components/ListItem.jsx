@@ -22,15 +22,14 @@ var ListItem = React.createClass({
   render: function() {
     var classes = classNames({
       'c-listItem': true,
-      'is-saving': this.props.data.isSaving,
-      'has-error': this.props.data.hasError,
+      'is-saving': this.props.isSaving,
     });
     // // same final string, but much cleaner
     // return <div className={classes}>Great, I'll be there.</div>;
     var saveButton = this.state.hasChanged ? <button className="c-button" onClick={ this.saveData }>Save</button> : '';
     return (
       <li className={ classes }>
-        <p className="c-listItem__title">{ this.props.title }</p>
+        <p className="c-listItem__title">{ this.props.data.title }</p>
         <input
           className="c-listItem__input"
           defaultValue={ this.props.data.title }

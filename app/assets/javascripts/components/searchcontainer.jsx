@@ -13,10 +13,10 @@ var SearchContainer = React.createClass({
       dataType: 'json',
       contentType: 'application/json',
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log('error', errorThrown);
+        console.log('SearchContainer error:', errorThrown);
       },
       success: function(data, textStatus, jqXHR) {
-        console.log('success', data);
+        console.log('SearchContainer success:', data);
         this.setState({ listItems: data });
       }.bind(this)
     });
