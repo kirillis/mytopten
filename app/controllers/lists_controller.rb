@@ -10,11 +10,12 @@ class ListsController < ApplicationController
 
   def show
     @list = List.includes(:list_items).find(params[:id])
+    @list_id = params[:id]
     @list_json = @list.to_json(include: :list_items)
     respond_to do |format|
       format.html
       format.json {
-        render json: @list.to_json(include: :list_items)
+        render json: @list, root: false
       }
     end
   end
