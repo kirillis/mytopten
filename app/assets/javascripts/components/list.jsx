@@ -11,21 +11,6 @@ var List = React.createClass({
     };
   },
 
-  fetchListItems: function() {
-    //   var _this = this;
-    //   $.getJSON(
-    //     this.props.listPath,
-    //     function(data) {
-    //       if(_this.isMounted()) {
-    //         _this.setState({
-    //           listItems: data.list_items,
-    //           title: data.title
-    //         });
-    //       }
-    //     }
-    //   )
-  },
-
   render: function() {
     var props = this.props;
     var listItems = this.state.list.list_items.map(function(item) {

@@ -9,7 +9,6 @@ var ListItem = React.createClass({
   saveData: function() {
     // this.getFlux().actions.updateIngredient(this.props.ingredient, $(this.refs.ingredient.getDOMNode()).val());
     this.getFlux().actions.updateItem(this.props.data, this.state.value);
-    this.setState({ hasChanged: false, isUpdated: true });
   },
 
   getInitialState: function() {
@@ -17,16 +16,23 @@ var ListItem = React.createClass({
       value: this.props.data.title,
       item: this.props.data,
       hasChanged: false,
-      isUpdated: false
     }
   },
 
   render: function() {
-    var saveButton = this.state.hasChanged ? <button onClick={ this.saveData }>Save</button> : '';
+    var classes = classNames({
+      'c-listItem': true,
+      'is-saving': this.props.data.isSaving,
+      'has-error': this.props.data.hasError,
+    });
+    // // same final string, but much cleaner
+    // return <div className={classes}>Great, I'll be there.</div>;
+    var saveButton = this.state.hasChanged ? <button className="c-button" onClick={ this.saveData }>Save</button> : '';
     return (
-      <li className="ListItem-title">
-        <h4>{ this.props.title }</h4>
+      <li className={ classes }>
+        <p className="c-listItem__title">{ this.props.title }</p>
         <input
+          className="c-listItem__input"
           defaultValue={ this.props.data.title }
           value={ this.state.value }
           onChange={ this.inputChange }

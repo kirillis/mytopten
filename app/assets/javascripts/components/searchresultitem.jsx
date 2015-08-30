@@ -3,7 +3,7 @@
 
   handleAddItemClick: function() {
     console.log('handleAddItemClick');
-    this.getFlux().actions.addItem(this.props.data.title);
+    this.getFlux().actions.addNewItem(this.props.data.title);
   },
 
   render: function() {

@@ -2,7 +2,9 @@ ReactListView.listStore = Fluxxor.createStore({
   initialize: function(options) {
     this.list = options.list || [];
     this.bindActions(
-      ReactListView.constants.ITEM_ADD, this.onAddItem,
+      ReactListView.constants.ITEM_ADD, this.onItemAdd,
+      ReactListView.constants.ITEM_ADD_SUCCESS, this.onItemAddSuccess,
+      ReactListView.constants.ITEM_ADD_FAILURE, this.onItemAddFailure,
       ReactListView.constants.ITEM_UPDATE, this.onUpdateItem
     );
   },
@@ -13,30 +15,26 @@ ReactListView.listStore = Fluxxor.createStore({
     };
   },
 
-  onAddItem: function(payload) {
+  onItemAddFailure: function(payload) {
+    console.log('Implement onItemAddFailure:', payload);
+  },
+
+  onItemAddSuccess: function(payload) {
+    console.log('Implement onItemAddSuccess on ID:', payload.reactId);
+  },
+
+  onItemAdd: function(payload) {
     console.log('ReactListView.listStore.list', this.list);
     var _this = this;
     var newListItem = {
+      reactId: payload.reactId,
       title: payload.itemTitle,
       description: 'new item',
-      list_id: this.list.id
-    }
-    var stringData = JSON.stringify(newListItem)
-    $.ajax({
-      url: '/list_items.json',
-      method: 'post',
-      data: stringData,
-      dataType: 'json',
-      contentType: 'application/json',
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log('error', errorThrown);
-      },
-      success: function(data, textStatus, jqXHR) {
-        console.log('_this', _this, this);
-        _this.list.list_items.push(newListItem);
-        _this.emit('change');
-      }
-    });
+      list_id: this.list.id,
+      isSaving: true
+    };
+    this.list.list_items.push(newListItem);
+    this.emit('change');
   },
 
   onUpdateItem: function(payload) {
