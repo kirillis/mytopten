@@ -1,51 +1,45 @@
 var SearchContainer = React.createClass({
-  handleKeyPressed: function(event) {
-    if(event.key == 'Enter') {
-      this.sendQuery();
-    }
-  },
-  inputChange: function(event) {
-    this.state.hasChanged = true;
-    this.setState({ value: event.target.value });
-  },
   sendQuery: function() {
-    console.log('send query');
+    console.log('send query:', this.state.searchQuery);
     $.ajax({
-      url: '/search/amazon/?query=' + this.state.value,
+      url: '/search/amazon/?query=' + this.state.searchQuery,
       method: 'get',
       dataType: 'json',
       contentType: 'application/json',
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log('error', errorThrown);
+        console.log('SearchContainer error:', errorThrown);
       },
       success: function(data, textStatus, jqXHR) {
-        console.log('success', data);
+        console.log('SearchContainer success:', data);
         this.setState({ listItems: data });
       }.bind(this)
     });
   },
+
+  handleUserInput: function(searchQuery) {
+    this.state.hasChanged = true;
+    this.setState({ searchQuery: searchQuery })
+  },
+
   getInitialState: function() {
     return {
-      value: '',
+      searchQuery: '',
       hasChanged: false,
       listItems: []
     }
   },
+
   render: function() {
     var searchButton = this.state.hasChanged ? <button onClick={ this.sendQuery } >Search</button> : '';
-    var listItems = this.state.listItems.map(function(item) {
-      return <SearchResultItem data={ item } key={ item.id } />;
-    })
     return (
       <div className="Search">
         <h4>Search amazon books:</h4>
-        <input value={ this.state.value } onChange={ this.inputChange } onKeyDown={ this.handleKeyPressed } />
+        <SearchBox searchQuery={ this.state.searchQuery } onUserInput={ this.handleUserInput } onSendQuery={ this.sendQuery } />
         { searchButton }
         <hr />
-        <ul>
-          { listItems }
-        </ul>
+        <SearchResultsList listItems={ this.state.listItems } />
       </div>
     );
   }
 });
+

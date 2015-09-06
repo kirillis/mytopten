@@ -1,0 +1,15 @@
+.c-listItem {
+  margin-bottom: 32px;
+}
+
+.c-listItem__title {
+  color: black;
+}
+
+.is-saving .c-listItem__title {
+  color: #AE7B25;
+}
+
+.has-error .c-listItem__title {
+  color: red;
+}

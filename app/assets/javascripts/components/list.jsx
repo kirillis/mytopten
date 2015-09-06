@@ -1,39 +1,37 @@
 var List = React.createClass({
-  componentWillMount:  function() {
-    this.fetchListItems();
-  },
-  fetchListItems: function() {
-    var _this = this;
-    $.getJSON(
-      this.props.listPath,
-      function(data) {
-        if(_this.isMounted()) {
-          _this.setState({ 
-            listItems: data.list_items,
-            title: data.title
-          });
-        }
-      }
-    )
-  },
-  getInitialState: function() {
-    return { 
-      listItems: [],
-      list: {},
-      title: ''
+  mixins: [FluxMixin, StoreWatchMixin("ListStore")],
+
+  getStateFromFlux: function() {
+    var flux = this.getFlux();
+    var listItems = flux.store("ListStore").getState().list.list_items;
+    return {
+      list: flux.store("ListStore").getState().list,
+      itemsToSave: flux.store("ListStore").getState().itemsToSave,
     };
   },
+
   render: function() {
-    var _this = this;
-    var listItems = this.state.listItems.map(function(item) {
-      return <ListItem data={ item } key={ item.id } />;
+    var props = this.props;
+    var state = this.state;
+    var listItems = this.state.list.list_items.map(function(item) {
+      var isSaving = false;
+      if(item.listItemID != undefined && $.inArray(item.listItemID, state.itemsToSave) != -1) {
+        isSaving = true;
+      }
+      return <ListItem
+              isSaving = { isSaving }
+              data = { item }
+              key = { item.id }
+              flux = { props.flux }
+            />;
     })
     return (
-      <div className="List">
-        <h4>{ this.state.title }</h4>
+      <div className="c-listContainer">
+        <h2>{ this.state.list.title }</h2>
         <ol>
           { listItems }
         </ol>
+        <SearchContainer />
       </div>
     );
   }

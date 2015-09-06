@@ -1,6 +1,5 @@
 Mytopten::Application.routes.draw do
   resources :list_items
-
   resources :lists
 
   get 'search/amazon/' => 'search#amazon', as: :search_amazon

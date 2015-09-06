@@ -9,6 +9,8 @@ gem 'jquery-rails'
 gem 'react-rails'
 gem 'jbuilder', '~> 1.2'
 gem 'vacuum'
+gem 'classnames-rails'
+gem 'active_model_serializers'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -21,6 +23,7 @@ group :production do
 end
 
 group :development do
+  gem 'awesome_print'
   gem 'sqlite3'
   gem "binding_of_caller"
   gem "better_errors"

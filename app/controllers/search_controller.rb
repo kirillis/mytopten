@@ -16,7 +16,7 @@ class SearchController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render json: @results
+        render json: @results, root: false
       }
     end
   end
