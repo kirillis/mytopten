@@ -1,10 +1,4 @@
 var SearchContainer = React.createClass({
-  // inputChange: function(event) {
-  //   console.log('event', event);
-  //   this.state.hasChanged = true;
-  //   this.setState({ searchQuery: event.target.value });
-  // },
-
   sendQuery: function() {
     console.log('send query:', this.state.searchQuery);
     $.ajax({
