@@ -30,6 +30,8 @@ var ListItem = React.createClass({
     return (
       <li className={ classes }>
         <p className="c-listItem__title">{ this.props.data.title }</p>
+        <a href={ this.props.data.link } className="c-listItem__link">link</a>
+        <img src={ this.props.data.image_url } className="c-listItem__link" />
         <input
           className="c-listItem__input"
           defaultValue={ this.props.data.title }
