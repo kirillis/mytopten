@@ -1,28 +1,18 @@
-ReactListView.addItem = function(itemTitle, success, failure) {
-  // var stringData = JSON.stringify(newListItem)
-  // $.ajax({
-  //   url: '/list_items.json',
-  //   method: 'post',
-  //   data: stringData,
-  //   dataType: 'json',
-  //   contentType: 'application/json',
-  //   error: function(jqXHR, textStatus, errorThrown) {
-  //     console.log('error', errorThrown);
-  //   },
-  //   success: function(data, textStatus, jqXHR) {
-  //     console.log('_this', _this, this);
-  //     _this.list.list_items.push(newListItem);
-  //     _this.emit('change');
-  //   }
-  // });
-
-  setTimeout(function() {
-    if (Math.random() > 0.5) {
-      success(itemTitle);
-    } else {
-      failure("Failed to save item in ReactListView.addItem().");
+ReactListView.saveItem = function(itemData, success, failure) {
+  var stringData = JSON.stringify(itemData)
+  $.ajax({
+    url: '/list_items.json',
+    method: 'post',
+    data: stringData,
+    dataType: 'json',
+    contentType: 'application/json',
+    error: function(jqXHR, textStatus, errorThrown) {
+      failure("Failed to save item in ReactListView.saveItem().");
+    },
+    success: function(data, textStatus, jqXHR) {
+      success(itemData);
     }
-  }, Math.random() * 1000 + 500);
+  });
 };
 
 ReactListView.submit = function(item, success, failure) {

@@ -10,6 +10,10 @@ ReactListView.listStore = Fluxxor.createStore({
     );
   },
 
+  getID: function() {
+    return this.list.id;
+  },
+
   getState: function() {
     return {
       list: this.list,
@@ -36,14 +40,8 @@ ReactListView.listStore = Fluxxor.createStore({
   },
 
   onItemAdd: function(payload) {
-    var newListItem = {
-      listItemID: payload.listItemID,
-      title: payload.itemTitle,
-      description: 'new item',
-      list_id: this.list.id
-    };
-    this.list.list_items.push(newListItem);
-    this.itemsToSave.push(newListItem.listItemID);
+    this.list.list_items.push(payload);
+    this.itemsToSave.push(payload.listItemID);
     this.emit('change');
   },
 

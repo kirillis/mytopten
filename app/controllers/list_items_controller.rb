@@ -6,12 +6,13 @@ class ListItemsController < ApplicationController
   end
 
   def create
-    @new_list_item = ListItem.create(list_item_params)
-    @new_list_item.save
+    list = List.find(params[:list_id])
+    @new_list_item = list.list_items.create(list_item_params)
+    # @new_list_item.save
 
     respond_to do |format|
-      if @new_list_item.save
-        format.html { redirect_to @new_list_item, notice: 'User was successfully created.' }
+      if @new_list_item
+        format.html { redirect_to @new_list_item, notice: 'Listitem was successfully created.' }
         format.json { render json: @new_list_item, status: :created, location: @new_list_item }
       else
         format.html { render action: "new" }
@@ -33,6 +34,6 @@ class ListItemsController < ApplicationController
 
   private
     def list_item_params
-      params.require(:list_item).permit(:title, :description, :rank, :list_id)
+      params.require(:list_item).permit(:title, :description, :rank, :list_id, :link, :image_url)
     end
 end

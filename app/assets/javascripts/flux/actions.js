@@ -6,26 +6,31 @@ ReactListView.actions = {
     );
   },
 
-  addNewItem: function(itemTitle) {
+  addNewItem: function(newItemData) {
+    var listID = this.flux.store("ListStore").getID();
+    console.log('listID', listID);
     var listItemID = ReactListView.makeId();
-    // Optimistically add item to UI.
-    this.dispatch(
-      ReactListView.constants.ITEM_ADD,
-      {listItemID: listItemID, itemTitle: itemTitle}
-    );
+    var itemData = {
+      title: newItemData.title,
+      link: newItemData.amazon_url,
+      image_url: newItemData.thumbnail_url,
+      list_id: listID,
+      rank: 0,
+      listItemID: listItemID
+    };
 
-    ReactListView.addItem(
-      itemTitle,
+    // Optimistically add item to UI.
+    this.dispatch(ReactListView.constants.ITEM_ADD, itemData);
+
+    ReactListView.saveItem(
+      itemData,
       function() {
-        this.dispatch(
-          ReactListView.constants.ITEM_ADD_SUCCESS,
-          {listItemID: listItemID}
-        )
+        this.dispatch(ReactListView.constants.ITEM_ADD_SUCCESS, itemData)
       }.bind(this),
       function(error) {
         this.dispatch(
           ReactListView.constants.ITEM_ADD_FAILURE,
-          {listItemID: listItemID, error: 'Fehler beim Speichern von: ' + itemTitle + '('+ error + ')'}
+          {listItemID: listItemID, error: 'Error saving: ' + itemTitle + '('+ error + ')'}
         )
       }.bind(this)
     );
