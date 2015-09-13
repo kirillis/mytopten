@@ -1,9 +1,28 @@
 .c-listItem {
+  border: 1px solid grey;
+  padding: 16px;
+  margin-right: 32px;
   margin-bottom: 32px;
+  display: inline-block;
+  width: 300px;
+  height: 500px;
+
+  &.is-saving {
+    border-color: yellow;
+  }
 }
 
 .c-listItem__title {
   color: black;
+}
+
+.c-listItem__textarea {
+  padding: 5px 10px;
+  width: 100%;
+}
+
+.c-listItem__textarea--h3 {
+  font-size: 130%;
 }
 
 .is-saving .c-listItem__title {
