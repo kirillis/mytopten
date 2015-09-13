@@ -1,14 +1,22 @@
 ReactListView.actions = {
-  updateItem: function(item, newTitle) {
-    this.dispatch(
-      ReactListView.constants.ITEM_UPDATE,
-      {item: item, newTitle: newTitle}
+  updateItem: function(itemData, newItemData) {
+    var payload = { itemData: itemData, newItemData: newItemData };
+    console.log('updateItem action: ', payload.itemData.title);
+    this.dispatch(ReactListView.constants.ITEM_UPDATE, payload);
+
+    ReactListView.updateItem(
+      payload,
+      function(data) {
+        this.dispatch(ReactListView.constants.ITEM_UPDATE_SUCCESS, data);
+      }.bind(this),
+      function(error) {
+        this.dispatch(ReactListView.constants.ITEM_UPDATE_FAILURE, error);
+      }.bind(this)
     );
   },
 
   addNewItem: function(newItemData) {
     var listID = this.flux.store("ListStore").getID();
-    console.log('listID', listID);
     var listItemID = ReactListView.makeId();
     var itemData = {
       title: newItemData.title,
@@ -24,15 +32,22 @@ ReactListView.actions = {
 
     ReactListView.saveItem(
       itemData,
-      function() {
-        this.dispatch(ReactListView.constants.ITEM_ADD_SUCCESS, itemData)
+      function(savedItem) {
+        savedItem.listItemID = itemData.listItemID;
+        this.dispatch(ReactListView.constants.ITEM_ADD_SUCCESS, savedItem);
       }.bind(this),
       function(error) {
-        this.dispatch(
-          ReactListView.constants.ITEM_ADD_FAILURE,
-          {listItemID: listItemID, error: 'Error saving: ' + itemTitle + '('+ error + ')'}
-        )
+        var payload = {
+          listItemID: listItemID,
+          error: 'Error saving: ' + itemTitle + '('+ error + ')'
+        };
+        this.dispatch(ReactListView.constants.ITEM_ADD_FAILURE, payload);
       }.bind(this)
     );
-  }
+  },
+
+  deleteItem: function(itemId) {
+    // Optimistically add item to UI.
+    this.dispatch(ReactListView.constants.ITEM_DELETE, itemId);
+  },
 };

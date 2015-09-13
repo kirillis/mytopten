@@ -14,17 +14,12 @@ var List = React.createClass({
     var props = this.props;
     var state = this.state;
     var listItems = this.state.list.list_items.map(function(item) {
-      var isSaving = false;
-      if(item.listItemID != undefined && $.inArray(item.listItemID, state.itemsToSave) != -1) {
-        isSaving = true;
-      }
       return <ListItem
-              isSaving = { isSaving }
               data = { item }
               key = { item.id }
               flux = { props.flux }
             />;
-    })
+    });
     return (
       <div className="c-listContainer">
         <h2>{ this.state.list.title }</h2>
