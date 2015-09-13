@@ -30,12 +30,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @list.update(list_params)
     @list.save
-    respond_to do |format|
-      format.html
-      format.json {
-        render json: @list.to_json(:include => :list_items)
-      }
-    end
+    render json: @list
   end
 
   private
