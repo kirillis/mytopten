@@ -18,7 +18,7 @@ var SearchContainer = React.createClass({
 
   handleUserInput: function(searchQuery) {
     this.state.hasChanged = true;
-    this.setState({ searchQuery: searchQuery })
+    this.setState({ searchQuery: searchQuery });
   },
 
   getInitialState: function() {
@@ -26,15 +26,20 @@ var SearchContainer = React.createClass({
       searchQuery: '',
       hasChanged: false,
       listItems: []
-    }
+    };
   },
 
   render: function() {
-    var searchButton = this.state.hasChanged ? <button onClick={ this.sendQuery } >Search</button> : '';
+    var searchButton = this.state.hasChanged ? <button onClick={ this.sendQuery }>Search</button> : '';
     return (
       <div className="Search">
         <h4>Search amazon books:</h4>
-        <SearchBox searchQuery={ this.state.searchQuery } onUserInput={ this.handleUserInput } onSendQuery={ this.sendQuery } />
+        <SearchBox
+          searchQuery={ this.state.searchQuery }
+          onUserInput={ this.handleUserInput }
+          onSendQuery={ this.sendQuery }
+        />
+
         { searchButton }
         <hr />
         <SearchResultsList listItems={ this.state.listItems } />
