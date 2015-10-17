@@ -13,13 +13,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require classnames
-//= require vendor/fluxxor.min.js
+
+// REACT
 //= require react
 //= require react_ujs
-//= require flux/constants.js
-//= require flux/mixins.js
+
+// FLUX
+//= require fluxxor.min
+//= require flux/constants
+//= require flux/mixins
 //= require_tree ./flux/.
+
+
 //= require components
-//= require reactListView.js
+//= require reactListView
+
+// VENDOR
+//= require rx.lite
+//= require jquery.elastic.source
 
 //= require_tree .
