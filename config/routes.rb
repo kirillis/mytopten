@@ -2,6 +2,13 @@ Mytopten::Application.routes.draw do
   resources :list_items
   resources :lists
 
+  resources :users, only: [:new, :create]
+  get 'register' => 'users#new', as: :user_register
+
+  resources :sessions, only: [:new, :create, :destroy]
+  get '/login', to: 'sessions#new', as: :user_log_in
+  delete '/logout', to: 'sessions#destroy', as: :user_log_out
+
   get 'search/amazon/' => 'search#amazon', as: :search_amazon
   get 'search/' => 'search#index'
 
