@@ -1,0 +1,20 @@
+%h1 Registration
+
+= form_for @user do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, required: true
+
+  .form-group
+    = f.label :email
+    = f.email_field :email, required: true
+
+  .form-group
+    = f.label :password
+    = f.password_field :password, required: true
+
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, required: true
+
+  = f.submit 'Register'
