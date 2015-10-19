@@ -17,12 +17,14 @@ ActiveRecord::Schema.define(version: 20151018123339) do
     t.string   "title"
     t.string   "description"
     t.integer  "rank"
+    t.integer  "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "list_id"
     t.string   "image_url"
     t.string   "link"
   end
+
+  add_index "list_items", ["list_id"], name: "index_list_items_on_list_id"
 
   create_table "lists", force: true do |t|
     t.string   "title"
