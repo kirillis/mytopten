@@ -37,9 +37,9 @@ ReactListView.updateItem = function(payload, success, failure) {
   });
 };
 
-ReactListView.init = function(listId) {
+ReactListView.init = function(userName, listId) {
   var list;
-  $.getJSON('/lists/' + listId + '.json', function(data) {
+  $.getJSON('/' + userName + '/' + listId + '.json', function(data) {
     list = data;
     ReactListView.makeFluxStore(list);
   });
@@ -69,6 +69,6 @@ ReactListView.makeId = function() {
   return text;
 };
 
-window.loadListView = function(listId) {
-  ReactListView.init(listId);
+window.loadListView = function(userName, listId) {
+  ReactListView.init(userName, listId);
 };

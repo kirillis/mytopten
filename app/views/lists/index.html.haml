@@ -1,11 +1,9 @@
-%h1 All lists:
-%ul
-  -@lists.each do |list|
-    %li=link_to list.title, list
+%h1="All of your lists, #{@user.name}"
 
-=form_for @new_list do |f|
-  %p Title:
-  %p=f.text_field :title
-  %p Description:
-  %p=f.text_area :description, size: "60x12"
-  %p=f.submit "Submit"
+=link_to 'Create new list', user_list_new_path(@user.name)
+-unless @lists.empty?
+  %ul
+    -@lists.each do |list|
+      %li=link_to list.title, user_list_path(list.user.name, list)
+-else
+  %p No list created yet.

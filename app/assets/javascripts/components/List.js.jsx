@@ -23,6 +23,8 @@ var List = React.createClass({
     return (
       <div className="c-listContainer">
         <h2>{ this.state.list.title }</h2>
+        <p>{ this.state.list.description }</p>
+        <h3><a href={'/' + this.state.list.user.name }>by { this.state.list.user.name }</a></h3>
         <ol>
           { listItems }
         </ol>
