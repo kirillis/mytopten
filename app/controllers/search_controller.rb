@@ -7,7 +7,7 @@ class SearchController < ApplicationController
   end
 
   def amazon
-    amazon_book_search = AmazonSearch.new
+    amazon_book_search = AmazonSearch.new()
     @results = []
     if params.has_key?('query')
       @results = amazon_book_search.search_for(params['query'])

@@ -1,31 +1,28 @@
 class AmazonSearch
 
   def initialize(params = {})
-    @search_index = params[:search_index] || 'Books'
+    @search_index = params[:search_index] || 'All'
     @response_group = params[:response_group] || 'Large'
     @locale = params[:locale] || 'US'
+    @amazon_request = get_amazon_request()
   end
 
-  def get_amazon_request
-    request = Vacuum.new(@locale)
-    request.configure(
-      aws_access_key_id: ENV['AWS_KEY'],
-      aws_secret_access_key: ENV['AWS_SECRET'],
-      associate_tag: 'tag'
-    )
-    request
+  def search_for(query)
+    @items = get_result_items(query)
+    @results = []
+    unless @items.empty?
+      if @items.is_a?(Array)
+        @items.each do |item|
+          @results << get_result_from_items(item)
+        end
+      else
+        @results << get_result_from_items(@items)
+      end
+    end
+    @results
   end
 
-  def item_search(query)
-    get_amazon_request().item_search(
-      query: {
-        'Title' => query,
-        'SearchIndex' => @search_index,
-        'ResponseGroup' => @response_group
-      }
-    )
-  end
-
+  private
   def get_result_items(query)
     response = item_search(query)
     hash_result = response.to_h
@@ -33,7 +30,6 @@ class AmazonSearch
     unless hash_result['ItemSearchResponse']['Items']['TotalResults'] == '0'
       items = hash_result['ItemSearchResponse']['Items']['Item']
     end
-
     items
   end
 
@@ -49,20 +45,22 @@ class AmazonSearch
       }
   end
 
-  def search_for(query)
-    @items = get_result_items(query)
-    @results = []
+  def item_search(query)
+    @amazon_request.item_search(
+      query: {
+        'Keywords' => query,
+        'SearchIndex' => @search_index,
+        'ResponseGroup' => @response_group
+      }
+    )
+  end
 
-    unless @items.empty?
-      if @items.is_a?(Array)
-        @items.each do |item|
-          @results << get_result_from_items(item)
-        end
-      else
-        @results << get_result_from_items(@items)
-      end
-    end
-
-    @results
+  def get_amazon_request
+    request = Vacuum.new(@locale)
+    request.configure(
+      aws_access_key_id: ENV['AWS_KEY'],
+      aws_secret_access_key: ENV['AWS_SECRET'],
+      associate_tag: 'tag'
+    )
   end
 end

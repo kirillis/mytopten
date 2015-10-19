@@ -1,12 +1,9 @@
-:javascript
-  $(document).ready(function() {
-    window.loadListView(#{@list_id});
-  });
-
-%p=link_to "<- back to lists", lists_path
-
-#js-react-listContainer
-
-=#react_component 'List', listId: list_path(params[:id])
-=#react_component 'ListView', listPath: list_path(params[:id])
-
+-if @user.nil?
+  %p No list found.
+-else
+  #js-react-listContainer
+  :javascript
+    $(document).ready(function() {
+      var userName = '#{@user_name}';
+      window.loadListView(userName, #{@list_id});
+    });

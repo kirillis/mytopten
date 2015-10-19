@@ -12,5 +12,26 @@
     %link{:href => "/favicon.ico", :rel => "shortcut icon"}
 
   %body
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: name
     .SiteWrapper
-      = yield
+      %ul.Navbar
+        %li.Navbar-item
+          =link_to 'Home', root_path
+        -if current_user
+          %li.Navbar-item
+            Signed in as
+            = link_to current_user.name, user_path(current_user.name)
+          %li.Navbar-item
+            = link_to 'My lists', user_lists_path(current_user.name)
+          %li.Navbar-item
+            = link_to 'Log Out', user_log_out_path, method: :delete
+
+        -else
+          %li.Navbar-item
+            = link_to 'Sign Up', user_register_path
+          %li.Navbar-item
+            = link_to 'Log In', user_log_in_path
+
+      .ContentWrapper
+        = yield

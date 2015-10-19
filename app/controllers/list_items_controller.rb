@@ -7,28 +7,31 @@ class ListItemsController < ApplicationController
 
   def create
     list = List.find(params[:list_id])
-    @new_list_item = list.list_items.create(list_item_params)
-    # @new_list_item.save
-
-    respond_to do |format|
-      if @new_list_item
-        format.html { redirect_to @new_list_item, notice: 'Listitem was successfully created.' }
-        format.json { render json: @new_list_item, status: :created, location: @new_list_item }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @new_list_item.errors, status: :unprocessable_entity }
-      end
+    new_list_item = list.list_items.create(list_item_params)
+    if new_list_item
+      render json: new_list_item, status: :created
+    else
+      render json: new_list_item.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    @list_item = ListItem.find(params[:id])
-    @list_item.update(list_item_params)
-    @list_item.save
-    respond_to do |format|
-      format.json {
-        render json: @list_item.to_json
-      }
+    list_item = ListItem.find(params[:id])
+    list_item.update(list_item_params)
+    if list_item.save
+      render json: list_item, status: :ok
+    else
+      render json: list_item, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    list_item = ListItem.find(params[:id])
+
+    if list_item.destroy
+      render json: list_item, status: :ok
+    else
+      render json: list_item, status: :unprocessable_entity
     end
   end
 
