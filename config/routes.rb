@@ -1,18 +1,23 @@
 Mytopten::Application.routes.draw do
-  resources :list_items
-  resources :lists
 
-  resources :users, only: [:new, :create]
   get 'register' => 'users#new', as: :user_register
-
-  resources :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new', as: :user_log_in
   delete '/logout', to: 'sessions#destroy', as: :user_log_out
-
   get 'search/amazon/' => 'search#amazon', as: :search_amazon
   get 'search/' => 'search#index'
 
-  root 'lists#index'
+  get '/:name', to: 'users#show', as: 'user'
+  get '/:user_name/lists', to: 'lists#index', as: 'user_lists'
+  get '/:user_name/:list_id', to: 'lists#show', as: 'user_list'
+  get '/:user_name/lists/new', to: 'lists#new', as: 'user_list_new'
+
+  resources :lists, only: [:index, :create]
+  resources :users, only: [:new, :create]
+  resources :list_items
+
+  resources :sessions, only: [:new, :create, :destroy]
+
+  root 'home#show'
 end
 
 
