@@ -24,9 +24,9 @@
 //= require flux/mixins
 //= require_tree ./flux/.
 
-
-//= require components
-//= require reactListView
+//= require_tree ./components
+//= require react_app/app
+//= require_tree ./react_app/.
 
 // VENDOR
 //= require rx.lite
