@@ -1,6 +1,13 @@
 var List = React.createClass({
   mixins: [FluxMixin, StoreWatchMixin("ListStore")],
 
+  getInitialState: function() {
+    return {
+      hasChanged: false,
+      // description: this.state.list.description
+    };
+  },
+
   getStateFromFlux: function() {
     var flux = this.getFlux();
     var listItems = flux.store("ListStore").getState().list.list_items;
@@ -8,6 +15,11 @@ var List = React.createClass({
       list: flux.store("ListStore").getState().list,
       itemsToSave: flux.store("ListStore").getState().itemsToSave,
     };
+  },
+
+  descriptionChange: function(event) {
+    this.state.hasChanged = true;
+    this.setState({ description: event.target.value });
   },
 
   render: function() {
@@ -22,10 +34,17 @@ var List = React.createClass({
     });
     return (
       <div className="c-listContainer">
-        <h2>{ this.state.list.title }</h2>
-        <p>{ this.state.list.description }</p>
-        <h3><a href={'/' + this.state.list.user.name }>by { this.state.list.user.name }</a></h3>
-        <ol>
+        <ListDetails
+          title={this.state.list.title}
+          description={this.state.list.description}
+        />
+        <h3 className='c-listAuthor'>
+          <a
+          className='c-listAuthor-link'
+            href={'/' + this.state.list.user.name }>by { this.state.list.user.name }
+          </a>
+        </h3>
+        <ol className='c-listItemsContainer'>
           { listItems }
         </ol>
         <SearchContainer />

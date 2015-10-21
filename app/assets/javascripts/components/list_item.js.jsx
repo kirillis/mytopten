@@ -51,7 +51,7 @@ var ListItem = React.createClass({
     return (
       <li className={ classes } data-id={ this.state.item.id }>
         <textarea
-          rows="1"
+          rows="4"
           className="c-listItem__textarea c-listItem__textarea--h3 js-elastic"
           defaultValue={ this.props.data.title }
           value={ this.state.title }
