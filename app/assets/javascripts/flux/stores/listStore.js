@@ -1,17 +1,17 @@
-ReactListView.listStore = Fluxxor.createStore({
+App.listStore = Fluxxor.createStore({
   initialize: function(options) {
     this.list = options.list || [];
     this.itemsToSave = [];
     this.bindActions(
-      ReactListView.constants.ITEM_UPDATE, this.onUpdateItem,
-      ReactListView.constants.ITEM_UPDATE_SUCCESS, this.onUpdateItemSuccess,
-      ReactListView.constants.ITEM_UPDATE_FAILURE, this.onUpdateItemFailure,
-      ReactListView.constants.ITEM_ADD, this.onItemAdd,
-      ReactListView.constants.ITEM_ADD_SUCCESS, this.onItemAddSuccess,
-      ReactListView.constants.ITEM_ADD_FAILURE, this.onItemAddFailure,
-      ReactListView.constants.ITEM_DELETE, this.onItemDelete,
-      ReactListView.constants.ITEM_DELETE_SUCCESS, this.onItemDeleteSuccess,
-      ReactListView.constants.ITEM_DELETE_FAILURE, this.onItemDeleteFailure
+      App.constants.ITEM_UPDATE, this.onUpdateItem,
+      App.constants.ITEM_UPDATE_SUCCESS, this.onUpdateItemSuccess,
+      App.constants.ITEM_UPDATE_FAILURE, this.onUpdateItemFailure,
+      App.constants.ITEM_ADD, this.onItemAdd,
+      App.constants.ITEM_ADD_SUCCESS, this.onItemAddSuccess,
+      App.constants.ITEM_ADD_FAILURE, this.onItemAddFailure,
+      App.constants.ITEM_DELETE, this.onItemDelete,
+      App.constants.ITEM_DELETE_SUCCESS, this.onItemDeleteSuccess,
+      App.constants.ITEM_DELETE_FAILURE, this.onItemDeleteFailure
     );
   },
 
@@ -91,7 +91,7 @@ ReactListView.listStore = Fluxxor.createStore({
     this.list.list_items.forEach(function(listItem, index) {
       if(listItem.listItemID !== undefined && listItem.listItemID == payload.listItemID) {
         _this.list.list_items.splice(index, 1);
-        alert("Error adding new list item. Error message: ", payload.error);
+        alert("Error adding new list item. Error message: " + payload.error);
         return false;
       }
     });
