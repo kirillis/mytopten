@@ -1,5 +1,6 @@
-var ReactListView = {};
-ReactListView.constants = {
+var App = App || {};
+
+App.constants = {
   ITEM_ADD: "ITEM_ADD",
   ITEM_ADD_SUCCESS: "ITEM_ADD_SUCCESS",
   ITEM_ADD_FAILURE: "ITEM_ADD_FAILURE",
