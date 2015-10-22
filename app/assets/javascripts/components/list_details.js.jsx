@@ -5,6 +5,7 @@ var ListDetails = React.createClass({
     return {
       title: this.props.title,
       description: this.props.description,
+      isPublic: this.props.public,
       hasChanged: false
     };
   },
@@ -20,6 +21,13 @@ var ListDetails = React.createClass({
     this.setState({
       hasChanged: true,
       description: event.target.value
+    });
+  },
+
+  handleIsPublicChange: function(event) {
+    this.setState({
+      hasChanged: true,
+      isPublic: !this.state.isPublic
     });
   },
 
@@ -43,6 +51,7 @@ var ListDetails = React.createClass({
     return (
       <div className='c-listDetails'>
         <input
+          type="text"
           value={ this.state.title }
           onChange={ this.handleTitleChange }
         />
@@ -53,6 +62,14 @@ var ListDetails = React.createClass({
           value={ this.state.description }
           onChange={ this.handleDescriptionChange }
         />
+        <br />
+        <input
+          name="public"
+          type="checkbox"
+          checked={ this.state.isPublic }
+          onChange={ this.handleIsPublicChange }
+        />
+        <label htmlFor="public">public list</label>
         <br />
         {saveButton}
       </div>

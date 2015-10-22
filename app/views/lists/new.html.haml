@@ -5,4 +5,6 @@
   %p=f.text_field :title
   %p Description:
   %p=f.text_area :description, size: "60x12"
+  %p=f.check_box :public
+  %p=f.label :public, 'Public list'
   %p=f.submit "Submit"
