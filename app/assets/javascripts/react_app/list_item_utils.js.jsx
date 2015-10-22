@@ -1,8 +1,8 @@
-App.saveItem = function(payload, fluxActions) {
+App.saveItem = function(payload, success, error) {
   var stringData = JSON.stringify(payload);
 
   $.ajax({
-    url: '/list_items.json',
+    url: '/list_items',
     method: 'POST',
     data: stringData,
     dataType: 'json',
@@ -11,7 +11,7 @@ App.saveItem = function(payload, fluxActions) {
     success: function(data, textStatus, jqXHR) {
       var savedItem = data.list_item;
       savedItem.listItemID = payload.listItemID;
-      fluxActions.dispatch(App.constants.ITEM_ADD_SUCCESS, savedItem);
+      success(savedItem);
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
@@ -19,31 +19,41 @@ App.saveItem = function(payload, fluxActions) {
         listItemID: payload.listItemID,
         error: 'AJAX saving error: ' + payload.title + ' ('+ errorThrown + ')'
       };
-      fluxActions.dispatch(App.constants.ITEM_ADD_FAILURE, newPayload);
+      error(newPayload);
     }
   });
 };
 
-App.updateItem = function(payload, fluxActions) {
-  var _this = this;
-  console.log('updateItem:', payload.itemData.title);
-  var stringData = JSON.stringify(payload.newItemData);
-  var path = '/list_items/' + payload.itemData.id;
-
+App.updateItem = function(payload, success, error) {
   $.ajax({
-    url: path,
+    url: '/list_items/' + payload.itemData.id,
     method: 'PUT',
-    data: stringData,
+    data: JSON.stringify(payload.newItemData),
     dataType: 'json',
     contentType: 'application/json',
 
     success: function(data, textStatus, jqXHR) {
-      fluxActions.dispatch(App.constants.ITEM_UPDATE_SUCCESS, data);
+      success(data);
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
       payload.error = errorThrown;
-      fluxActions.dispatch(App.constants.ITEM_UPDATE_FAILURE, payload);
+      error(payload);
     },
+  });
+};
+
+App.deleteItem = function(itemId, success) {
+  $.ajax({
+    url: '/list_items/' + itemId,
+    method: 'DELETE',
+    dataType: 'json',
+    contentType: 'application/json',
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error deleting item: ' + errorThrown);
+    },
+    success: function() {
+      success(itemId);
+    }
   });
 };
