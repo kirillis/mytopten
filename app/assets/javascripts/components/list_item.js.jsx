@@ -2,13 +2,17 @@ var ListItem = React.createClass({
   mixins: [FluxMixin],
 
   titleChange: function(event) {
-    this.state.hasChanged = true;
-    this.setState({ title: event.target.value });
+    this.setState({
+      title: event.target.value,
+      hasChanged:  true
+    });
   },
 
   descriptionChange: function(event) {
-    this.state.hasChanged = true;
-    this.setState({ description: event.target.value });
+    this.setState({
+      description: event.target.value,
+      hasChanged: true
+    });
   },
 
   saveData: function() {
@@ -16,13 +20,12 @@ var ListItem = React.createClass({
     var newItemData = $.extend({}, itemData);
     newItemData.title = this.state.title;
     newItemData.description = this.state.description;
-    console.log('saveData() itemData: ', itemData.title);
-    this.getFlux().actions.updateItem(itemData, newItemData);
-    this.state.hasChanged = false;
+    this.getFlux().actions.listItem.update(itemData, newItemData);
+    this.setState({hasChanged: false});
   },
 
   deleteEntry: function() {
-    this.getFlux().actions.deleteItem(this.props.data.id);
+    this.getFlux().actions.listItem.delete(this.props.data.id);
   },
 
   getInitialState: function() {
@@ -47,6 +50,7 @@ var ListItem = React.createClass({
       'c-listItem': true,
       'is-saving': this.props.data.isSaving,
     });
+
     var saveButton = this.state.hasChanged ? <button className="c-button" onClick={ this.saveData }>Save</button> : '';
     return (
       <li className={ classes } data-id={ this.state.item.id }>
