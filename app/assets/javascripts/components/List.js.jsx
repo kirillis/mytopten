@@ -3,8 +3,7 @@ var List = React.createClass({
 
   getInitialState: function() {
     return {
-      hasChanged: false,
-      // description: this.state.list.description
+      hasChanged: false
     };
   },
 
@@ -22,6 +21,12 @@ var List = React.createClass({
     this.setState({ description: event.target.value });
   },
 
+  renderSearch: function() {
+    if(this.props.isAuthor) {
+      return <SearchContainer />;
+    }
+  },
+
   render: function() {
     var props = this.props;
     var state = this.state;
@@ -35,9 +40,10 @@ var List = React.createClass({
     return (
       <div className="c-listContainer">
         <ListDetails
-          title={this.state.list.title}
-          description={this.state.list.description}
-        />
+         title={this.state.list.title}
+         description={this.state.list.description}
+         public={this.state.list.public}
+       />
         <h3 className='c-listAuthor'>
           <a
           className='c-listAuthor-link'
@@ -47,7 +53,7 @@ var List = React.createClass({
         <ol className='c-listItemsContainer'>
           { listItems }
         </ol>
-        <SearchContainer />
+        { this.renderSearch() }
       </div>
     );
   }
