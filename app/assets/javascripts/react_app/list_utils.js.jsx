@@ -1,7 +1,18 @@
-App.saveList = function(payload, fluxActions) {
-  console.log('Implement App.saveList()');
-};
+App.updateList = function(payload, success, error) {
+  $.ajax({
+    url: '/lists/' + payload.listId,
+    method: 'PUT',
+    data: JSON.stringify(payload),
+    dataType: 'json',
+    contentType: 'application/json',
 
-App.updateList = function(payload, fluxActions) {
-  console.log('Implement App.updateList()');
+    success: function(data, textStatus, jqXHR) {
+      success(data);
+    },
+
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert('Error updating list: ' + errorThrown);
+      error(errorThrown);
+    },
+  });
 };

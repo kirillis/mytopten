@@ -49,8 +49,11 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     @list.update(list_params)
-    @list.save
-    render json: @list
+    if @list.save
+      render json: @list
+    else
+      render :json => { :errors => 'No list with that id found.' }, :status => 422
+    end
   end
 
   private

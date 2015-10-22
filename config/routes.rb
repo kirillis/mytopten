@@ -11,7 +11,7 @@ Mytopten::Application.routes.draw do
   get '/:user_name/:list_id', to: 'lists#show', as: 'user_list'
   get '/:user_name/lists/new', to: 'lists#new', as: 'user_list_new'
 
-  resources :lists, only: [:index, :create]
+  resources :lists, only: [:index, :create, :update]
   resources :users, only: [:new, :create]
   resources :list_items
 
