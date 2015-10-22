@@ -4,6 +4,7 @@
   #js-react-listContainer
   :javascript
     $(document).ready(function() {
-      var userName = '#{@user_name}';
-      window.loadListView(userName, #{@list_id});
+      var listAuthor = '#{@user_name}';
+      var currentUser = '#{current_user.name}';
+      window.loadListView(listAuthor, #{@list_id}, currentUser);
     });
