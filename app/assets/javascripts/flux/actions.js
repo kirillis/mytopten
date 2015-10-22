@@ -56,6 +56,7 @@ App.actions = {
       this.dispatch(App.constants.LIST_UPDATE, listData.newData);
 
       listData.newData.listId = this.flux.store("ListStore").getID();
+      listData.newData.public = listData.newData.isPublic;
       App.updateList(
         listData.newData,
         function(data) {
