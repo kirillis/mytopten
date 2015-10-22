@@ -56,8 +56,16 @@ class ListsController < ApplicationController
     end
   end
 
+  def destroy
+    if List.find(params[:id]).destroy
+      redirect_to user_lists_path(current_user.name), notice: 'List deleted.'
+    else
+      redirect_to user_lists_path(current_user.name), alert: 'Error: List not deleted.'
+    end
+  end
+
   private
     def list_params
-      params.require(:list).permit(:title, :description, list_items_attributes: [:title, :description])
+      params.require(:list).permit(:title, :description, :public, list_items_attributes: [:title, :description])
     end
 end
