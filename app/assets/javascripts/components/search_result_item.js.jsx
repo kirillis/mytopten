@@ -2,7 +2,7 @@
   mixins: [FluxMixin],
 
   handleAddItemClick: function() {
-    this.getFlux().actions.addNewItem(this.props.data);
+    this.getFlux().actions.listItem.add(this.props.data);
   },
 
   render: function() {
