@@ -11,7 +11,10 @@ App.listStore = Fluxxor.createStore({
       App.constants.ITEM_ADD_FAILURE, this.onItemAddFailure,
       App.constants.ITEM_DELETE, this.onItemDelete,
       App.constants.ITEM_DELETE_SUCCESS, this.onItemDeleteSuccess,
-      App.constants.ITEM_DELETE_FAILURE, this.onItemDeleteFailure
+      App.constants.ITEM_DELETE_FAILURE, this.onItemDeleteFailure,
+      App.constants.LIST_UPDATE, this.onListUpdate,
+      App.constants.LIST_UPDATE_SUCCESS, this.onListUpdateSuccess,
+      App.constants.LIST_UPDATE_FAILURE, this.onListUpdateFailure
     );
   },
 
@@ -24,6 +27,22 @@ App.listStore = Fluxxor.createStore({
       list: this.list,
       itemsToSave: this.itemsToSave
     };
+  },
+
+  onListUpdate: function(data) {
+    console.log('storeList: onListUpdate', data);
+  },
+
+  onListUpdateSuccess: function(data) {
+    this.list = data.list;
+    this.emit('change');
+  },
+
+  onListUpdateFailure: function(data) {
+    console.log('storeList: onListUpdateFailure', data);
+    this.list.title = data.oldData.title;
+    this.list.description = data.oldData.description;
+    this.emit('change');
   },
 
   onUpdateItem: function(payload) {
@@ -107,19 +126,6 @@ App.listStore = Fluxxor.createStore({
       }
     }
 
-    var path = '/list_items/' + itemId;
-    $.ajax({
-      url: path,
-      method: 'DELETE',
-      dataType: 'json',
-      contentType: 'application/json',
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log('error', errorThrown);
-      },
-      success: function(data, textStatus, jqXHR) {
-        console.log('success', data);
-      }
-    });
     this.emit('change');
   },
 
