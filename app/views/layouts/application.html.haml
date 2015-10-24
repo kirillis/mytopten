@@ -18,6 +18,8 @@
       %ul.Navbar
         %li.Navbar-item
           =link_to 'Home', root_path
+        %li.Navbar-item
+          =link_to 'Tags', tags_path
         -if current_user
           %li.Navbar-item
             Signed in as
