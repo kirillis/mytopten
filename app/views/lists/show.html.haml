@@ -1,10 +1,15 @@
--if @user.nil?
-  %p No list found.
+-if current_user == @user
+  %p=link_to 'Edit this list', user_list_edit_path(current_user.name, @list)
+-if @list
+  %ul
+    -@list.list_items.each do |list_item|
+      %li
+        %p=list_item.title
+        %P=list_item.description
+        %br/
+        %a{:href => "#{list_item.link}"}<>
+          %img{:src => "#{list_item.image_url}", :alt => "product image"}/
+        %hr/
+
 -else
-  #js-react-listContainer
-  :javascript
-    $(document).ready(function() {
-      var listAuthor = '#{@user_name}';
-      var currentUser = '#{current_user.name}';
-      window.loadListView(listAuthor, #{@list_id}, currentUser);
-    });
+  %p No list found.

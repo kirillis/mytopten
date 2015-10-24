@@ -1,10 +1,7 @@
 var App = App || {};
 
-App.init = function(listAuthor, listId, currentUser) {
-  App.currentUser = currentUser;
-  App.isAuthor = currentUser === listAuthor;
-
-  $.getJSON('/' + listAuthor + '/' + listId + '.json', function(data) {
+App.init = function(listAuthor, listId) {
+  $.getJSON('/' + listAuthor + '/' + listId + '/edit.json', function(data) {
     App.makeFluxStore(data);
   });
 };
@@ -17,14 +14,10 @@ App.makeFluxStore = function (list) {
   App.renderApp();
 };
 
+
 App.renderApp = function() {
-  var isAuthor = App.currentUser ===
   React.render(
-    <List
-      flux={ App.flux }
-      currentUser={ App.currentUser }
-      isAuthor={ App.isAuthor }
-    />,
+    <List flux={ App.flux } />,
     document.getElementById('js-react-listContainer')
   );
 };
