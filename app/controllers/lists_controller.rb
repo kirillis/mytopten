@@ -65,6 +65,7 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     @list.update(list_params)
+    @list.tag_list.add(params[:tags], parse: true)
     if @list.save
       render json: @list
     else
@@ -82,6 +83,6 @@ class ListsController < ApplicationController
 
   private
     def list_params
-      params.require(:list).permit(:title, :description, :public, list_items_attributes: [:title, :description])
+      params.require(:list).permit(:title, :description, :public, :tags, list_items_attributes: [:title, :description])
     end
 end
