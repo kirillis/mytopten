@@ -36,6 +36,7 @@ var List = React.createClass({
         <ListDetails
          title={this.state.list.title}
          description={this.state.list.description}
+         tags={this.state.list.tags}
          public={this.state.list.public}
        />
         <h3 className='c-listAuthor'>

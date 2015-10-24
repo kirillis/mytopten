@@ -31,6 +31,13 @@ var ListDetails = React.createClass({
     });
   },
 
+  handleTagsChange: function() {
+    this.setState({
+      hasChanged: true,
+      tags: event.target.value
+    });
+  },
+
   componentWillReceiveProps: function(nextProps) {
     this.setState({
       title: nextProps.title,
@@ -44,6 +51,19 @@ var ListDetails = React.createClass({
       newData: this.state
     });
     this.setState({hasChanged: false});
+  },
+
+  renderTags: function() {
+    return (
+      <ul>
+        { this.props.tags.map(function(tag) {
+          return (
+            <li className="Tag" key={ tag.id }>{ tag.name }</li>
+          );
+        })
+      }
+      </ul>
+    );
   },
 
   render: function() {
@@ -71,7 +91,15 @@ var ListDetails = React.createClass({
         />
         <label htmlFor="public">public list</label>
         <br />
-        {saveButton}
+        { this.renderTags() }
+        <br />
+        <input
+          type="text"
+          name="tags"
+          onChange={ this.handleTagsChange }
+        />
+        <br />
+        { saveButton }
       </div>
     );
   }
