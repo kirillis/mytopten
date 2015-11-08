@@ -1,0 +1,11 @@
+%h1="Search for tag with name: #{params[:tag_query]}"
+
+-unless @tags.empty?
+  %ul
+    -@tags.each do |tag|
+      %li.Tag
+        =link_to tag.name, tag_path(tag.name)
+      ="Number of lists: #{tag.taggings_count}"
+      %br/
+-else
+  %p No tags for that serach found.
