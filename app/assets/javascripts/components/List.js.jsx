@@ -34,17 +34,14 @@ var List = React.createClass({
     return (
       <div className="c-listContainer">
         <ListDetails
-         title={this.state.list.title}
-         description={this.state.list.description}
-         tags={this.state.list.tags}
-         public={this.state.list.public}
-       />
-        <h3 className='c-listAuthor'>
-          <a
-          className='c-listAuthor-link'
-            href={'/' + this.state.list.user.name }>by { this.state.list.user.name }
-          </a>
-        </h3>
+          title = { this.state.list.title }
+          description = { this.state.list.description }
+          author = { this.state.list.user }
+          public = { this.state.list.public }
+        />
+
+        <Tags tags = { this.state.list.tags } listId = { this.state.list.id } />
+
         <ol className='c-listItemsContainer'>
           { listItems }
         </ol>

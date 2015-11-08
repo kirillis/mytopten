@@ -5,8 +5,8 @@ var ListDetails = React.createClass({
     return {
       title: this.props.title,
       description: this.props.description,
-      isPublic: this.props.public,
-      hasChanged: false
+      public: this.props.public,
+      hasChanged: false,
     };
   },
 
@@ -24,17 +24,10 @@ var ListDetails = React.createClass({
     });
   },
 
-  handleIsPublicChange: function(event) {
+  handlepublicChange: function(event) {
     this.setState({
       hasChanged: true,
-      isPublic: !this.state.isPublic
-    });
-  },
-
-  handleTagsChange: function() {
-    this.setState({
-      hasChanged: true,
-      tags: event.target.value
+      public: !this.state.public
     });
   },
 
@@ -51,19 +44,6 @@ var ListDetails = React.createClass({
       newData: this.state
     });
     this.setState({hasChanged: false});
-  },
-
-  renderTags: function() {
-    return (
-      <ul>
-        { this.props.tags.map(function(tag) {
-          return (
-            <li className="Tag" key={ tag.id }>{ tag.name }</li>
-          );
-        })
-      }
-      </ul>
-    );
   },
 
   render: function() {
@@ -86,20 +66,18 @@ var ListDetails = React.createClass({
         <input
           name="public"
           type="checkbox"
-          checked={ this.state.isPublic }
-          onChange={ this.handleIsPublicChange }
+          checked={ this.state.public }
+          onChange={ this.handlepublicChange }
         />
         <label htmlFor="public">public list</label>
         <br />
-        { this.renderTags() }
-        <br />
-        <input
-          type="text"
-          name="tags"
-          onChange={ this.handleTagsChange }
-        />
-        <br />
         { saveButton }
+        <h3 className='c-listAuthor'>
+          <a
+          className='c-listAuthor-link'
+            href = { '/' + this.props.author.name }>by { this.props.author.name }
+          </a>
+        </h3>
       </div>
     );
   }
