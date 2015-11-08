@@ -1,0 +1,18 @@
+.Tag {
+  padding: 5px 10px 5px 10px;
+  background-color: #EBEBEB;
+  margin: 5px;
+  display: inline-block;
+  border: 1px solid grey;
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+.Tag-deleteButton {
+  padding: 5px;
+  background-color: red;
+  margin-left: 15px;
+  cursor: pointer;
+}
