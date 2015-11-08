@@ -1,6 +1,8 @@
 -if current_user == @user
   %p=link_to 'Edit this list', user_list_edit_path(current_user.name, @list)
 -if @list
+  -@list.tags.each do |tag|
+    .Tag=link_to tag, tag_path(tag)
   %ul
     -@list.list_items.each do |list_item|
       %li
