@@ -6,7 +6,8 @@ var SearchBox = React.createClass({
       .filter(function (text) {
         return text.length > 2;
       })
-      .debounce(500)
+      .debounce(300)
+      .distinctUntilChanged()
       .subscribe(
         function (data) {
           _this.props.onSendQuery();
