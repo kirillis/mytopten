@@ -6,15 +6,26 @@ App.listStore = Fluxxor.createStore({
       App.constants.ITEM_UPDATE, this.onUpdateItem,
       App.constants.ITEM_UPDATE_SUCCESS, this.onUpdateItemSuccess,
       App.constants.ITEM_UPDATE_FAILURE, this.onUpdateItemFailure,
+
       App.constants.ITEM_ADD, this.onItemAdd,
       App.constants.ITEM_ADD_SUCCESS, this.onItemAddSuccess,
       App.constants.ITEM_ADD_FAILURE, this.onItemAddFailure,
+
       App.constants.ITEM_DELETE, this.onItemDelete,
       App.constants.ITEM_DELETE_SUCCESS, this.onItemDeleteSuccess,
       App.constants.ITEM_DELETE_FAILURE, this.onItemDeleteFailure,
+
       App.constants.LIST_UPDATE, this.onListUpdate,
       App.constants.LIST_UPDATE_SUCCESS, this.onListUpdateSuccess,
-      App.constants.LIST_UPDATE_FAILURE, this.onListUpdateFailure
+      App.constants.LIST_UPDATE_FAILURE, this.onListUpdateFailure,
+
+      App.constants.LIST_TAGS_UPDATE, this.onListTagsUpdate,
+      App.constants.LIST_TAGS_UPDATE_SUCCESS, this.onListTagsUpdateSuccess,
+      App.constants.LIST_TAGS_UPDATE_FAILURE, this.onListTagsUpdateFailure,
+
+      App.constants.LIST_TAG_REMOVE, this.onListTagRemove,
+      App.constants.LIST_TAG_REMOVE_SUCCESS, this.onListTagRemoveSuccess,
+      App.constants.LIST_TAG_REMOVE_FAILURE, this.onListTagRemoveFailure
     );
   },
 
@@ -136,4 +147,40 @@ App.listStore = Fluxxor.createStore({
   onItemDeleteFailure: function(payload) {
     console.log('Implement ListStore::onItemDeleteFailure()', payload);
   },
+
+  onListTagsUpdate: function() {
+    this.list.isSaving = true;
+    this.emit('change');
+  },
+
+  onListTagsUpdateSuccess: function(newListData) {
+    console.log('onListTagsUpdate', newListData);
+    this.list = newListData.list;
+    this.list.isSaving = false;
+    this.emit('change');
+  },
+
+  onListTagsUpdateFailure: function() {
+    console.warn('Error saving tags to list.');
+    this.list.isSaving = false;
+    this.emit('change');
+  },
+
+  onListTagRemove: function() {
+    this.list.isSaving = true;
+    this.emit('change');
+  },
+
+  onListTagRemoveSuccess: function(newListData) {
+    console.log('onListTagRemoveSuccess', newListData);
+    this.list = newListData.list;
+    this.list.isSaving = false;
+    this.emit('change');
+  },
+
+  onListTagRemoveFailure: function() {
+    console.warn('Error removing tag to list.');
+    this.list.isSaving = false;
+    this.emit('change');
+  }
 });
