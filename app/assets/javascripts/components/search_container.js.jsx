@@ -1,16 +1,14 @@
 var SearchContainer = React.createClass({
   sendQuery: function() {
-    console.log('send query:', this.state.searchQuery);
     $.ajax({
       url: '/search/amazon/?query=' + this.state.searchQuery,
       method: 'get',
       dataType: 'json',
       contentType: 'application/json',
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log('SearchContainer error:', errorThrown);
+        alert('Search error:', errorThrown);
       },
       success: function(data, textStatus, jqXHR) {
-        console.log('SearchContainer success:', data);
         this.setState({ listItems: data });
       }.bind(this)
     });
