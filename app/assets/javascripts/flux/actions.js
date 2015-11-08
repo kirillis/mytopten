@@ -53,10 +53,9 @@ App.actions = {
   },
   list: {
     update: function(listData) {
+      // console.log('Action: list::update()', listData);
       this.dispatch(App.constants.LIST_UPDATE, listData.newData);
-
       listData.newData.listId = this.flux.store("ListStore").getID();
-      listData.newData.public = listData.newData.isPublic;
       App.updateList(
         listData.newData,
         function(data) {
@@ -68,5 +67,34 @@ App.actions = {
         }.bind(this)
       );
     },
+
+    updateTags: function(newTagData) {
+      this.dispatch(App.constants.LIST_TAGS_UPDATE);
+      App.updateTags(
+        newTagData,
+        function(data) {
+          this.dispatch(App.constants.LIST_UPDATE_SUCCESS, data);
+        }.bind(this),
+        function(error) {
+          this.dispatch(App.constants.LIST_TAGS_UPDATE_FAILURE);
+        }.bind(this)
+      );
+    },
+
+    removeTag: function(tagToRemove) {
+      // console.log('delete', tagToRemove);
+      this.dispatch(App.constants.LIST_TAG_REMOVE);
+      App.removeTag(
+        tagToRemove,
+        function(data) {
+          // console.log('remove success', data);
+          this.dispatch(App.constants.LIST_TAG_REMOVE_SUCCESS, data);
+        }.bind(this),
+        function(error) {
+          // console.log('error remove', error);
+          this.dispatch(App.constants.LIST_TAG_REMOVE_FAILURE);
+        }.bind(this)
+      );
+    }
   }
 };
