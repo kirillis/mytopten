@@ -66,10 +66,33 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @list.update(list_params)
     @list.tag_list.add(params[:tags], parse: true)
+
     if @list.save
       render json: @list
     else
       render :json => { :errors => 'No list with that id found.' }, :status => 422
+    end
+  end
+
+  def update_tags
+    list = List.find(params[:list_id])
+
+    list.tag_list.add(params[:newTag], parse: true)
+    if list.save
+      render json: list
+    else
+      render :json => { :errors => 'Error saving new tags for list.' }, :status => 422
+    end
+  end
+
+  def remove_tag
+    list = List.find(params[:list_id])
+
+    list.tag_list.remove(params[:tagToRemove])
+    if list.save
+      render json: list
+    else
+      render :json => { :errors => 'Error saving new tags for list.' }, :status => 422
     end
   end
 
