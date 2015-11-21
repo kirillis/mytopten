@@ -16,6 +16,12 @@ Mytopten::Application.routes.draw do
   resources :users, only: [:new, :create]
   delete 'logout', to: 'sessions#destroy', as: :user_log_out
 
+  # PASSWORD
+  get "password_resets/create"
+  get "password_resets/edit"
+  get "password_resets/update"
+  resources :password_resets
+
   # LISTS
   get ':user_name/lists', to: 'lists#index', as: 'user_lists'
   get ':user_name/:list_id', to: 'lists#show', as: 'user_list'
