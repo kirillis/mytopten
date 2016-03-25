@@ -25,11 +25,12 @@ group :production do
 end
 
 group :development do
+  gem 'dotenv-rails'
   gem 'awesome_print'
   gem 'sqlite3'
-  gem "binding_of_caller"
-  gem "better_errors"
-  gem "meta_request"
+  gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'meta_request'
 end
 
 # Use debugger
