@@ -10,11 +10,11 @@ class TagsController < ApplicationController
       format.json {
         render json: @tags, root: false
       }
+    end
   end
 
   def show
     @tag_name = params[:tag_name]
     @lists = List.tagged_with(@tag_name)
-    end
   end
 end
