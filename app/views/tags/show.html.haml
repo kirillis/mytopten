@@ -1,13 +1,10 @@
-%h2="All lists tagged with '#{@tag_name}'"
+.row
+  .col.s12
+    %p.flow-text="All lists tagged with '#{@tag_name}'"
 
--if @lists
-  %ul
-    -@lists.each do |list|
-      %li
-        =link_to list.title, user_list_path(list.user.name, list)
-        %br/
-        -list.tag_list.each do |tag|
-          .Tag=link_to tag, tag_path(tag)
-        %hr/
--else
-  %p No list found.
+.row
+  .col.s12
+    -if @lists
+      =render @lists
+    -else
+      %p No list found.

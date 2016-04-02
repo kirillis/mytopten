@@ -1,19 +1,14 @@
--unless @user.nil?
-  %h1
-    =@user.name
-  %p
-    Email:
-    =@user.email
-  %p
-    Number of lists:
-    =@user.lists.count
 
-  %ul
-    -@user.lists.each do |list|
-      -if list.public or current_user == @user
-        %li
-          =link_to list.title, user_list_path(list.user.name, list)
-          -if not list.public
-            (private)
--else
-  No user found with that name.
+-unless @user.nil?
+  .row
+    .col.s12
+      %h4
+        =@user.name
+      %p.flow-text
+        Email:
+        =@user.email
+      %p.flow-text
+        Number of lists:
+        =@user.lists.count
+
+  =render @user.lists

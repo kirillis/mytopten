@@ -1,8 +1,5 @@
 %p.flow-text List with tag
 -if @tags
-  %ul
-  -@tags.each do |tag|
-    =link_to tag_path(tag.name) do
-      .chip=tag.name
+  =render partial: "tags/tag", collection: @tags
 -else
   %p No tags found.

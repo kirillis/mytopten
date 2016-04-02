@@ -1,17 +1,21 @@
--if current_user == @user
-  %p=link_to 'Edit this list', user_list_edit_path(current_user.name, @list)
 -if @list
-  -@list.tags.each do |tag|
-    .Tag=link_to tag, tag_path(tag)
-  %ul
-    -@list.list_items.each do |list_item|
-      %li
-        %p=list_item.title
-        %P=list_item.description
-        %br/
-        %a{:href => "#{list_item.link}"}<>
-          %img{:src => "#{list_item.image_url}", :alt => "product image"}/
-        %hr/
-
+  %p.flow-text=@list.title
+  %p=@list.description
+  -if @list.tags
+    .row
+      .col.s12
+        =render partial: "tags/tag", collection: @list.tags
+  .row
+    .col.s12
+      %ul.collection
+        =render partial: "lists/list_item", collection: @list.list_items
 -else
-  %p No list found.
+  .row
+    %p No list found.
+
+-if current_user == @user
+  .row
+    .col.s12
+      =link_to user_list_edit_path(current_user.name, @list), class: 'waves-effect waves-light btn' do
+        %i.material-icons.left mode_edit
+        Edit this list
