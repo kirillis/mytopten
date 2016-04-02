@@ -1,30 +1,44 @@
 -# TODO: Move this file to partials.
 
-.mdl-layout__tab-bar.mdl-js-ripple-effect.mdl-color--primary-dark
-  =link_to 'Home', root_path, class: 'mdl-layout__tab is-active'
-  =link_to 'Tags', tags_path,  class: 'mdl-layout__tab'
-  -if current_user
-    = link_to 'My lists', user_lists_path(current_user.name), class: 'mdl-layout__tab'
-    = link_to current_user.name, user_path(current_user.name), class: 'mdl-layout__tab'
-    = link_to 'Log Out', user_log_out_path, method: :delete, class: 'mdl-layout__tab'
-
--#
-  %ul.Navbar
-    %li.Navbar-item
-      =link_to 'Home', root_path
-    %li.Navbar-item
-      =link_to 'Tags', tags_path
+  .mdl-layout__tab-bar.mdl-js-ripple-effect.mdl-color--primary-dark
+    =link_to 'Home', root_path, class: 'mdl-layout__tab is-active'
+    =link_to 'Tags', tags_path,  class: 'mdl-layout__tab'
     -if current_user
-      %li.Navbar-item
-        = link_to 'My lists', user_lists_path(current_user.name)
-      %li.Navbar-item
-        Username:
-        = link_to current_user.name, user_path(current_user.name)
-      %li.Navbar-item
-        = link_to 'Log Out', user_log_out_path, method: :delete
 
     -else
       %li.Navbar-item
         = link_to 'Sign Up', user_register_path
       %li.Navbar-item
         = link_to 'Log In', user_log_in_path
+        = link_to current_user.name, user_path(current_user.name), class: 'mdl-layout__tab'
+      = link_to 'Log Out', user_log_out_path, method: :delete, class: 'mdl-layout__tab'
+
+
+
+%nav
+  .nav-wrapper.container
+    =link_to 'My Top 10', root_path, class: 'brand-logo'
+    %ul.right.hide-on-med-and-down
+      %li
+        =link_to tags_path do
+          %i.zmdi.zmdi-sign-in.left
+          ="Tags"
+
+      -if current_user
+        %li
+          =link_to user_path(current_user.name) do
+            %i.material-icons.left
+            =current_user.name
+        %li
+          =link_to user_log_out_path do
+            %i.material-icons.left
+            ="Logout"
+      -else
+        %li
+          =link_to user_register_path do
+            %i.material-icons.left
+            ="Sign up"
+        %li
+          =link_to user_log_in_path do
+            %i.material-icons.left
+            ="Login"
