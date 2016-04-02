@@ -1,0 +1,11 @@
+-if list.public
+  .col.s12.m4.l3
+    .card.small
+      .card-image
+        %img{:src => "http://lorempixel.com/400/400"}/
+        %span.card-title=link_to list.title, user_list_path(list.user.name, list)
+      .card-content
+        %p=list.description
+      .card-action
+        =link_to "See List", user_list_path(list.user.name, list)
+        =link_to "by #{list.user.name}", user_path(list.user.name)
