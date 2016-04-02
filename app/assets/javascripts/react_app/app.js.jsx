@@ -16,7 +16,7 @@ App.makeFluxStore = function (list) {
 
 
 App.renderApp = function() {
-  React.render(
+  ReactDOM.render(
     <List flux={ App.flux } />,
     document.getElementById('js-react-listContainer')
   );

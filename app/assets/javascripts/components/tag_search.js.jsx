@@ -10,7 +10,7 @@ var TagSearch = React.createClass({
 
   componentDidMount: function() {
     var _this = this;
-    var keyups = Rx.Observable.fromEvent(this.refs.searchTagsInput.getDOMNode(), 'keyup')
+    var keyups = Rx.Observable.fromEvent(this.refs.searchTagsInput, 'keyup')
       .pluck('target', 'value')
       .filter(function (text) {
         return text.length > 2;

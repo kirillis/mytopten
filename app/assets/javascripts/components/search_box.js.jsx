@@ -1,7 +1,7 @@
 var SearchBox = React.createClass({
   componentDidMount: function() {
     var _this = this;
-    var keyups = Rx.Observable.fromEvent(this.refs.searchQueryInput.getDOMNode(), 'keyup')
+    var keyups = Rx.Observable.fromEvent(this.refs.searchQueryInput, 'keyup')
       .pluck('target', 'value')
       .filter(function (text) {
         return text.length > 2;
@@ -23,7 +23,7 @@ var SearchBox = React.createClass({
 
   handleChange: function() {
       this.props.onUserInput(
-          this.refs.searchQueryInput.getDOMNode().value
+          this.refs.searchQueryInput.value
       );
   },
 
