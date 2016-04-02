@@ -7,6 +7,10 @@ Mytopten::Application.routes.draw do
   get 'tags', to: 'tags#index', as: 'tags'
   get 'tags/:tag_name', to: 'tags#show', as: 'tag'
   get 'tags/search/:tag_query', to: 'tags#search', as: 'tags_search'
+k
+  # SEARCH
+  get 'search/amazon' => 'search#amazon', as: :search_amazon
+  get 'search' => 'search#index'
 
   # USERS
   get 'register' => 'users#new', as: :user_register
@@ -32,8 +36,5 @@ Mytopten::Application.routes.draw do
   resources :lists, only: [:index, :create, :update, :destroy]
   resources :list_items, only: [:create, :update, :destroy, :edit]
 
-  # SEARCH
-  get 'search/amazon' => 'search#amazon', as: :search_amazon
-  get 'search' => 'search#index'
 
 end
