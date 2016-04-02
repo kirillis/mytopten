@@ -13,6 +13,7 @@ gem 'classnames-rails'
 gem 'active_model_serializers'
 gem 'sorcery'
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'materialize-sass'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
