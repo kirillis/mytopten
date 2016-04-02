@@ -1,10 +1,26 @@
-%h1 New list
+.row
+  .col.s12.m9.l6
+    %p.flow-text Add a new list
 
-=form_for @new_list do |f|
-  %p Title:
-  %p=f.text_field :title
-  %p Description:
-  %p=f.text_area :description, size: "60x12"
-  %p=f.check_box :public
-  %p=f.label :public, 'Public list'
-  %p=f.submit "Submit"
+    =form_for @new_list do |f|
+      .row
+        .input-field.col.s12
+          =f.text_field :title, class: 'validate'
+          =f.label :title, 'List title'
+
+      .row
+        .input-field.col.s12
+          =f.text_area :description, class: 'materialize-textarea validate'
+          %label{:for => "description"} Add a short description here.
+
+      .row
+        .switch.col.s12
+          %p
+            =f.check_box :public, checked: true
+            %label{:for => "public"} This is a public list
+
+      .row
+        .col.s12
+          %button.btn.waves-effect.waves-light{:name => "action", :type => "submit"}
+            Create list
+            %i.material-icons.right add_circle_outline

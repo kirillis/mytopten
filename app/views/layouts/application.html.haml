@@ -4,7 +4,7 @@
   %head
     %meta{:charset => "utf-8"}
     %title MY Top Ten
-    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css", :rel => "stylesheet"}
+    %link{:href => "http://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}
     = stylesheet_link_tag  "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
@@ -18,13 +18,7 @@
     .row
       - flash.each do |name, msg|
         = content_tag :div, msg, class: name
-    %main.container
-      .row
-        .col.s12.m9.l6
-          %p Some text  here
-        .col.s12.m3.l6
-          %p Some more text  here
 
-
-      = yield
+      .container
+        = yield
 

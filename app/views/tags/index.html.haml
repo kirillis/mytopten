@@ -1,8 +1,8 @@
-%h2 List with tag
+%p.flow-text List with tag
 -if @tags
   %ul
   -@tags.each do |tag|
-    %li.Tag
-      =link_to tag.name, tag_path(tag.name)
+    =link_to tag_path(tag.name) do
+      .chip=tag.name
 -else
   %p No tags found.
