@@ -31,5 +31,7 @@
 // VENDOR
 //= require rx.lite
 //= require jquery.elastic.source
+//= require materialize-sprockets
+
 
 //= require_tree .

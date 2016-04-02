@@ -43,6 +43,25 @@ App.updateItem = function(payload, success, error) {
   });
 };
 
+App.updateMultipleItems = function(payload, success, error) {
+  $.ajax({
+    url: '/list_items/' + payload.itemData.id,
+    method: 'PUT',
+    data: JSON.stringify(payload.newItemData),
+    dataType: 'json',
+    contentType: 'application/json',
+
+    success: function(data, textStatus, jqXHR) {
+      success(data);
+    },
+
+    error: function(jqXHR, textStatus, errorThrown) {
+      payload.error = errorThrown;
+      error(payload);
+    },
+  });
+};
+
 App.deleteItem = function(itemId, success) {
   $.ajax({
     url: '/list_items/' + itemId,

@@ -18,6 +18,10 @@ App.actions = {
       );
     },
 
+    updateMultiple: function() {
+      console.log('updateMultiple');
+    },
+
     add: function(newItemData) {
       var listID = this.flux.store("ListStore").getID();
       var listItemID = App.makeId();

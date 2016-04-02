@@ -36,6 +36,9 @@ App.listStore = Fluxxor.createStore({
   getState: function() {
     return {
       list: this.list,
+      listDetails:this.list,
+      listTags:this.list.tags,
+      listItems: this.list.list_items,
       itemsToSave: this.itemsToSave
     };
   },
@@ -67,6 +70,12 @@ App.listStore = Fluxxor.createStore({
       }
     }
     this.emit('change');
+  },
+
+  onUpdateMultipleItems: function(payload) {
+    console.log('onUpdateMultipleItems');
+    //
+    // this.emit('change');
   },
 
   onUpdateItemSuccess: function(payload) {

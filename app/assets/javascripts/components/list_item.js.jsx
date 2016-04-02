@@ -1,59 +1,61 @@
 var ListItem = React.createClass({
-  mixins: [FluxMixin],
+  // mixins: [FluxMixin],
 
   titleChange: function(event) {
+    // this.props.onChange();
     this.setState({
-      title: event.target.value,
-      hasChanged:  true
+      title: event.target.value
     });
   },
 
   descriptionChange: function(event) {
-    this.setState({
+    var data = {
       description: event.target.value,
-      hasChanged: true
+      id: this.props.data.id
+    };
+
+    // this.props.onChange(data);
+    this.setState({
+      description: event.target.value
     });
   },
 
-  saveData: function() {
-    var itemData = this.props.data;
-    var newItemData = $.extend({}, itemData);
-    newItemData.title = this.state.title;
-    newItemData.description = this.state.description;
-    this.getFlux().actions.listItem.update(itemData, newItemData);
-    this.setState({hasChanged: false});
-  },
+  // saveData: function() {
+  //   var itemData = this.props.data;
+  //   var newItemData = $.extend({}, itemData);
+  //   newItemData.title = this.state.title;
+  //   newItemData.description = this.state.description;
+  //   this.getFlux().actions.listItem.update(itemData, newItemData);
+  //   this.setState({hasChanged: false});
+  // },
 
   deleteEntry: function() {
-    this.getFlux().actions.listItem.delete(this.props.data.id);
+    console.log('listitem deleteEntry');
+    // this.getFlux().actions.listItem.delete(this.props.data.id);
   },
 
   getInitialState: function() {
     return {
       title: this.props.data.title,
       description: this.props.data.description,
-      item: this.props.data,
-      hasChanged: false,
     };
   },
 
-  componentWillReceiveProps: function(nextProps) {
-    this.setState({
-      title: nextProps.data.title,
-      description: nextProps.data.description,
-    });
-  },
+  // componentWillReceiveProps: function(nextProps) {
+  //   this.setState({
+  //     title: nextProps.data.title,
+  //     description: nextProps.data.description,
+  //   });
+  // },
 
   render: function() {
     $('.js-elastic').elastic();
     var classes = classNames({
-      'c-listItem': true,
-      'is-saving': this.props.data.isSaving,
+      'c-listItem': true
     });
 
-    var saveButton = this.state.hasChanged ? <button className="c-button" onClick={ this.saveData }>Save</button> : '';
     return (
-      <li className={ classes } data-id={ this.state.item.id }>
+      <li className={ classes } data-id={ this.props.data.id }>
         <textarea
           rows="4"
           className="c-listItem__textarea c-listItem__textarea--h3 js-elastic"
@@ -72,7 +74,7 @@ var ListItem = React.createClass({
           onChange={ this.descriptionChange }
         />
         <button className="c-button" onClick={ this.deleteEntry }>Delete</button>
-        { saveButton }
+
       </li>
     );
   }
