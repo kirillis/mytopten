@@ -18,7 +18,7 @@
             %i.material-icons.left perm_identity
             =current_user.name
         %li
-          =link_to user_log_out_path do
+          =link_to user_log_out_path, method: 'delete' do
             %i.material-icons.left power_settings_new
             Logout
       -else
