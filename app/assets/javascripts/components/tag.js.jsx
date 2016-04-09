@@ -34,9 +34,11 @@ var Tag = React.createClass({
       );
     } else {
       return(
-        <li className="Tag">
-          <a href={ "/tags/" + this.props.data.name }>{ this.props.data.name }</a>
-          <span className="Tag-deleteButton" onClick={ this.handleRemoveClick }>X</span>
+        <li className="Tag chip">
+          <a href={ "/tags/" + this.props.data.name }>
+            { this.props.data.name }
+          </a>
+          <i className="Tag-deleteButton material-icons" onClick={ this.handleRemoveClick }>close</i>
         </li>
       );
     }
