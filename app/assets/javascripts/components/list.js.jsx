@@ -45,7 +45,7 @@ var List = React.createClass({
   },
 
   render: function() {
-    var saveButton = this.state.hasChanged ? <button className="c-button" onClick={ this.saveData }>Save</button> : '';
+    // var saveButton = this.state.hasChanged ? <button className="c-button" onClick={ this.saveData }>Save</button> : '';
     var props = this.props;
     var state = this.state;
     var _this = this;
@@ -57,7 +57,7 @@ var List = React.createClass({
             />;
     });
     return (
-      <div className="c-listContainer">
+      <div>
         <ListDetails
           title = { this.state.listDetails.title }
           description = { this.state.listDetails.description }
@@ -65,11 +65,15 @@ var List = React.createClass({
           public = { this.state.listDetails.public }
         />
 
-        { saveButton }
-        <Tags tags = { this.state.listTags } listId = { this.state.listDetails.id } />
-        <ol className='c-listItemsContainer'>
+        <Tags
+          tags = { this.state.listTags }
+          listId = { this.state.listDetails.id }
+        />
+        
+        <ol>
           { listItems }
         </ol>
+
         <SearchContainer />
       </div>
     );
