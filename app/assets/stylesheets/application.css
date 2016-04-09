@@ -10,4 +10,5 @@
  *
  *= require_self
  *= require materialize_importer
+ *= require_tree ./components
  */
