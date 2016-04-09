@@ -38,6 +38,10 @@ var ListDetails = React.createClass({
     });
   },
 
+  componentDidMount: function() {
+    Materialize.updateTextFields();
+  },
+
   saveData: function() {
     this.getFlux().actions.list.update({
       oldData: this.props,
@@ -46,38 +50,65 @@ var ListDetails = React.createClass({
     this.setState({hasChanged: false});
   },
 
+  getSaveButton: function() {
+    if(this.state.hasChanged) {
+      return <a className="waves-effect waves-light btn" onClick={ this.saveData }><i className="material-icons left">cloud</i>Save</a>
+    } else {
+      return <a className="waves-effect waves-light btn disabled"><i className="material-icons left">cloud</i>Save</a>
+    }
+  },
+
   render: function() {
-    var saveButton = this.state.hasChanged ? <button className="c-button" onClick={ this.saveData }>Save</button> : '';
+    var saveButton = this.getSaveButton();
     return (
-      <div className='c-listDetails'>
-        <input
-          type="text"
-          value={ this.state.title }
-          onChange={ this.handleTitleChange }
-        />
-        <br />
-        <textarea
-          rows="5"
-          cols="100"
-          value={ this.state.description }
-          onChange={ this.handleDescriptionChange }
-        />
-        <br />
-        <input
-          name="public"
-          type="checkbox"
-          checked={ this.state.public }
-          onChange={ this.handlepublicChange }
-        />
-        <label htmlFor="public">public list</label>
-        <br />
+      <div className='ListDetails'>
+        <div className="row">
+          <div className="col s12">
+            <p className="flow-text">
+              List author <a className='ListDetails-authorName' href = { '/' + this.props.author.name }>{ this.props.author.name }</a>
+            </p>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="input-field col s12 m6">
+            <label htmlFor="title">List title</label>
+            <input
+              type="text"
+              name="title"
+              className="validate"
+              required="required"
+              value={ this.state.title }
+              onChange={ this.handleTitleChange }
+            />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="input-field col s12 m6">
+            <textarea
+              id="description"
+              className="materialize-textarea"
+              value={ this.state.description }
+              onChange={ this.handleDescriptionChange }
+            >
+            </textarea>
+            <label htmlFor="description">Description</label>
+          </div>
+        </div>
+
+        <p>
+          <input
+            id="public"
+            className="filled-in"
+            type="checkbox"
+            checked={ this.state.public }
+            onChange={ this.handlepublicChange }
+          />
+          <label htmlFor="public">Make this list public</label>
+        </p>
+
         { saveButton }
-        <h3 className='c-listAuthor'>
-          <a
-          className='c-listAuthor-link'
-            href = { '/' + this.props.author.name }>by { this.props.author.name }
-          </a>
-        </h3>
       </div>
     );
   }
