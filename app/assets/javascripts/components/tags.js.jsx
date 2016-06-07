@@ -28,7 +28,6 @@ var Tags = React.createClass({
   render: function() {
     return (
       <div className="Tags">
-        <p className="flow-text">This list is tagged with these tags:</p>
         { this.renderTags() }
         <TagSearchController listId={ this.props.listId } />
       </div>

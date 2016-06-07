@@ -22,7 +22,7 @@ var Tag = React.createClass({
     if(this.props.isSuggestion) {
 
       var classes = classNames({
-      'Tag': true,
+      'chip Tag': true,
       'Tag--suggestion': true,
       'is-hidden': this.state.isHidden
       });
