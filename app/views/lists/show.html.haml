@@ -1,6 +1,17 @@
+-if current_user == @user
+  .row
+    .col.s12
+      =link_to user_list_edit_path(current_user.name, @list), class: 'waves-effect waves-light btn' do
+        %i.material-icons.left mode_edit
+        Edit this list
 -if @list
-  %p.flow-text=@list.title
-  %p=@list.description
+  .row
+    .col.s12
+      %p.flow-text=@list.title
+      %p
+        by
+        =link_to @user.name, user_path(@user.name)
+      %p=@list.description
   -if @list.tags
     .row
       .col.s12
