@@ -23,6 +23,8 @@ var TagSearch = React.createClass({
         _this.searchForTags(query);
       }
     );
+
+    Materialize.updateTextFields();
   },
 
   searchForTags: function(query) {
@@ -57,17 +59,34 @@ var TagSearch = React.createClass({
     this.refs.searchTagsInput.getDOMNode().value = '';
   },
 
+  getAddNewButton: function() {
+    if(this.state.hasChanged) {
+      return <a className="waves-effect waves-light btn" onClick={ this.saveData }><i className="material-icons left">cloud</i>Add new tag</a>
+    } else {
+      return <a className="waves-effect waves-light btn disabled"><i className="material-icons left">cloud</i>Add new tag</a>
+    }
+  },
+
   render: function() {
-    var saveButton = this.state.hasChanged ? <button className="c-button" onClick={ this.addNewButtonHandler }>Add new tag</button> : '';
     return (
-      <div className="TagSearch">
-        <input
-          type="text"
-          name="tags"
-          ref="searchTagsInput"
-          onChange={ this.onChangeHandler }
-        />
-        { saveButton }
+      <div className="TagSearch row">
+
+        <div className="row">
+          <div className="input-field col s12">
+            <label htmlFor="tag">Add new tag...</label>
+            <input
+              id="tag"
+              type="text"
+              name="tags"
+              className="validate"
+              required="required"
+              onChange={ this.onChangeHandler }
+              ref="searchTagsInput"
+            />
+          </div>
+        </div>
+
+        { this.getAddNewButton() }
       </div>
     );
   }

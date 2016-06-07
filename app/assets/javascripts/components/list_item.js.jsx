@@ -1,6 +1,13 @@
 var ListItem = React.createClass({
   mixins: [FluxMixin],
 
+  rankChange: function(event) {
+    this.setState({
+      rank: event.target.value,
+      hasChanged: true
+    });
+  },
+
   titleChange: function(event) {
     this.setState({
       title: event.target.value,
@@ -26,6 +33,7 @@ var ListItem = React.createClass({
     var newItemData = $.extend({}, itemData);
     newItemData.title = this.state.title;
     newItemData.description = this.state.description;
+    newItemData.rank = this.state.rank;
     this.getFlux().actions.listItem.update(itemData, newItemData);
     this.setState({hasChanged: false});
   },
@@ -38,6 +46,7 @@ var ListItem = React.createClass({
   getInitialState: function() {
     return {
       title: this.props.data.title,
+      rank: this.props.data.rank,
       description: this.props.data.description,
       hasChanged: false
     };
@@ -53,13 +62,21 @@ var ListItem = React.createClass({
   render: function() {
     var saveButton = this.state.hasChanged ? <button onClick={ this.saveData }>Save</button> : '';
     return (
-      <li className="Item" data-id={ this.props.data.id }>
+      <div className="Item" data-id={ this.props.data.id }>
+
+        <div className="Item-dragHandle"></div>
         <div className="Item-mediaContainer">
           <a href={ this.props.data.link } className="">
             <img src={ this.props.data.image_url } className="" />
           </a>
         </div>
         <div className="Item-textContainer">
+          <input
+            type="text"
+            defaultValue={ this.props.data.rank }
+            value={ this.state.rank }
+            onChange={ this.rankChange }
+          />
           <textarea
             rows="4"
             defaultValue={ this.props.data.title }
@@ -75,7 +92,7 @@ var ListItem = React.createClass({
           <button onClick={ this.deleteEntry }>Delete</button>
           { saveButton }
         </div>
-      </li>
+      </div>
     );
   }
 });

@@ -71,11 +71,12 @@ var ListDetails = React.createClass({
         </div>
 
         <div className="row">
-          <div className="input-field col s12 m6">
+          <div className="input-field col s12">
             <label htmlFor="title">List title</label>
             <input
               type="text"
               name="title"
+              id="title"
               className="validate"
               required="required"
               value={ this.state.title }
@@ -85,10 +86,11 @@ var ListDetails = React.createClass({
         </div>
 
         <div className="row">
-          <div className="input-field col s12 m6">
+          <div className="input-field col s12">
             <textarea
               id="description"
-              className="materialize-textarea"
+              className="materialize-textarea validate"
+              required="required"
               value={ this.state.description }
               onChange={ this.handleDescriptionChange }
             >
