@@ -1,29 +1,36 @@
-var MTT = {};
-var Toaster = function() {
-  var duration = 4000;
-  var getMessages = function() {
-    messages = $('.flash-messages').data('messages');
-  };
+var MTT = MTT || {};
+MTT.toaster = {
+  duration: 4000,
+  success: 'success',
+  error: 'error',
+  warning: 'warning',
+  messages: [],
 
-  var showMessages = function(message, time = 4000, type = '') {
-    if(messages.length > 0) {
-      for (var i = 0; i < messages.length; i++) {
-        var messageObject = messages[i];
+  getFlashMessages: function() {
+    this.messages = $('.flash-messages').data('messages');
+  },
+
+  showMessages: function() {
+    if(this.messages.length > 0) {
+      for (var i = 0; i < this.messages.length; i++) {
+        var messageObject = this.messages[i];
         var messageType = messageObject[0];
         var messageText = messageObject[1];
-        Materialize.toast(messageText, duration, messageType);
+        this.showSingleMessage(messageText, this.duration, messageType);
       }
     }
-  };
+  },
 
-  return {
-    start: function() {
-      getMessages();
-      showMessages();
-    }
+  showSingleMessage: function(text, duration, type) {
+    Materialize.toast(text, duration, type);
+  },
+
+  start: function() {
+    this.getFlashMessages();
+    this.showMessages();
   }
 }
 
 $(function() {
-  //MTT.toaster.start();
+  MTT.toaster.start();
 });

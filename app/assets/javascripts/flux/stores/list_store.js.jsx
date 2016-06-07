@@ -48,6 +48,7 @@ App.listStore = Fluxxor.createStore({
   },
 
   onListUpdateSuccess: function(data) {
+    MTT.toaster.showSingleMessage('List details saved.', MTT.toaster.duration, MTT.toaster.success);
     this.list = data.list;
     this.emit('change');
   },
