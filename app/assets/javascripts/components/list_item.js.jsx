@@ -55,7 +55,7 @@ var ListItem = React.createClass({
   render: function() {
     var saveButton = this.state.hasChanged ? <button onClick={ this.saveData }>Save</button> : '';
     return (
-      <div className="Item" data-id={ this.props.data.id }>
+      <div className="Item" data-rank={ this.props.data.rank }>
 
         <div className="Item-dragHandle"></div>
         <div className="Item-mediaContainer">

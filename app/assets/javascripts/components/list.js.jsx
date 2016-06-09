@@ -38,7 +38,7 @@ var List = React.createClass({
         draggable: ".Item",  // Specifies which items inside the element should be sortable
         ghostClass: "Item--ghost",  // Class name for the drop placeholder
         chosenClass: "Item--chosen",  // Class name for the chosen item
-        dataIdAttr: 'data-reactid',
+        dataIdAttr: 'data-rank',
         scroll: true, // or HTMLElement
         scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
         scrollSpeed: 10, // px
@@ -56,7 +56,7 @@ var List = React.createClass({
         // dragging ended
         onEnd: function (evt) {
           console.log('onStart', evt);
-          sortable.toArray();
+          sortablePlugin.toArray();
           evt.oldIndex;  // element's old index within parent
           evt.newIndex;  // element's new index within parent
         },
