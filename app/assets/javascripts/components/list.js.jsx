@@ -1,12 +1,6 @@
 var List = React.createClass({
   mixins: [FluxMixin, StoreWatchMixin("ListStore")],
 
-  getInitialState: function() {
-    return {
-      hasChanged: false
-    };
-  },
-
   getStateFromFlux: function() {
     var flux = this.getFlux();
     return {
@@ -18,7 +12,6 @@ var List = React.createClass({
   },
 
   descriptionChange: function(event) {
-    this.state.hasChanged = true;
     this.setState({ description: event.target.value });
   },
 
@@ -32,37 +25,20 @@ var List = React.createClass({
     }
 
     this.setState({
-      listItems: newListItems,
-      hasChanged: true
-    });
-  },
-
-  saveData: function() {
-    console.log('saveData');
-    this.setState({
-      hasChanged: false
+      listItems: newListItems
     });
   },
 
   getSortableInstance: function() {
     return new Sortable(document.querySelector('.ListItems'), {
-        group: "name",  // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
         sort: true,  // sorting inside list
-        delay: 0, // time in milliseconds to define when the sorting should start
-        disabled: false, // Disables the sortable if set to true.
-        store: null,  // @see Store
-        animation: 150,  // ms, animation speed moving items when sorting, `0` — without animation
+        animation: 120,  // ms, animation speed moving items when sorting, `0` — without animation
         handle: ".Item-dragHandle",  // Drag handle selector within list items
         filter: ".ignore-elements",  // Selectors that do not lead to dragging (String or Function)
         draggable: ".Item",  // Specifies which items inside the element should be sortable
-        ghostClass: "sortable-ghost",  // Class name for the drop placeholder
-        chosenClass: "sortable-chosen",  // Class name for the chosen item
+        ghostClass: "Item--ghost",  // Class name for the drop placeholder
+        chosenClass: "Item--chosen",  // Class name for the chosen item
         dataIdAttr: 'data-reactid',
-
-        forceFallback: false,  // ignore the HTML5 DnD behaviour and force the fallback to kick in
-        fallbackClass: "sortable-fallback",  // Class name for the cloned DOM Element when using forceFallback
-        fallbackOnBody: false,  // Appends the cloned DOM Element into the Document's Body
-
         scroll: true, // or HTMLElement
         scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
         scrollSpeed: 10, // px
@@ -79,8 +55,10 @@ var List = React.createClass({
 
         // dragging ended
         onEnd: function (evt) {
-            evt.oldIndex;  // element's old index within parent
-            evt.newIndex;  // element's new index within parent
+          console.log('onStart', evt);
+          sortable.toArray();
+          evt.oldIndex;  // element's old index within parent
+          evt.newIndex;  // element's new index within parent
         },
 
         // Element is dropped into the list from another list
@@ -92,23 +70,8 @@ var List = React.createClass({
 
         // Changed sorting within list
         onUpdate: function (evt) {
-            var itemEl = evt.item;  // dragged HTMLElement
-            // + indexes from onEnd
-        },
-
-        // Called by any change to the list (add / update / remove)
-        onSort: function (evt) {
-          // same properties as onUpdate
-        },
-
-        // Element is removed from the list into another list
-        onRemove: function (evt) {
-          // same properties as onUpdate
-        },
-
-        // Attempt to drag a filtered element
-        onFilter: function (evt) {
-          var itemEl = evt.item;  // HTMLElement receiving the `mousedown|tapstart` event.
+          var itemEl = evt.item;  // dragged HTMLElement
+          // + indexes from onEnd
         },
 
         // Event when you move an item in the list or between lists
@@ -124,12 +87,12 @@ var List = React.createClass({
   },
 
   componentDidMount: function() {
-    this.sortableItems = this.getSortableInstance();
+    this.sortableInstance = this.getSortableInstance();
+    window.sortablePlugin = this.sortableInstance;
     console.log('componentDidMount');
   },
 
   render: function() {
-    // var saveButton = this.state.hasChanged ? <button className="c-button" onClick={ this.saveData }>Save</button> : '';
     var props = this.props;
     var state = this.state;
     var _this = this;

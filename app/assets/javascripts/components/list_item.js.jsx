@@ -39,7 +39,7 @@ var ListItem = React.createClass({
   },
 
   deleteEntry: function() {
-    console.log('listitem deleteEntry');
+    console.log('Implement: listitem::deleteEntry()');
     // this.getFlux().actions.listItem.delete(this.props.data.id);
   },
 
@@ -51,13 +51,6 @@ var ListItem = React.createClass({
       hasChanged: false
     };
   },
-
-  // componentWillReceiveProps: function(nextProps) {
-  //   this.setState({
-  //     title: nextProps.data.title,
-  //     description: nextProps.data.description,
-  //   });
-  // },
 
   render: function() {
     var saveButton = this.state.hasChanged ? <button onClick={ this.saveData }>Save</button> : '';
