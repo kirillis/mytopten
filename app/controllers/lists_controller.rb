@@ -1,4 +1,6 @@
 class ListsController < ApplicationController
+  before_filter :require_login, only: [:edit, :create, :destroy]
+
   def index
     @user = User.find_by(name: params[:user_name])
     if @user
@@ -16,6 +18,20 @@ class ListsController < ApplicationController
 
   def show
     @user = User.find_by(name: params[:user_name])
+    if @user
+      @list = @user.lists.find_by(id: params[:list_id])
+    else
+      redirect_to root_path, alert: "No such user found."
+    end
+  end
+
+  def edit
+    @user = User.find_by(name: params[:user_name])
+    if current_user != @user
+      redirect_to user_list_path(@user.name, params[:list_id]), alert: "You are not authorized to edit this list."
+      return
+    end
+
     if @user
       @user_name = @user.name
       @list = @user.lists.find(params[:list_id])
@@ -49,12 +65,47 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     @list.update(list_params)
-    @list.save
-    render json: @list
+    @list.tag_list.add(params[:tags], parse: true)
+
+    if @list.save
+      render json: @list
+    else
+      render :json => { :errors => 'No list with that id found.' }, :status => 422
+    end
+  end
+
+  def update_tags
+    list = List.find(params[:list_id])
+
+    list.tag_list.add(params[:newTag], parse: true)
+    if list.save
+      render json: list
+    else
+      render :json => { :errors => 'Error saving new tags for list.' }, :status => 422
+    end
+  end
+
+  def remove_tag
+    list = List.find(params[:list_id])
+
+    list.tag_list.remove(params[:tagToRemove])
+    if list.save
+      render json: list
+    else
+      render :json => { :errors => 'Error saving new tags for list.' }, :status => 422
+    end
+  end
+
+  def destroy
+    if List.find(params[:id]).destroy
+      redirect_to user_lists_path(current_user.name), notice: 'List deleted.'
+    else
+      redirect_to user_lists_path(current_user.name), alert: 'Error: List not deleted.'
+    end
   end
 
   private
     def list_params
-      params.require(:list).permit(:title, :description, list_items_attributes: [:title, :description])
+      params.require(:list).permit(:title, :description, :public, :tags, list_items_attributes: [:title, :description])
     end
 end

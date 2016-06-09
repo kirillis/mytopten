@@ -4,6 +4,7 @@
   %head
     %meta{:charset => "utf-8"}
     %title MY Top Ten
+    %link{:href => "http://fonts.googleapis.com/icon?family=Material+Icons", :rel => "stylesheet"}
     = stylesheet_link_tag  "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
@@ -12,26 +13,12 @@
     %link{:href => "/favicon.ico", :rel => "shortcut icon"}
 
   %body
-    - flash.each do |name, msg|
-      = content_tag :div, msg, class: name
-    .SiteWrapper
-      %ul.Navbar
-        %li.Navbar-item
-          =link_to 'Home', root_path
-        -if current_user
-          %li.Navbar-item
-            Signed in as
-            = link_to current_user.name, user_path(current_user.name)
-          %li.Navbar-item
-            = link_to 'My lists', user_lists_path(current_user.name)
-          %li.Navbar-item
-            = link_to 'Log Out', user_log_out_path, method: :delete
+    .row
+      = render "layouts/menu_top"
 
-        -else
-          %li.Navbar-item
-            = link_to 'Sign Up', user_register_path
-          %li.Navbar-item
-            = link_to 'Log In', user_log_in_path
-
-      .ContentWrapper
+      .container
         = yield
+
+    %footer
+      %span.flash-messages{data: {messages: flash.to_json}}
+

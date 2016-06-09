@@ -1,12 +1,27 @@
-%h1 Log In
+.row
+  .col.s12.m9.l6
 
-= form_tag sessions_path, method: :post do
-  .form-group
-    = label_tag :name
-    = text_field_tag :name, nil, required: true
+    %p.flow-text Log In
 
-  .form-group
-    = label_tag :password
-    = password_field_tag :password, nil, required: true
+    = form_tag sessions_path, method: :post do
+      .row
+        .input-field.col.s12
+          = label_tag :name
+          = text_field_tag :name, nil, required: true, class: 'validate'
 
-  = submit_tag 'Log In'
+      .row
+        .input-field.col.s12
+          = label_tag :password
+          = password_field_tag :password, nil, required: true, class: 'validate'
+
+
+      .row
+        .input-field.col.s12
+          %button.btn.waves-effect.waves-light{:name => "action", :type => "submit"}
+            Log In
+            %i.material-icons.right send
+
+.row
+  .col.s12.m9.l6
+    %p.flow-text Forgot your password?
+    = render 'forgot_password_form'

@@ -1,8 +1,9 @@
-%h1 My top Ten Lists
-%p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus finibus lacus, ut vehicula augue dignissim nec. Nullam scelerisque venenatis neque non ullamcorper. Quisque ac libero ac lacus porta viverra sit amet pharetra lacus. Nunc vehicula orci et metus rutrum fermentum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum nec orci sit amet quam eleifend eleifend. Phasellus faucibus enim accumsan erat accumsan, ut accumsan ipsum condimentum. Sed vitae ullamcorper dui. Quisque cursus risus consectetur, mollis urna eget, congue libero. Maecenas vitae aliquam risus. Vivamus at commodo purus. In elementum ac magna non feugiat. In faucibus sit amet orci vel tincidunt. Phasellus in fringilla metus.
--unless @lists.empty?
-  %h3 Recent lists:
-  %ul
-    -@lists.each do |list|
-      %li= link_to list.title, user_list_path(list.user.name, list)
-      %p= list.description
+.row
+  %p.flow-text My top Ten Lists
+  %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus finibus lacus, ut vehicula augue dignissim nec. Nullam scelerisque venenatis neque non ullamcorper. Quisque ac libero ac lacus porta viverra sit amet pharetra lacus. Nunc vehicula orci et metus rutrum fermentum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum nec orci sit amet quam eleifend eleifend. Phasellus faucibus enim accumsan erat accumsan, ut accumsan ipsum condimentum. Sed vitae ullamcorper dui. Quisque cursus risus consectetur, mollis urna eget, congue libero. Maecenas vitae aliquam risus. Vivamus at commodo purus. In elementum ac magna non feugiat. In faucibus sit amet orci vel tincidunt. Phasellus in fringilla metus.
+.row
+
+  -unless @lists.empty?
+    =render @lists
+  -else
+    %p.flow-text No lists created yet.

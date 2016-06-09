@@ -1,0 +1,9 @@
+-if @user.nil?
+  %p No list found.
+-else
+  #js-react-listContainer
+  :javascript
+    $(document).ready(function() {
+      var listAuthor = '#{@user_name}';
+      window.loadListView(listAuthor, #{@list_id});
+    });

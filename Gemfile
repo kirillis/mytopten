@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.4'
+gem 'rails', '4.1.8'
 gem 'haml-rails'
-gem 'sass-rails', '~> 4.0.2'
+gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
@@ -12,6 +12,9 @@ gem 'vacuum'
 gem 'classnames-rails'
 gem 'active_model_serializers'
 gem 'sorcery'
+gem 'acts-as-taggable-on', '~> 3.4'
+gem 'materialize-sass'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -24,11 +27,15 @@ group :production do
 end
 
 group :development do
+  gem 'gemsurance'
+  gem 'bullet'
+  gem 'quiet_assets'
+  gem 'dotenv-rails'
   gem 'awesome_print'
   gem 'sqlite3'
-  gem "binding_of_caller"
-  gem "better_errors"
-  gem "meta_request"
+  gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'meta_request'
 end
 
 # Use debugger

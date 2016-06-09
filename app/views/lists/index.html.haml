@@ -1,9 +1,17 @@
 %h1="All of your lists, #{@user.name}"
 
 =link_to 'Create new list', user_list_new_path(@user.name)
+%hr/
 -unless @lists.empty?
   %ul
     -@lists.each do |list|
-      %li=link_to list.title, user_list_path(list.user.name, list)
+      %li
+        %h4
+          =link_to list.title, user_list_path(list.user.name, list)
+          -if not list.public
+            (private)
+        %p=link_to 'Edit this list', user_list_edit_path(@user.name, list)
+        %p=link_to "Remove", list, method: :delete
+        %hr/
 -else
   %p No list created yet.

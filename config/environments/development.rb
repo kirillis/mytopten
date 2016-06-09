@@ -13,8 +13,14 @@ Mytopten::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
+  # Mailer settings.
+  # TODO: Move these setting into action_mailer initializer.
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: "localhost", port: 1025 }
+  # config.action_mailer.delivery_method = :file
+  config.action_mailer.default_url_options = { :host => "http://localhost:3000" }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -29,4 +35,13 @@ Mytopten::Application.configure do
 
   # React config
   config.react.variant = :development
+
+  # Bullet cofig
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+  end
 end

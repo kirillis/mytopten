@@ -1,0 +1,10 @@
+.row
+  .col.s12
+    %p.flow-text="All lists tagged with '#{@tag_name}'"
+
+.row
+  .col.s12
+    -if @lists
+      =render @lists
+    -else
+      %p No list found.
