@@ -27,6 +27,9 @@ group :production do
 end
 
 group :development do
+  gem 'gemsurance'
+  gem 'bullet'
+  gem 'quiet_assets'
   gem 'dotenv-rails'
   gem 'awesome_print'
   gem 'sqlite3'
