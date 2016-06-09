@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def show
-    @lists = List.limit(50)
+    @lists = List.includes(:user).limit(50)
   end
 
 end
