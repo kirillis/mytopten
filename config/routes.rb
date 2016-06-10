@@ -34,7 +34,9 @@ Mytopten::Application.routes.draw do
   put 'lists/:list_id/tags', to: 'lists#update_tags', as: 'list_tags_update'
   delete 'lists/:list_id/tag', to: 'lists#remove_tag', as: 'list_tag_remove'
   resources :lists, only: [:index, :create, :update, :destroy]
-  resources :list_items, only: [:create, :update, :destroy, :edit]
 
+  # LISTITEMS
+  resources :list_items, only: [:create, :update, :destroy, :edit]
+  put 'list_items/:id/:new_rank', to: 'list_items#change_rank'
 
 end
