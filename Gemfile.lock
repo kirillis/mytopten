@@ -51,6 +51,7 @@ GEM
     bullet (5.1.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
+    byebug (9.0.5)
     callsite (0.0.11)
     classnames-rails (2.1.5)
     coderay (1.1.1)
@@ -217,6 +218,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bullet
+  byebug
   classnames-rails
   dotenv-rails
   gemsurance
