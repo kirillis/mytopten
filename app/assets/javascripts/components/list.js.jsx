@@ -30,58 +30,25 @@ var List = React.createClass({
   },
 
   getSortableInstance: function() {
+    var self = this;
     return new Sortable(document.querySelector('.ListItems'), {
-        sort: true,  // sorting inside list
-        animation: 120,  // ms, animation speed moving items when sorting, `0` — without animation
-        handle: ".Item-dragHandle",  // Drag handle selector within list items
-        filter: ".ignore-elements",  // Selectors that do not lead to dragging (String or Function)
-        draggable: ".Item",  // Specifies which items inside the element should be sortable
-        ghostClass: "Item--ghost",  // Class name for the drop placeholder
-        chosenClass: "Item--chosen",  // Class name for the chosen item
+        animation: 120,
+        handle: ".Item-dragHandle",
+        draggable: ".Item",
+        ghostClass: "Item--ghost",
+        chosenClass: "Item--chosen",
         dataIdAttr: 'data-rank',
-        scroll: true, // or HTMLElement
-        scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
-        scrollSpeed: 10, // px
+        scroll: true,
+        scrollSensitivity: 30,
+        scrollSpeed: 10,
 
-        setData: function (dataTransfer, dragEl) {
-          dataTransfer.setData('Text', dragEl.textContent);
-        },
-
-        // dragging started
-        onStart: function (evt) {
-          console.log('onStart', evt);
-          evt.oldIndex;  // element index within parent
-        },
-
-        // dragging ended
         onEnd: function (evt) {
-          console.log('onStart', evt);
-          sortablePlugin.toArray();
-          evt.oldIndex;  // element's old index within parent
-          evt.newIndex;  // element's new index within parent
-        },
-
-        // Element is dropped into the list from another list
-        onAdd: function (evt) {
-          var itemEl = evt.item;  // dragged HTMLElement
-          evt.from;  // previous list
-          // + indexes from onEnd
-        },
-
-        // Changed sorting within list
-        onUpdate: function (evt) {
-          var itemEl = evt.item;  // dragged HTMLElement
-          // + indexes from onEnd
-        },
-
-        // Event when you move an item in the list or between lists
-        onMove: function (evt) {
-          // Example: http://jsbin.com/tuyafe/1/edit?js,output
-          evt.dragged; // dragged HTMLElement
-          evt.draggedRect; // TextRectangle {left, top, right и bottom}
-          evt.related; // HTMLElement on which have guided
-          evt.relatedRect; // TextRectangle
-          // return false; — for cancel
+          listItemId = $(evt.item).data('id');
+          newRank = evt.newIndex;
+          $.ajax({
+            method: 'PUT',
+            url:  '/list_items/' + listItemId + '/' + newRank
+          });
         }
     });
   },

@@ -55,7 +55,7 @@ var ListItem = React.createClass({
   render: function() {
     var saveButton = this.state.hasChanged ? <button onClick={ this.saveData }>Save</button> : '';
     return (
-      <div className="Item" data-rank={ this.props.data.rank }>
+      <div className="Item" data-rank={ this.props.data.rank } data-id={ this.props.data.id }>
 
         <div className="Item-dragHandle"></div>
         <div className="Item-mediaContainer">
@@ -64,12 +64,8 @@ var ListItem = React.createClass({
           </a>
         </div>
         <div className="Item-textContainer">
-          <input
-            type="text"
-            defaultValue={ this.props.data.rank }
-            value={ this.state.rank }
-            onChange={ this.rankChange }
-          />
+          <p>{ this.props.data.rank }</p>
+
           <textarea
             rows="4"
             defaultValue={ this.props.data.title }

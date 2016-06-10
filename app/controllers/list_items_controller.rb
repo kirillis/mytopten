@@ -35,6 +35,15 @@ class ListItemsController < ApplicationController
     end
   end
 
+  def change_rank
+    list_item = ListItem.find(params[:id])
+    if list_item.move_to(params[:new_rank].to_i)
+      head :ok
+    else
+      head :internal_server_error
+    end
+  end
+
   private
     def list_item_params
       params.require(:list_item).permit(:title, :description, :rank, :list_id, :link, :image_url)
