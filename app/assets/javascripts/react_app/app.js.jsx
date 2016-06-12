@@ -1,7 +1,7 @@
 var App = App || {};
 
 App.init = function(listAuthor, listId) {
-  $.getJSON('/' + listAuthor + '/' + listId + '/edit.json', function(data) {
+  $.getJSON('/' + listAuthor + '/lists/' + listId + '/edit.json', function(data) {
     App.makeFluxStore(data);
   });
 };
