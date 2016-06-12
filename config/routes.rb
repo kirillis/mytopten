@@ -7,33 +7,36 @@ Mytopten::Application.routes.draw do
   get 'tags', to: 'tags#index', as: 'tags'
   get 'tags/:tag_name', to: 'tags#show', as: 'tag'
   get 'tags/search/:tag_query', to: 'tags#search', as: 'tags_search'
+  delete 'lists/:list_id/tag', to: 'lists#remove_tag', as: 'list_tag_remove'
+  put 'lists/:list_id/tags', to: 'lists#update_tags', as: 'list_tags_update'
 
   # SEARCH
-  get 'search/amazon' => 'search#amazon', as: :search_amazon
-  get 'search' => 'search#index'
+  get 'search/amazon', to: 'search#amazon', as: :search_amazon
+  get 'search', to: 'search#index'
 
   # USERS
-  get 'register' => 'users#new', as: :user_register
-  get 'login', to: 'sessions#new', as: :user_log_in
+  get 'register', to: 'users#new', as: :user_register
   get ':name', to: 'users#show', as: 'user'
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create]
+  post :users, to: 'users#create'
+
+  # SESSIONS
+  resources :sessions, only: [:new, :create]
+  get 'login', to: 'sessions#new', as: :user_log_in
   delete 'logout', to: 'sessions#destroy', as: :user_log_out
 
   # PASSWORD
   get "password_resets/create"
   get "password_resets/edit"
   get "password_resets/update"
-  resources :password_resets
+  # resources :password_resets
 
   # LISTS
+  resources :lists, only: [:create, :update]
   get ':user_name/lists', to: 'lists#index', as: 'user_lists'
-  get ':user_name/:list_id', to: 'lists#show', as: 'user_list'
-  get ':user_name/:list_id/edit', to: 'lists#edit', as: 'user_list_edit'
   get ':user_name/lists/new', to: 'lists#new', as: 'user_list_new'
-  put 'lists/:list_id/tags', to: 'lists#update_tags', as: 'list_tags_update'
-  delete 'lists/:list_id/tag', to: 'lists#remove_tag', as: 'list_tag_remove'
-  resources :lists, only: [:index, :create, :update, :destroy]
+  get ':user_name/lists/:list_id', to: 'lists#show', as: 'user_list'
+  get ':user_name/lists/:list_id/edit', to: 'lists#edit', as: 'user_list_edit'
+  delete ':user_name/lists/:list_id', to: 'lists#destroy', as: 'user_list_destroy'
 
   # LISTITEMS
   resources :list_items, only: [:create, :update, :destroy, :edit]
