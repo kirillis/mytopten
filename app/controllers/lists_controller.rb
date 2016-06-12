@@ -97,10 +97,10 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    if List.find(params[:id]).destroy
+    if List.find(params[:list_id]).destroy
       redirect_to user_lists_path(current_user.name), notice: 'List deleted.'
     else
-      redirect_to user_lists_path(current_user.name), alert: 'Error: List not deleted.'
+      redirect_to user_lists_path(current_user.name), notice: 'Error: List not deleted.'
     end
   end
 

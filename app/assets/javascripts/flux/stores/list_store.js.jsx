@@ -12,8 +12,6 @@ App.listStore = Fluxxor.createStore({
       App.constants.ITEM_ADD_FAILURE, this.onItemAddFailure,
 
       App.constants.ITEM_DELETE, this.onItemDelete,
-      App.constants.ITEM_DELETE_SUCCESS, this.onItemDeleteSuccess,
-      App.constants.ITEM_DELETE_FAILURE, this.onItemDeleteFailure,
 
       App.constants.LIST_UPDATE, this.onListUpdate,
       App.constants.LIST_UPDATE_SUCCESS, this.onListUpdateSuccess,
@@ -150,18 +148,10 @@ App.listStore = Fluxxor.createStore({
     this.emit('change');
   },
 
-  onItemDeleteSuccess: function(payload) {
-    console.log('Implement ListStore::onItemDeleteSuccess()', payload);
-  },
-
-  onItemDeleteFailure: function(payload) {
-    console.log('Implement ListStore::onItemDeleteFailure()', payload);
-  },
-
   onListTagsUpdate: function() {
     this.list.isSaving = true;
     this.emit('change');
-  },
+  },onItemDeleteSuccess
 
   onListTagsUpdateSuccess: function(newListData) {
     console.log('onListTagsUpdate', newListData);

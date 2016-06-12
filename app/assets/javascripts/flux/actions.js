@@ -47,12 +47,8 @@ App.actions = {
     },
 
     delete: function(itemId) {
-      App.deleteItem(
-        itemId,
-        function(itemId) {
-          this.dispatch(App.constants.ITEM_DELETE, itemId);
-        }.bind(this)
-      );
+      this.dispatch(App.constants.ITEM_DELETE, itemId);
+      App.deleteItem(itemId);
     }
   },
   list: {

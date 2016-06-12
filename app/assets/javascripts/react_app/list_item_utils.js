@@ -62,17 +62,14 @@ App.updateMultipleItems = function(payload, success, error) {
   });
 };
 
-App.deleteItem = function(itemId, success) {
+App.deleteItem = function(itemId) {
   $.ajax({
     url: '/list_items/' + itemId,
     method: 'DELETE',
     dataType: 'json',
     contentType: 'application/json',
-    error: function(jqXHR, textStatus, errorThrown) {
-      alert('Error deleting item: ' + errorThrown);
-    },
-    success: function() {
-      success(itemId);
+    error: function() {
+      console.error('Error deleting item: ', itemId);
     }
   });
 };

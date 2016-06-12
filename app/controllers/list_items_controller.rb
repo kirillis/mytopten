@@ -19,19 +19,19 @@ class ListItemsController < ApplicationController
     list_item = ListItem.find(params[:id])
     list_item.update(list_item_params)
     if list_item.save
-      render json: list_item, status: :ok
+      render status: :ok, json: { text: "ListItem with ID #{params[:id]} was updated." }
     else
-      render json: list_item, status: :unprocessable_entity
+      render status: :internal_server_error, json: { text: "ListItem with ID #{params[:id]} was not updated." }
     end
   end
 
   def destroy
-    list_item = ListItem.find(params[:id])
+    list_item = ListItem.find_by(id: params[:id])
 
-    if list_item.destroy
-      render json: list_item, status: :ok
+    if list_item and list_item.destroy
+      render status: :ok, json: { text: "ListItem with ID #{params[:id]} was deleted." }
     else
-      render json: list_item, status: :unprocessable_entity
+      render status: :internal_server_error, json: { text: "ListItem with ID #{params[:id]} was not deleted." }
     end
   end
 

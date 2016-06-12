@@ -39,8 +39,7 @@ var ListItem = React.createClass({
   },
 
   deleteEntry: function() {
-    console.log('Implement: listitem::deleteEntry()');
-    // this.getFlux().actions.listItem.delete(this.props.data.id);
+    this.getFlux().actions.listItem.delete(this.props.data.id);
   },
 
   getInitialState: function() {
