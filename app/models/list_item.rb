@@ -1,6 +1,7 @@
 class ListItem < ActiveRecord::Base
   belongs_to :list
   default_scope { order(:rank) }
+  before_create :calc_rank
 
   def move_to(new_rank)
     if new_rank < rank then
@@ -21,4 +22,9 @@ class ListItem < ActiveRecord::Base
     self.rank = new_rank
     save
   end
+
+  def calc_rank
+    self.rank = self.list.list_items.last ? self.list.list_items.last.rank + 1 : 0
+  end
+
 end
