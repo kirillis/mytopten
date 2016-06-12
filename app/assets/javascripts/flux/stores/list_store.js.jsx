@@ -151,7 +151,7 @@ App.listStore = Fluxxor.createStore({
   onListTagsUpdate: function() {
     this.list.isSaving = true;
     this.emit('change');
-  },onItemDeleteSuccess
+  },
 
   onListTagsUpdateSuccess: function(newListData) {
     console.log('onListTagsUpdate', newListData);
