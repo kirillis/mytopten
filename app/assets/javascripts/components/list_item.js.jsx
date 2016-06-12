@@ -63,8 +63,6 @@ var ListItem = React.createClass({
           </a>
         </div>
         <div className="Item-textContainer">
-          <p>{ this.props.data.rank }</p>
-
           <textarea
             rows="4"
             defaultValue={ this.props.data.title }
