@@ -30,7 +30,6 @@ App.actions = {
         link: newItemData.amazon_url,
         image_url: newItemData.thumbnail_url,
         list_id: listID,
-        rank: 0,
         listItemID: listItemID
       };
 
