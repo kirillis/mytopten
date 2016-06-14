@@ -15,18 +15,20 @@ var Tag = React.createClass({
   },
 
   handleRemoveClick: function(event) {
+    this.setState({
+      isHidden: true
+    });
     this.props.removeClickHandler(event, this.props.data);
   },
 
   renderTag: function() {
+    var classes = classNames(
+      'Tag', {
+      'Tag--suggestion': this.props.isSuggestion,
+      'is-hidden': this.state.isHidden,
+    });
+
     if(this.props.isSuggestion) {
-
-      var classes = classNames({
-      'chip Tag': true,
-      'Tag--suggestion': true,
-      'is-hidden': this.state.isHidden
-      });
-
       return(
         <li className={ classes } onClick={ this.handleAddClick }>
           { this.props.data.name }
@@ -34,11 +36,11 @@ var Tag = React.createClass({
       );
     } else {
       return(
-        <li className="Tag chip">
+        <li className={ classes }>
           <a href={ "/tags/" + this.props.data.name }>
             { this.props.data.name }
           </a>
-          <i className="Tag-deleteButton material-icons" onClick={ this.handleRemoveClick }>close</i>
+          <span className="Tag-deleteButton" onClick={ this.handleRemoveClick }>delete</span>
         </li>
       );
     }

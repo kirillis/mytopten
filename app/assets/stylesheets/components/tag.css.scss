@@ -1,4 +1,16 @@
 .Tag {
-  margin-right: 20px;
+  margin-right: 12px;
   margin-bottom: 10px;
+  background-color: #e6e6e6;
+  border-radius: 18px;
+  padding: 6px 15px;
+  display: inline-block;
+}
+
+.Tag.is-hidden {
+  display: none;
+}
+
+.Tag--suggestion {
+  cursor: pointer;
 }

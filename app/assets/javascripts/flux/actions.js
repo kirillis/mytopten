@@ -81,7 +81,7 @@ App.actions = {
     },
 
     removeTag: function(tagToRemove) {
-      // console.log('delete', tagToRemove);
+      console.log('delete', tagToRemove);
       this.dispatch(App.constants.LIST_TAG_REMOVE);
       App.removeTag(
         tagToRemove,

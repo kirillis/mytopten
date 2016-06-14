@@ -61,7 +61,7 @@ var TagSearch = React.createClass({
 
   getAddNewButton: function() {
     if(this.state.hasChanged) {
-      return <a className="waves-effect waves-light btn" onClick={ this.saveData }><i className="material-icons left">cloud</i>Add new tag</a>
+      return <a className="waves-effect waves-light btn" onClick={ this.addNewButtonHandler }><i className="material-icons left">cloud</i>Add new tag</a>
     } else {
       return <a className="waves-effect waves-light btn disabled"><i className="material-icons left">cloud</i>Add new tag</a>
     }
