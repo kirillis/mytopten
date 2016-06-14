@@ -22,17 +22,11 @@ App.actions = {
       console.log('updateMultiple');
     },
 
-    add: function(newItemData) {
+    add: function(itemData) {
       var listID = this.flux.store("ListStore").getID();
       var listItemID = App.makeId();
-      var itemData = {
-        title: newItemData.title,
-        link: newItemData.amazon_url,
-        image_url: newItemData.thumbnail_url,
-        list_id: listID,
-        listItemID: listItemID
-      };
-
+      itemData.list_id = listID;
+      itemData.listItemID = listItemID;
       this.dispatch(App.constants.ITEM_ADD, itemData);
       App.saveItem(
         itemData,
