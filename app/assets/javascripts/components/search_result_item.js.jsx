@@ -2,7 +2,8 @@
   mixins: [FluxMixin],
 
   handleAddItemClick: function() {
-    this.getFlux().actions.listItem.add(this.props.data);
+    var normalizedData = App.normalizeItemData(this.props.data, 'AMAZON');
+    this.getFlux().actions.listItem.add(normalizedData);
   },
 
   render: function() {

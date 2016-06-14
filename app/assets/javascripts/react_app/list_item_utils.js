@@ -24,6 +24,22 @@ App.saveItem = function(payload, success, error) {
   });
 };
 
+App.normalizeItemData = function(data, provider) {
+  newData = {};
+  $.extend(newData, data);
+  var normalizedData = {};
+  switch (provider) {
+    case 'AMAZON':
+      newData.title = data.title;
+      newData.link = data.amazon_url;
+      newData.image_url = data.thumbnail_url;
+      console.log('normalizing data', newData, data);
+      return newData
+    default:
+      return newData;
+  }
+};
+
 App.updateItem = function(payload, success, error) {
   $.ajax({
     url: '/list_items/' + payload.itemData.id,
