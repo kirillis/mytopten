@@ -102,6 +102,7 @@ var List = React.createClass({
         </div>
         <div className="divider"></div>
 
+        <ListItemAdd />
         <SearchContainer />
       </div>
     );
