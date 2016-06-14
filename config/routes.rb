@@ -14,21 +14,21 @@ Mytopten::Application.routes.draw do
   get 'search/amazon', to: 'search#amazon', as: :search_amazon
   get 'search', to: 'search#index'
 
-  # USERS
-  get 'register', to: 'users#new', as: :user_register
-  get ':name', to: 'users#show', as: 'user'
-  post :users, to: 'users#create'
-
   # SESSIONS
   resources :sessions, only: [:new, :create]
   get 'login', to: 'sessions#new', as: :user_log_in
   delete 'logout', to: 'sessions#destroy', as: :user_log_out
 
+  # USERS
+  get 'register', to: 'users#new', as: :user_register
+  get ':name', to: 'users#show', as: 'user'
+  post :users, to: 'users#create'
+
   # PASSWORD
-  get "password_resets/create"
-  get "password_resets/edit"
-  get "password_resets/update"
-  # resources :password_resets
+  post 'password_resets/create', as: 'password_resets'
+  get 'password_resets/edit'
+  get 'password_resets/update'
+  resources :password_resets
 
   # LISTS
   resources :lists, only: [:create, :update]
