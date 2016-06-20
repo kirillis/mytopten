@@ -36,3 +36,6 @@ bower.json
 .powenv
 _resources/
 .byebug_history
+
+# node modules
+/node_modules/
