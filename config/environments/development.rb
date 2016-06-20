@@ -44,4 +44,15 @@ Mytopten::Application.configure do
     Bullet.rails_logger = true
     Bullet.add_footer = true
   end
+
+  # Paperclip S3 config
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      bucket: ENV.fetch('S3_BUCKET_NAME'),
+      access_key_id: ENV.fetch('AWS_KEY'),
+      secret_access_key: ENV.fetch('AWS_SECRET'),
+      s3_region: ENV.fetch('AWS_REGION'),
+    }
+  }
 end
