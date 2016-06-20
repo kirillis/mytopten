@@ -3,6 +3,16 @@ class ListItem < ActiveRecord::Base
   default_scope { order(:rank) }
   before_create :calc_rank
 
+  # This method associates the attribute ":image_main" with a file attachment
+  has_attached_file :image_main, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }
+
+  # Validate the attached image is image/jpg, image/png, etc
+  validates_attachment_content_type :image_main, :content_type => /\Aimage\/.*\Z/
+
   def move_to(new_rank)
     if new_rank < rank then
       sql = "UPDATE list_items

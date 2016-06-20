@@ -11,6 +11,10 @@
     }
   },
 
+  imageChange: function(event) {
+    console.log(event, event.target.value.split(/(\\|\/)/g).pop());
+  },
+
   titleChange: function(event) {
     this.setState({
       hasChanged: true,
@@ -40,8 +44,18 @@
   render: function() {
     return (
       <div className='ListItem ListItem--add'>
+
+        <label htmlFor='image'>Item image</label>
+        <input
+          type='file'
+          name='image'
+          onChange={ this.imageChange }
+        />
+        <br />
+
         <label htmlFor='title'>Item title</label>
         <input
+          type='text'
           name='title'
           rows='1'
           value={ this.state.title }
@@ -58,6 +72,7 @@
 
         <label htmlFor='title'>Item link</label>
         <input
+          type='text'
           name='title'
           rows='4'
           value={ this.state.link }
