@@ -7,12 +7,9 @@
       description: '',
       link: '',
       image_url: 'http://placehold.it/350x150',
-      hasChanged: false
-    }
-  },
-
-  imageChange: function(event) {
-    console.log(event, event.target.value.split(/(\\|\/)/g).pop());
+      hasChanged: false,
+      csrfToken: $('meta[name=csrf-token]').attr('content')
+    };
   },
 
   titleChange: function(event) {
@@ -36,49 +33,68 @@
     });
   },
 
-  handleAddItemClick: function() {
-    console.log('handleAddItemClick', this.state);
-    this.getFlux().actions.listItem.add(this.state);
+  handleImageChange: function(event) {
+    console.log('handleImageChange');
+    // console.log(event, event.target.files[0]);
+  },
+
+  handleAddItemClick: function(event) {
+    event.preventDefault();
+    var form = this.refs.uploadForm;
+    formData = new FormData(form);
+    console.log(formData, this.refs.title.value, form);
+    req = new XMLHttpRequest();
+
+    req.open("POST", "/list_items/");
+    req.send(formData);
   },
 
   render: function() {
     return (
       <div className='ListItem ListItem--add'>
-
         <label htmlFor='image'>Item image</label>
-        <input
-          type='file'
-          name='image'
-          onChange={ this.imageChange }
-        />
-        <br />
+        <form ref='uploadForm' action='/list_items/' method='post' remote='true'>
 
-        <label htmlFor='title'>Item title</label>
-        <input
-          type='text'
-          name='title'
-          rows='1'
-          value={ this.state.title }
-          onChange={ this.titleChange }
-        />
+          <input name="list_id" value='3'></input>
+          <input name="authenticity_token" value={ this.state.csrfToken }></input>
+          <input
+            type='file'
+            ref='image_main'
+            name='image_main'
+            onChange={ this.handleImageChange }
+          />
+          <br />
 
-        <label htmlFor='title'>Item description</label>
-        <textarea
-          name='title'
-          rows='4'
-          value={ this.state.description }
-          onChange={ this.descriptionChange }
-        />
+          <label htmlFor='title'>Item title</label>
+          <input
+            type='text'
+            ref='title'
+            name='title'
+            rows='1'
+            value={ this.state.title }
+            onChange={ this.titleChange }
+          />
 
-        <label htmlFor='title'>Item link</label>
-        <input
-          type='text'
-          name='title'
-          rows='4'
-          value={ this.state.link }
-          onChange={ this.linkChange }
-        />
-        <button onClick={ this.handleAddItemClick }>Add to list</button>
+          <label htmlFor='title'>Item description</label>
+          <textarea
+            ref='description'
+            name='description'
+            rows='4'
+            value={ this.state.description }
+            onChange={ this.descriptionChange }
+          />
+
+          <label htmlFor='title'>Item link</label>
+          <input
+            type='text'
+            ref='link'
+            name='link'
+            rows='4'
+            value={ this.state.link }
+            onChange={ this.linkChange }
+          />
+          <button onClick={ this.handleAddItemClick }>Add to list</button>
+        </form>
       </div>
     );
   }

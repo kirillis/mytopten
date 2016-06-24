@@ -32,9 +32,10 @@ App.normalizeItemData = function(data, provider) {
     case 'AMAZON':
       newData.title = data.title;
       newData.link = data.amazon_url;
-      newData.image_url = data.thumbnail_url;
+      newData.image_thumb_url = data.thumbnail_url;
+      newData.image_large_url = data.large_url;
       console.log('normalizing data', newData, data);
-      return newData
+      return newData;
     default:
       return newData;
   }

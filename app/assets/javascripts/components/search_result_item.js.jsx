@@ -12,6 +12,7 @@
         <div className="Arrange">
           <div className="Arrange-sizeFit">
             <img src={ this.props.data.thumbnail_url } />
+            <img src={ this.props.data.large_url } />
           </div>
 
           <div className="Arrange-sizeFill">

@@ -47,7 +47,7 @@ var ListItem = React.createClass({
       title: this.props.data.title,
       rank: this.props.data.rank,
       description: this.props.data.description,
-      hasChanged: false
+      hasChanged: false,
     };
   },
 
@@ -58,11 +58,12 @@ var ListItem = React.createClass({
 
         <div className="Item-dragHandle"></div>
         <div className="Item-mediaContainer">
-          <a href={ this.props.data.link } className="">
-            <img src={ this.props.data.image_url } className="" />
+          <a href={ this.props.data.image_large } className="">
+            <img src={ this.props.data.image_thumb } className="" />
           </a>
         </div>
         <div className="Item-textContainer">
+          Link: <a href={ this.props.data.link }>{ this.props.data.link }</a>
           <textarea
             rows="4"
             defaultValue={ this.props.data.title }
