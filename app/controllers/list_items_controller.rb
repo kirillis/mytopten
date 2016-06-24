@@ -46,6 +46,6 @@ class ListItemsController < ApplicationController
 
   private
     def list_item_params
-      params.require(:list_item).permit(:title, :description, :rank, :list_id, :link, :image_url)
+      params.permit(:title, :description, :rank, :list_id, :link, :image_main, :image_large_url, :image_thumb_url)
     end
 end
