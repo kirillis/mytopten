@@ -1,5 +1,7 @@
 %li
-  %img{src: list_item.image_url}/
+  %a{ href: list_item.image_large }
+    %img{ src: list_item.image_thumb }/
   %span=list_item.title
   %p=list_item.description
-  =link_to "REF", list_item.link
+  Link:
+  =link_to "#{list_item.link}", list_item.link
