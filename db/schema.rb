@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615184800) do
+ActiveRecord::Schema.define(version: 20160624173033) do
 
   create_table "list_items", force: true do |t|
     t.string   "title"
@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(version: 20160615184800) do
     t.integer  "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_url"
+    t.string   "image_thumb_url"
     t.string   "link"
     t.string   "image_main_file_name"
     t.string   "image_main_content_type"
     t.integer  "image_main_file_size"
     t.datetime "image_main_updated_at"
+    t.string   "image_large_url"
   end
 
   add_index "list_items", ["list_id"], name: "index_list_items_on_list_id"
