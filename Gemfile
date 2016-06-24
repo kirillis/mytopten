@@ -16,7 +16,7 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'materialize-sass'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'paperclip'
-gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk', '~> 1.6'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
