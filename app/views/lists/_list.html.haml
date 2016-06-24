@@ -1,8 +1,8 @@
 -if list.public or current_user == list.user
 
   -list.list_items.each_with_index do |item, index|
-    -break if index > 1
-    %img{:src => item.image_url}/
+    -break if index > 2
+    %img{ :src => item.image_thumb }
 
   %p=link_to list.title, user_list_path(list.user.name, list)
   %p=list.description
