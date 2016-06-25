@@ -8,9 +8,6 @@ App.listStore = Fluxxor.createStore({
       App.constants.ITEM_UPDATE_FAILURE, this.onUpdateItemFailure,
 
       App.constants.ITEM_ADD, this.onItemAdd,
-      App.constants.ITEM_ADD_SUCCESS, this.onItemAddSuccess,
-      App.constants.ITEM_ADD_FAILURE, this.onItemAddFailure,
-
       App.constants.ITEM_DELETE, this.onItemDelete,
 
       App.constants.LIST_UPDATE, this.onListUpdate,
@@ -105,34 +102,8 @@ App.listStore = Fluxxor.createStore({
   },
 
   onItemAdd: function(payload) {
+    // console.log('store::onItemAdd payload', payload);
     this.list.list_items.push(payload);
-    this.itemsToSave.push(payload.listItemID);
-    this.emit('change');
-  },
-
-  onItemAddSuccess: function(savedItemData) {
-    var list_items = this.list.list_items;
-    for(var i = 0; i < list_items.length; i++) {
-      var listItem = list_items[i];
-      if(listItem.listItemID === savedItemData.listItemID) {
-        list_items[i] = savedItemData;
-        break;
-      }
-    }
-    this.itemsToSave.splice( $.inArray(savedItemData.listItemID, this.itemsToSave), 1 );
-    this.emit('change');
-  },
-
-  onItemAddFailure: function(payload) {
-    var _this = this;
-    this.itemsToSave.splice( $.inArray(payload.listItemID, this.itemsToSave), 1 );
-    this.list.list_items.forEach(function(listItem, index) {
-      if(listItem.listItemID !== undefined && listItem.listItemID == payload.listItemID) {
-        _this.list.list_items.splice(index, 1);
-        alert("Error adding new list item. Error message: " + payload.error);
-        return false;
-      }
-    });
     this.emit('change');
   },
 
