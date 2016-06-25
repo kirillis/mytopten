@@ -1,4 +1,4 @@
-App.saveItem = function(payload, success, error) {
+App.saveItem = function(payload, successCallback) {
   var stringData = JSON.stringify(payload);
 
   $.ajax({
@@ -41,7 +41,7 @@ App.normalizeItemData = function(data, provider) {
   }
 };
 
-App.updateItem = function(payload, success, error) {
+App.updateItem = function(payload, successCallback, errorCallback) {
   $.ajax({
     url: '/list_items/' + payload.itemData.id,
     method: 'PUT',
@@ -50,17 +50,17 @@ App.updateItem = function(payload, success, error) {
     contentType: 'application/json',
 
     success: function(data, textStatus, jqXHR) {
-      success(data);
+      successCallback(data);
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
       payload.error = errorThrown;
-      error(payload);
+      errorCallback(payload);
     },
   });
 };
 
-App.updateMultipleItems = function(payload, success, error) {
+App.updateMultipleItems = function(payload, successCallback, errorCallback) {
   $.ajax({
     url: '/list_items/' + payload.itemData.id,
     method: 'PUT',
@@ -69,12 +69,12 @@ App.updateMultipleItems = function(payload, success, error) {
     contentType: 'application/json',
 
     success: function(data, textStatus, jqXHR) {
-      success(data);
+      successCallback(data);
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
       payload.error = errorThrown;
-      error(payload);
+      errorCallback(payload);
     },
   });
 };
