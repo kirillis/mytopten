@@ -8,18 +8,12 @@ App.saveItem = function(payload, successCallback) {
     dataType: 'json',
     contentType: 'application/json',
 
-    success: function(data, textStatus, jqXHR) {
-      var savedItem = data.list_item;
-      savedItem.listItemID = payload.listItemID;
-      success(savedItem);
+    success: function(data) {
+      successCallback(data.list_item);
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
-      var newPayload = {
-        listItemID: payload.listItemID,
-        error: 'AJAX saving error: ' + payload.title + ' ('+ errorThrown + ')'
-      };
-      error(newPayload);
+      console.error('Error adding new list item.', jqXHR, textStatus, errorThrown);
     }
   });
 };
