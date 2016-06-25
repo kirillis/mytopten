@@ -55,8 +55,8 @@
         <label htmlFor='image'>Item image</label>
         <form ref='uploadForm' action='/list_items/' method='post' remote='true'>
 
-          <input name="list_id" value='3'></input>
-          <input name="authenticity_token" value={ this.state.csrfToken }></input>
+          <input name="list_id" className="ListItem-input ListItem-input--hidden" value={ this.props.listId } readOnly></input>
+          <input name="authenticity_token" className="ListItem-input ListItem-input--hidden" value={ this.state.csrfToken } readOnly></input>
           <input
             type='file'
             ref='image_main'

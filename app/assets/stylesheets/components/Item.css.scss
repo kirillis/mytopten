@@ -1,4 +1,5 @@
 .Item {
+  position: relative;
   display: flex;
   margin-bottom: 30px;
 }
@@ -7,7 +8,7 @@
   opacity: 0;
 }
 
-.Item--chosem {
+.Item--chosen {
 }
 
 .Item-mediaContainer {
@@ -20,9 +21,16 @@
 }
 
 .Item-dragHandle {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: block;
   width: 50px;
   height: 50px;
   background: green;
   cursor: move;
+}
+
+.ListItem-input--hidden {
+  display: none;
 }

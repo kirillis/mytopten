@@ -56,7 +56,6 @@ var List = React.createClass({
   componentDidMount: function() {
     this.sortableInstance = this.getSortableInstance();
     window.sortablePlugin = this.sortableInstance;
-    console.log('componentDidMount');
   },
 
   render: function() {
@@ -102,7 +101,7 @@ var List = React.createClass({
         </div>
         <div className="divider"></div>
 
-        <ListItemAdd />
+        <ListItemAdd listId={ this.state.listDetails.id } />
         <SearchContainer />
       </div>
     );
