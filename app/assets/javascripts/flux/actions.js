@@ -27,14 +27,10 @@ App.actions = {
       var listItemID = App.makeId();
       itemData.list_id = listID;
       itemData.listItemID = listItemID;
-      this.dispatch(App.constants.ITEM_ADD, itemData);
       App.saveItem(
         itemData,
-        function(savedItem) {
-          this.dispatch(App.constants.ITEM_ADD_SUCCESS, savedItem);
-        }.bind(this),
-        function(error) {
-          this.dispatch(App.constants.ITEM_ADD_FAILURE, error);
+        function(newItemData) {
+          this.dispatch(App.constants.ITEM_ADD, newItemData);
         }.bind(this)
       );
     },
