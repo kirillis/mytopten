@@ -59,7 +59,6 @@
           <input name="authenticity_token" className="ListItem-input ListItem-input--hidden" value={ this.state.csrfToken } readOnly></input>
           <input
             type='file'
-            ref='image_main'
             name='image_main'
             onChange={ this.handleImageChange }
           />
@@ -68,29 +67,22 @@
           <label htmlFor='title'>Item title</label>
           <input
             type='text'
-            ref='title'
             name='title'
             rows='1'
-            value={ this.state.title }
             onChange={ this.titleChange }
           />
 
           <label htmlFor='title'>Item description</label>
           <textarea
-            ref='description'
             name='description'
             rows='4'
-            value={ this.state.description }
             onChange={ this.descriptionChange }
           />
 
           <label htmlFor='title'>Item link</label>
           <input
             type='text'
-            ref='link'
             name='link'
-            rows='4'
-            value={ this.state.link }
             onChange={ this.linkChange }
           />
           <button onClick={ this.handleAddItemClick }>Add to list</button>
