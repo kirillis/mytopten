@@ -33,20 +33,25 @@
     });
   },
 
-  handleImageChange: function(event) {
-    console.log('handleImageChange');
-    // console.log(event, event.target.files[0]);
-  },
-
   handleAddItemClick: function(event) {
+    var self = this;
     event.preventDefault();
     var form = this.refs.uploadForm;
     formData = new FormData(form);
-    console.log(formData, this.refs.title.value, form);
-    req = new XMLHttpRequest();
 
-    req.open("POST", "/list_items/");
-    req.send(formData);
+    $.ajax({
+      url: '/list_items/',
+      method: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false
+    })
+    .done(function(data) {
+      self.getFlux().actions.listItem.addToUiOnly(data.list_item);
+    })
+    .fail(function() {
+      console.error('Error adding new list item.');
+    });
   },
 
   render: function() {
@@ -60,7 +65,6 @@
           <input
             type='file'
             name='image_main'
-            onChange={ this.handleImageChange }
           />
           <br />
 
