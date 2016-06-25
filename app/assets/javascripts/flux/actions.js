@@ -38,6 +38,10 @@ App.actions = {
     delete: function(itemId) {
       this.dispatch(App.constants.ITEM_DELETE, itemId);
       App.deleteItem(itemId);
+    },
+
+    addToUiOnly: function(itemData) {
+      this.dispatch(App.constants.ITEM_ADD, itemData);
     }
   },
   list: {
