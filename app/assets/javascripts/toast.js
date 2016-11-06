@@ -29,7 +29,7 @@ MTT.toaster = {
     this.getFlashMessages();
     this.showMessages();
   }
-}
+};
 
 $(function() {
   MTT.toaster.start();

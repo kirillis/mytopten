@@ -102,7 +102,7 @@ App.listStore = Fluxxor.createStore({
   },
 
   onItemAdd: function(payload) {
-    // console.log('store::onItemAdd payload', payload);
+    MTT.toaster.showSingleMessage('Item added to list.', MTT.toaster.duration, MTT.toaster.success);
     this.list.list_items.push(payload);
     this.emit('change');
   },

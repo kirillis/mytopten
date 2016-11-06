@@ -6,3 +6,11 @@ App.makeId = function() {
   }
   return text;
 };
+
+App.setLoadingState = function(isLoading) {
+  if(isLoading) {
+    $('#loading-indicator').addClass('active');
+  } else {
+    $('#loading-indicator').removeClass('active');
+  }
+};

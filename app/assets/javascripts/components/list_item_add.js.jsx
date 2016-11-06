@@ -34,10 +34,11 @@
   },
 
   handleAddItemClick: function(event) {
-    var self = this;
     event.preventDefault();
+    var self = this;
     var form = this.refs.uploadForm;
     formData = new FormData(form);
+    App.setLoadingState(true);
 
     $.ajax({
       url: '/list_items/',
@@ -51,6 +52,9 @@
     })
     .fail(function() {
       console.error('Error adding new list item.');
+    })
+    .always(function() {
+      App.setLoadingState(false);
     });
   },
 
@@ -60,36 +64,47 @@
         <label htmlFor='image'>Item image</label>
         <form ref='uploadForm' action='/list_items/' method='post' remote='true'>
 
-          <input name="list_id" className="ListItem-input ListItem-input--hidden" value={ this.props.listId } readOnly></input>
-          <input name="authenticity_token" className="ListItem-input ListItem-input--hidden" value={ this.state.csrfToken } readOnly></input>
+          <input
+            name="list_id"
+            className="ListItem-input ListItem-input--hidden"
+            value={ this.props.listId }
+            readOnly></input>
+
+          <input
+            name="authenticity_token"
+            className="ListItem-input ListItem-input--hidden"
+            value={ this.state.csrfToken }
+            readOnly></input>
           <input
             type='file'
             name='image_main'
           />
           <br />
 
-          <label htmlFor='title'>Item title</label>
           <input
             type='text'
             name='title'
             rows='1'
             onChange={ this.titleChange }
           />
+          <label htmlFor='title'>Item title</label>
 
-          <label htmlFor='title'>Item description</label>
           <textarea
+            className="materialize-textarea"
             name='description'
             rows='4'
             onChange={ this.descriptionChange }
           />
+          <label htmlFor='description'>Item description</label>
 
-          <label htmlFor='title'>Item link</label>
           <input
             type='text'
             name='link'
             onChange={ this.linkChange }
           />
-          <button onClick={ this.handleAddItemClick }>Add to list</button>
+          <label htmlFor='link'>Item link</label>
+
+          <button className="waves-effect waves-light btn" onClick={ this.handleAddItemClick }>Add to list</button>
         </form>
       </div>
     );

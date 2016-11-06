@@ -1,0 +1,22 @@
+#loading-indicator {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 100;
+
+  &.active {
+    display: block;
+  }
+
+  .preloader-wrapper {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: calc(50% - 36px);
+    left: calc(50% - 36px);
+  }
+}
