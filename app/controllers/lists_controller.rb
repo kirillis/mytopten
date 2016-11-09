@@ -23,6 +23,10 @@ class ListsController < ApplicationController
     else
       redirect_to root_path, alert: "No such user found."
     end
+
+    if !@list.public and current_user != @user
+      redirect_to root_path, alert: "Nothing to see here."
+    end
   end
 
   def edit
