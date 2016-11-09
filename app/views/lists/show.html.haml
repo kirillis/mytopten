@@ -8,7 +8,15 @@
     by
     =link_to @user.name, user_path(@user.name)
   %p=@list.description
+  %p 
+    This list is
+    %strong
+      -if @list.public
+        public
+      -else
+        not public.
 
+  %hr/
   -if @list.tags
     =render partial: "tags/tag", collection: @list.tags
 
