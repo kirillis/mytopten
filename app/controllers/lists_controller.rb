@@ -20,6 +20,7 @@ class ListsController < ApplicationController
     @user = User.find_by(name: params[:user_name])
     if @user
       @list = @user.lists.find_by(id: params[:list_id])
+      # @list.liked_by current_user
     else
       redirect_to root_path, alert: "No such user found."
     end
@@ -27,6 +28,26 @@ class ListsController < ApplicationController
     if !@list.public and current_user != @user
       redirect_to root_path, alert: "Nothing to see here."
     end
+  end
+
+  def toggle_like
+    list = List.find_by(id: params[:list_id])
+    if list and current_user
+      if current_user.voted_up_on? list
+        current_user.dislikes list
+        liked_status = false
+      else
+        current_user.likes list
+        liked_status = true
+      end
+      payload = { liked: liked_status }
+      status = 200
+    else
+      status = 500
+      payload = { error: 'User or list not found.' }
+    end
+
+    render json: payload, status: status
   end
 
   def edit

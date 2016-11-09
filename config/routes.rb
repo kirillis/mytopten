@@ -37,6 +37,7 @@ Mytopten::Application.routes.draw do
   get ':user_name/lists/:list_id', to: 'lists#show', as: 'user_list'
   get ':user_name/lists/:list_id/edit', to: 'lists#edit', as: 'user_list_edit'
   delete ':user_name/lists/:list_id', to: 'lists#destroy', as: 'user_list_destroy'
+  get 'lists/:list_id/toggle_like', to: 'lists#toggle_like', as: 'list_toggle_like'
 
   # LISTITEMS
   resources :list_items, only: [:create, :update, :destroy, :edit]

@@ -16,6 +16,14 @@
       -else
         not public.
 
+  %p
+    This list has
+    =@list.get_likes.size
+    likes.
+
+  -if current_user
+    %p.js-toggle-like{ data: { list_id: @list.id }} Toggle like
+
   %hr/
   -if @list.tags
     =render partial: "tags/tag", collection: @list.tags

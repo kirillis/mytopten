@@ -17,6 +17,7 @@ gem 'materialize-sass'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'paperclip'
 gem 'aws-sdk', '~> 1.6'
+gem 'acts_as_votable', '~> 0.10.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
