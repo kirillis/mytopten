@@ -1,13 +1,21 @@
 -if list.public or current_user == list.user
 
+  %h4=link_to list.title, user_list_path(list.user.name, list)
+  .visibility
+    -if not list.public
+      %i.material-icons visibility_off 
+      This list is private.
+    -else
+      %i.material-icons visibility
+      This list is public.
+
   -list.list_items.each_with_index do |item, index|
     -break if index > 2
     %img{ :src => item.image_thumb }
 
-  %p=link_to list.title, user_list_path(list.user.name, list)
   %p=list.description
-  =link_to "See List", user_list_path(list.user.name, list)
-  =link_to "by #{list.user.name}", user_path(list.user.name)
+  =link_to "View list", user_list_path(list.user.name, list), class: 'btn'
+  =link_to "Authorpage: #{list.user.name}", user_path(list.user.name), class: 'btn'
   -if current_user == list.user
-    =link_to 'Edit', user_list_edit_path(current_user.name, list)
+    =link_to 'Edit', user_list_edit_path(current_user.name, list), class: 'btn'
 %hr
