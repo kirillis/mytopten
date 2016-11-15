@@ -20,7 +20,6 @@ class ListsController < ApplicationController
     @user = User.find_by(name: params[:user_name])
     if @user
       @list = @user.lists.find_by(id: params[:list_id])
-      # @list.liked_by current_user
     else
       redirect_to root_path, alert: "No such user found."
     end
@@ -47,6 +46,7 @@ class ListsController < ApplicationController
       payload = { error: 'User or list not found.' }
     end
 
+    sleep 0.5
     render json: payload, status: status
   end
 
