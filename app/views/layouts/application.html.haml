@@ -12,7 +12,7 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
     %link{:href => "/favicon.ico", :rel => "shortcut icon"}
 
-  %body
+  %body{ class: (current_user ? 'is-loggedin' : 'is-guest') }
     .row
       = render "layouts/menu_top"
 
