@@ -1,13 +1,16 @@
 -if list.public or current_user == list.user
 
   %h4=link_to list.title, user_list_path(list.user.name, list)
-  .visibility
-    -if not list.public
-      %i.material-icons visibility_off 
-      This list is private.
-    -else
-      %i.material-icons visibility
-      This list is public.
+
+  -if current_user == list.user
+    .visibility
+      -if not list.public
+        %i.material-icons visibility_off 
+        This list is private.
+      -else
+        %i.material-icons visibility
+        This list is public.
+
   %p
     %i.material-icons
       favorite
