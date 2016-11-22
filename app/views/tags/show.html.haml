@@ -1,10 +1,15 @@
-.row
-  .col.s12
-    %p.flow-text="All lists tagged with '#{@tag_name}'"
+-if @lists.empty?
+  .row
+    .col.s12
+      %p.flow-text="There are no lists with this tag."
+-else
+  .row
+    .col.s12
+      %p.flow-text="All lists tagged with '#{@tag_name}'"
 
-.row
-  .col.s12
-    -if @lists
-      =render @lists
-    -else
-      %p No list found.
+  .row
+    .col.s12
+      -if @lists
+        =render @lists
+      -else
+        %p No list found.
