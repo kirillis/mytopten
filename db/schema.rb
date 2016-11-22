@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109150720) do
+ActiveRecord::Schema.define(version: 20161122160536) do
 
   create_table "list_items", force: true do |t|
     t.string   "title"
@@ -38,9 +38,8 @@ ActiveRecord::Schema.define(version: 20161109150720) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "public"
+    t.integer  "cached_votes_total", default: 0
   end
-
-  add_index "lists", ["user_id"], name: "index_lists_on_user_id"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
