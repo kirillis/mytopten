@@ -8,6 +8,10 @@
     -else
       %i.material-icons visibility
       This list is public.
+  %p
+    %i.material-icons
+      favorite
+    =list.votes_for.size
 
   -list.list_items.each_with_index do |item, index|
     -break if index > 2
@@ -16,6 +20,7 @@
   %p=list.description
   =link_to "View list", user_list_path(list.user.name, list), class: 'btn'
   =link_to "Authorpage: #{list.user.name}", user_path(list.user.name), class: 'btn'
+
   -if current_user == list.user
     =link_to 'Edit', user_list_edit_path(current_user.name, list), class: 'btn'
-%hr
+  %hr
