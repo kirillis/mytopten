@@ -1,32 +1,11 @@
-%nav.MainNav
-  .nav-wrapper.container
-    =link_to 'My Top 10', root_path, class: 'brand-logo'
-    %ul.right.hide-on-med-and-down
-      -if current_user
-        %li
-          =link_to user_list_new_path(current_user.name) do
-            %i.material-icons.left add_circle_outline
-            New List
-      %li
-        =link_to tags_path do
-          %i.material-icons.left label_outline
-          Tags
-
-      -if current_user
-        %li
-          =link_to user_path(current_user.name) do
-            %i.material-icons.left perm_identity
-            =current_user.name
-        %li
-          =link_to user_log_out_path, method: 'delete' do
-            %i.material-icons.left power_settings_new
-            Logout
-      -else
-        %li
-          =link_to user_register_path do
-            %i.material-icons.left perm_identity
-            Sign up
-        %li
-          =link_to user_log_in_path do
-            %i.material-icons.left vpn_key
-            Login
+.u-bg-grey
+  %nav.MainNav.container
+    =link_to root_path, class: 'MainNav-logo' do
+      =image_tag "logo.svg"
+    %ul.MainNav-links
+      %li.MainNav-link
+        =link_to 'Lists', root_path
+      %li.MainNav-link
+        =link_to 'Tags', tags_path
+      %li.MainNav-link
+        =link_to 'Newest', root_path
