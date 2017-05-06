@@ -1,29 +1,17 @@
--if list.public or current_user == list.user
+.ListItem.u-mb-2
+  =link_to user_list_path(list.user.name, list), class: 'ListItem-images' do
+    -list.list_items.each_with_index do |item, index|
+      -break if index > 2
+      %img{ src: item.image_thumb, class: 'ListItem-image' }
 
-  %h4=link_to list.title, user_list_path(list.user.name, list)
+  .ListItem-text.u-ml-2
+    =link_to list.title, user_list_path(list.user.name, list), class: 'h3'
 
-  -if current_user == list.user
-    .visibility
-      -if not list.public
-        %i.material-icons visibility_off 
-        This list is private.
-      -else
-        %i.material-icons visibility
-        This list is public.
+    %p
+      Votes:
+      =list.cached_votes_total
 
-  %p
-    %i.material-icons
-      favorite
-    =list.cached_votes_total
+    =link_to "#{list.user.name}", user_path(list.user.name)
 
-  -list.list_items.each_with_index do |item, index|
-    -break if index > 2
-    %img{ :src => item.image_thumb }
-
-  %p=list.description
-  =link_to "View list", user_list_path(list.user.name, list), class: 'btn'
-  =link_to "Authorpage: #{list.user.name}", user_path(list.user.name), class: 'btn'
-
-  -if current_user == list.user
-    =link_to 'Edit', user_list_edit_path(current_user.name, list), class: 'btn'
-  %hr
+    -if current_user == list.user
+      =link_to 'Edit', user_list_edit_path(current_user.name, list)
