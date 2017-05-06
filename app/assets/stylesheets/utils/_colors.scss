@@ -1,0 +1,9 @@
+@each $colorname, $color in $colors {
+  .u-bg-#{$colorname} {
+    background-color: $color;
+  }
+
+  .u-color-#{$colorname} {
+    color: $color;
+  }
+}

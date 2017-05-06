@@ -1,0 +1,20 @@
+.ListItem {
+  display: flex;
+}
+
+.ListItem-images {
+  flex-basis: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ListItem-image {
+  max-width: 33%;
+}
+
+.ListItem-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
