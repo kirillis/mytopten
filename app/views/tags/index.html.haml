@@ -1,5 +1,6 @@
-%p.flow-text List with tag
+%h2 A list of all tags
 -if @tags
-  =render partial: "tags/tag", collection: @tags
+  .u-d-flex.u-f-wrap
+    =render partial: "tags/tag_detailed", collection: @tags
 -else
   %p No tags found.
