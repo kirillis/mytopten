@@ -15,3 +15,6 @@
 
     -if current_user == list.user
       =link_to 'Edit', user_list_edit_path(current_user.name, list)
+
+    .u-d-block
+      =render :partial => "tags/tag_small", :collection => list.tags
