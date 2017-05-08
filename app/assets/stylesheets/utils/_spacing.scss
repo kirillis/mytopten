@@ -1,8 +1,9 @@
 $spacings:
-  (1, $base-spacing),
-  (2, $base-spacing * 2),
-  (3, $base-spacing * 3),
-  (4, $base-spacing * 4);
+  ('05', $base-spacing * 0.5),
+  ('1', $base-spacing),
+  ('2', $base-spacing * 2),
+  ('3', $base-spacing * 3),
+  ('4', $base-spacing * 4);
 
 @each $spacinginterval, $spacingvalue in $spacings {
   .u-mb-#{$spacinginterval} {
