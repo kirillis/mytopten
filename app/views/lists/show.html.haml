@@ -1,52 +1,49 @@
--if current_user == @user
-  =link_to 'Edit', user_list_edit_path(current_user.name, @list), class: 'btn'
-  =link_to 'Delete', user_list_destroy_path(current_user.name, @list), method: :delete, class: 'btn red'
+.container
+  -if current_user == @user
+    =link_to 'Edit', user_list_edit_path(current_user.name, @list), class: 'btn'
+    =link_to 'Delete', user_list_destroy_path(current_user.name, @list), method: :delete, class: 'btn red'
 
--if @list
-  %p=@list.title
-  %p
-    by
-    =link_to @user.name, user_path(@user.name)
-  %p=@list.description
-  %p 
-    This list is
-    %strong
-      -if @list.public
-        public
-      -else
-        not public.
+  .List.u-mt-4
+    -if @list
+      .List-header.u-mb-3
+        .List-title.u-pb-2.u-t-align-center.u-color-green=@list.title
+        %p.List-subtitle.u-t-align-center
+          by
+          =link_to @user.name, user_path(@user.name)
+          on 
+          =@list.created_at.strftime('%d %B %Y')
+        %p.List-description.u-pb-2=@list.description
+        %p.u-t-align-center
+          =inline_svg 'heart.svg', class: 'Icon Icon--heart'
+          =@list.cached_votes_total
 
-  %p
-    This list has
-    =@list.get_likes.size
-    likes.
+        -if @list.tags
+          .u-t-align-center
+            =render partial: "tags/tag", collection: @list.tags
+      
+      .List-itemsContainer
+        =render partial: "lists/list_item", collection: @list.list_items
 
-  =render partial: "lists/likebutton"
-  
+    -else
+      %p No list found.
 
-  %hr/
-  -if @list.tags
-    =render partial: "tags/tag", collection: @list.tags
+    -if current_user == @user
+      =link_to 'Edit this list', user_list_edit_path(current_user.name, @list)
 
-  =render partial: "lists/list_item", collection: @list.list_items
--else
-  .row
-    %p No list found.
+.u-bg-grey-light.u-mt-5
+  .container
+    .u-py-5
+      %h3 Comment
+      #disqus_thread.u-color-grey
+      :javascript
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;
+        this.page.identifier = PAGE_IDENTIFIER;
+        };
 
--if current_user == @user
-  =link_to 'Edit this list', user_list_edit_path(current_user.name, @list)
-
-#disqus_thread
-%p Discus
-:javascript
-  var disqus_config = function () {
-  this.page.url = PAGE_URL;
-  this.page.identifier = PAGE_IDENTIFIER;
-  };
-
-  (function() {
-  var d = document, s = d.createElement('script');
-  s.src = '//mytopten-1.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-  })();
+        (function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//mytopten-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
