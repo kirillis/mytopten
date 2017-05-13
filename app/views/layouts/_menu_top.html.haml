@@ -1,7 +1,7 @@
 .u-bg-grey
   %nav.MainNav.container
     =link_to root_path, class: 'MainNav-logo' do
-      =image_tag "logo.svg"
+      =inline_svg "logo.svg"
     %ul.MainNav-links
       %li.MainNav-link
         =link_to 'Lists', root_path
