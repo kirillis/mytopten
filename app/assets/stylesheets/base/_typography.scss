@@ -1,5 +1,11 @@
 body {
   font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+p {
+  margin-top: 0;
+  line-height: 1.7;
 }
 
 a {
@@ -11,27 +17,28 @@ a {
   } 
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
   margin-top: 0;
+  margin-bottom: $base-spacing;
 }
 
 h2,
 .h2
  {
-  color: $green;
+  color: $grey-med;
   font-weight: 600;
-  font-size: 23px;
+  font-size: 1.5rem;
   text-decoration: none;
+  font-weight: 100;
 }
 
 h3,
 .h3 {
-  color: $grey;
   font-weight: 600;
   font-size: 22px;
   text-decoration: none;
