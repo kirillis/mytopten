@@ -3,6 +3,10 @@
   border-radius: 5px;
 }
 
+.Tag:hover {
+  background-color: $green-dark;
+} 
+
 .Tag--detailed {
   flex-basis: 33%;
 }
