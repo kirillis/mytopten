@@ -3,13 +3,16 @@
 }
 
 .ListItem-images {
-  flex-basis: 40%;
+  flex: 1 0 300px;
   display: flex;
   justify-content: space-between;
 }
 
 .ListItem-image {
-  max-width: 33%;
+  width: 33%;
+  height: 160px;
+  background-size: cover;
+  background-position: center center;
 }
 
 .ListItem-text {

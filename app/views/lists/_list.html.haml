@@ -1,20 +1,22 @@
-.ListItem.u-mb-2
+.ListItem.u-mb-6
   =link_to user_list_path(list.user.name, list), class: 'ListItem-images' do
     -list.list_items.each_with_index do |item, index|
       -break if index > 2
-      %img{ src: item.image_thumb, class: 'ListItem-image' }
+      %img{ style: "background-image: url(#{item.image_thumb})", class: 'ListItem-image' }
 
   .ListItem-text.u-ml-2
     =link_to list.title, user_list_path(list.user.name, list), class: 'h3'
+    %p=truncate(list.description, length: 150, omission: "… (continued)")
 
-    %p
-      Votes:
+    %p.u-color-grey-med
+      =inline_svg 'heart.svg', class: 'Icon Icon--heart'
       =list.cached_votes_total
-
-    =link_to "#{list.user.name}", user_path(list.user.name)
+      , submitted
+      =distance_of_time_in_words_to_now(list.created_at)
+      ago by #{ link_to "#{list.user.name}", user_path(list.user.name) }
 
     -if current_user == list.user
       =link_to 'Edit', user_list_edit_path(current_user.name, list)
 
     .u-d-block
-      =render :partial => "tags/tag_small", :collection => list.tags
+      =render :partial => 'tags/tag_small', :collection => list.tags
