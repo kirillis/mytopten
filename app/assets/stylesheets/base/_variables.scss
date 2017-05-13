@@ -1,12 +1,17 @@
 $grey: #3a3a3a;
 $grey-light: #f4f4f4;
+$grey-med: #b5b5b5;
 $green: #71b429;
+$green-dark: #3b6013;
 $white: #ffffff;
+$red: red;
 
 $colors:
   (grey, $grey),
   (grey-light, $grey-light),
+  (grey-med, $grey-med),
   (green, $green),
+  (green-dark, $green-dark),
   (white, $white);
 
 $base-spacing: 10px;
