@@ -1,14 +1,14 @@
-
 -unless @user.nil?
-  .row
-    .col.s12
-      %h4
-        =@user.name
-      %p.flow-text
+  .u-bg-grey-light.u-mb-5
+    .container.u-py-5
+      %h2
+        ="All lists by #{@user.name}"
+      %p
         Email:
         =@user.email
-      %p.flow-text
+      %p
         Number of lists:
         =@lists.count
 
-  =render @lists
+  .container
+    =render @lists
