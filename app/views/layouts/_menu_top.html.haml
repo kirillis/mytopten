@@ -9,3 +9,14 @@
         =link_to 'Tags', tags_path
       %li.MainNav-link
         =link_to 'Newest', root_path
+
+      -if logged_in?
+        %li.MainNav-link
+          =link_to current_user.name, user_path(current_user.name)
+        %li.MainNav-link
+          =link_to 'Log Out', user_log_out_path, method: :delete
+      -else
+        %li.MainNav-link
+          =link_to 'Login', user_log_in_path
+        %li.MainNav-link
+          =link_to 'Register', user_register_path
