@@ -1,15 +1,21 @@
--if @lists.empty?
-  .row
-    .col.s12
-      %p.flow-text="There are no lists with this tag."
--else
-  .row
-    .col.s12
-      %p.flow-text="All lists tagged with '#{@tag_name}'"
+.u-bg-grey-light.u-mb-5
+  .container.u-py-5
+    .Grid
+      .Grid-cell.2-of-3--desk
+        %h2 Popular tags right now
+        -if @tags
+          =render partial: "tags/tag", collection: @tags
+        -else
+          %p No tags found.
 
-  .row
-    .col.s12
-      -if @lists
+.container
+  %h2="All lists tagged with '#{@tag_name}'"
+  .Grid
+    .Grid-cell.2-of-3--desk
+      -unless @lists.empty?
         =render @lists
       -else
-        %p No list found.
+        %p No lists created yet.
+    .Grid-cell.1-of-3--desk
+      %h2 Sidebar
+      %p More content herer.
