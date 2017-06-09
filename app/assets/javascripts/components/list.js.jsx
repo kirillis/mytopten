@@ -16,7 +16,6 @@ var List = React.createClass({
   },
 
   handleItemChange: function(data) {
-    // console.log('data', data);
     var newListItems = $.extend(this.state.listItems, {});
     for (var i = newListItems.length - 1; i >= 0; i--) {
       if(data.id === newListItems[i].id) {
@@ -62,6 +61,7 @@ var List = React.createClass({
     var props = this.props;
     var state = this.state;
     var _this = this;
+    console.log('this.state.listItems', this.state.listItems);
     var listItems = this.state.listItems.map(function(item) {
       return <ListItem
               data = { item }
@@ -71,37 +71,25 @@ var List = React.createClass({
     });
 
     return (
-      <div className="List">
-        <div className="row">
+      <div className="container">
 
-          <div className="col s12 m6">
-            <ListDetails
-              title = { this.state.listDetails.title }
-              description = { this.state.listDetails.description }
-              author = { this.state.listDetails.user }
-              public = { this.state.listDetails.public }
-            />
-          </div>
+        <ListDetails
+          title = { this.state.listDetails.title }
+          description = { this.state.listDetails.description }
+          author = { this.state.listDetails.user }
+          public = { this.state.listDetails.public }
+        />
 
-          <div className="col s12 m5 offset-m1">
-            <Tags
-              tags = { this.state.listTags }
-              listId = { this.state.listDetails.id }
-            />
-          </div>
+        <Tags
+          tags = { this.state.listTags }
+          listId = { this.state.listDetails.id }
+        />
+
+
+        <div className="ListItems">
+          { listItems }
         </div>
 
-        <div className="divider"></div>
-        <div className="row">
-          <div className="col s12">
-            <div className="ListItems">
-              { listItems }
-            </div>
-          </div>
-        </div>
-        <div className="divider"></div>
-
-        <ListItemAdd listId={ this.state.listDetails.id } />
         <SearchContainer />
       </div>
     );

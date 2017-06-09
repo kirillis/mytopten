@@ -61,18 +61,20 @@
   render: function() {
     return (
       <div className='ListItem ListItem--add'>
+        <h2>Add Item</h2>
+        <br />
         <label htmlFor='image'>Item image</label>
-        <form ref='uploadForm' action='/list_items/' method='post' remote='true'>
+        <form ref='uploadForm' action='/list_items/' method='post' className="Form">
 
           <input
             name="list_id"
-            className="ListItem-input ListItem-input--hidden"
+            className="u-d-none"
             value={ this.props.listId }
             readOnly></input>
 
           <input
             name="authenticity_token"
-            className="ListItem-input ListItem-input--hidden"
+            className="u-d-none"
             value={ this.state.csrfToken }
             readOnly></input>
           <input
@@ -81,30 +83,33 @@
           />
           <br />
 
+          <label htmlFor='title'>Item title</label>
           <input
             type='text'
             name='title'
             rows='1'
             onChange={ this.titleChange }
           />
-          <label htmlFor='title'>Item title</label>
 
+          <br />
+          <label htmlFor='description'>Item description</label>
           <textarea
             className="materialize-textarea"
             name='description'
             rows='4'
             onChange={ this.descriptionChange }
           />
-          <label htmlFor='description'>Item description</label>
+          <br />
 
+          <label htmlFor='link'>Item link</label>
           <input
             type='text'
             name='link'
             onChange={ this.linkChange }
           />
-          <label htmlFor='link'>Item link</label>
+          <br />
 
-          <button className="waves-effect waves-light btn" onClick={ this.handleAddItemClick }>Add to list</button>
+          <button className="" onClick={ this.handleAddItemClick }>Add to list</button>
         </form>
       </div>
     );

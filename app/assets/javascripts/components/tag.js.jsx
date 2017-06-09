@@ -23,7 +23,7 @@ var Tag = React.createClass({
 
   renderTag: function() {
     var classes = classNames(
-      'Tag', {
+      'Tag u-p-05 u-bg-green u-color-white u-mb-05 u-mr-05', {
       'Tag--suggestion': this.props.isSuggestion,
       'is-hidden': this.state.isHidden,
     });
@@ -36,11 +36,13 @@ var Tag = React.createClass({
       );
     } else {
       return(
-        <li className={ classes }>
+        <li>
           <a href={ "/tags/" + this.props.data.name }>
-            { this.props.data.name }
+            <span className={ classes }>
+              { this.props.data.name }
+            </span>
           </a>
-          <span className="Tag-deleteButton" onClick={ this.handleRemoveClick }>delete</span>
+          <span onClick={ this.handleRemoveClick }>X</span>
         </li>
       );
     }

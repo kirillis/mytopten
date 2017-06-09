@@ -39,7 +39,6 @@ var ListDetails = React.createClass({
   },
 
   componentDidMount: function() {
-    Materialize.updateTextFields();
   },
 
   saveData: function() {
@@ -52,42 +51,43 @@ var ListDetails = React.createClass({
 
   getSaveButton: function() {
     if(this.state.hasChanged) {
-      return <a className="waves-effect waves-light btn" onClick={ this.saveData }><i className="material-icons left">cloud</i>Save</a>
+      return <a onClick={ this.saveData }><i className="material-icons">cloud</i>Save</a>
     } else {
-      return <a className="waves-effect waves-light btn disabled"><i className="material-icons left">cloud</i>Save</a>
+      return <a><i className="material-icons">cloud</i>Save</a>
     }
   },
 
   render: function() {
     var saveButton = this.getSaveButton();
     return (
-      <div className='ListDetails'>
-        <div className="row">
-          <div className="col s12">
-            <p className="flow-text">
-              List author <a className='ListDetails-authorName' href = { '/' + this.props.author.name }>{ this.props.author.name }</a>
-            </p>
-          </div>
-        </div>
+      <div>
+        <p>
+          List author <a href = { '/' + this.props.author.name }>{ this.props.author.name }</a>
+        </p>
 
-        <div className="row">
-          <div className="input-field col s12">
+        <div className="Grid Form">
+          <div className="Grid-cell 1-of-4--desk">
             <label htmlFor="title">List title</label>
+          </div>
+
+          <div className="Grid-cell 3-of-4--desk">
             <input
               type="text"
               name="title"
               id="title"
-              className="validate"
               required="required"
               value={ this.state.title }
               onChange={ this.handleTitleChange }
             />
           </div>
-        </div>
 
-        <div className="row">
-          <div className="input-field col s12">
+          <div className="Grid-cell 1-of-4--desk">
+            <label htmlFor="description">Description</label>
+          </div>
+          <div className="Grid-cell 3-of-4--desk">
             <textarea
+              rows="20"
+              cols="100"
               id="description"
               className="materialize-textarea validate"
               required="required"
@@ -95,22 +95,22 @@ var ListDetails = React.createClass({
               onChange={ this.handleDescriptionChange }
             >
             </textarea>
-            <label htmlFor="description">Description</label>
           </div>
+
+          <div className="Grid-cell 1-of-4--desk">
+          </div>
+          <div className="Grid-cell 3-of-4--desk">
+            <input
+              id="public"
+              type="checkbox"
+              checked={ this.state.public }
+              onChange={ this.handlepublicChange }
+            />
+            <label htmlFor="public">Make this list public</label>
+          </div>
+
+          { saveButton }
         </div>
-
-        <p>
-          <input
-            id="public"
-            className="filled-in"
-            type="checkbox"
-            checked={ this.state.public }
-            onChange={ this.handlepublicChange }
-          />
-          <label htmlFor="public">Make this list public</label>
-        </p>
-
-        { saveButton }
       </div>
     );
   }

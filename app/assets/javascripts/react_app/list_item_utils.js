@@ -9,7 +9,7 @@ App.saveItem = function(payload, successCallback) {
     contentType: 'application/json',
 
     success: function(data) {
-      successCallback(data.list_item);
+      successCallback(data);
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
@@ -28,7 +28,7 @@ App.normalizeItemData = function(data, provider) {
       newData.link = data.amazon_url;
       newData.image_thumb_url = data.thumbnail_url;
       newData.image_large_url = data.large_url;
-      console.log('normalizing data', newData, data);
+      // console.log('normalizing data', newData, data);
       return newData;
     default:
       return newData;

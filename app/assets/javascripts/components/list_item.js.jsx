@@ -46,7 +46,7 @@ var ListItem = React.createClass({
     return {
       title: this.props.data.title,
       rank: this.props.data.rank,
-      description: this.props.data.description,
+      description: this.props.data.description ? this.props.data.description : '',
       hasChanged: false,
     };
   },
@@ -54,31 +54,39 @@ var ListItem = React.createClass({
   render: function() {
     var saveButton = this.state.hasChanged ? <button onClick={ this.saveData }>Save</button> : '';
     return (
-      <div className="Item" data-rank={ this.props.data.rank } data-id={ this.props.data.id }>
+      <div className="Item Form u-mb-4" data-rank={ this.props.data.rank } data-id={ this.props.data.id }>
+        <div className="Grid">
 
-        <div className="Item-dragHandle"></div>
-        <div className="Item-mediaContainer">
-          <a href={ this.props.data.image_large } className="">
-            <img src={ this.props.data.image_thumb } className="" />
-          </a>
+          <div className="Grid-cell 1-of-4">
+            <div className="Item-dragHandle">drag</div>
+            <div className="Item-mediaContainer">
+              <a href={ this.props.data.image_large } className="">
+                <img src={ this.props.data.image_thumb } className="" />
+              </a>
+            </div>
+          </div>
+
+          <div className="Grid-cell 1-of-4">
+            Title:
+            <textarea
+              rows="4"
+              value={ this.state.title }
+              onChange={ this.titleChange }
+            />
+          </div>
+
+          <div className="Grid-cell 1-of-4">
+            Description:
+            <textarea
+              rows="1"
+              value={ this.state.description }
+              onChange={ this.descriptionChange }
+            />
+          </div>
+
         </div>
-        <div className="Item-textContainer">
-          Link: <a href={ this.props.data.link }>{ this.props.data.link }</a>
-          <textarea
-            rows="4"
-            defaultValue={ this.props.data.title }
-            value={ this.state.title }
-            onChange={ this.titleChange }
-          />
-          <textarea
-            rows="1"
-            defaultValue={ this.props.data.description }
-            value={ this.state.description }
-            onChange={ this.descriptionChange }
-          />
-          <button onClick={ this.deleteEntry }>Delete</button>
-          { saveButton }
-        </div>
+        <button onClick={ this.deleteEntry }>Delete</button>
+        { saveButton }
       </div>
     );
   }

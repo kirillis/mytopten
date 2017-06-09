@@ -126,7 +126,7 @@ App.listStore = Fluxxor.createStore({
 
   onListTagsUpdateSuccess: function(newListData) {
     console.log('onListTagsUpdate', newListData);
-    this.list = newListData.list;
+    this.list = newListData;
     this.list.isSaving = false;
     this.emit('change');
   },
@@ -144,7 +144,7 @@ App.listStore = Fluxxor.createStore({
 
   onListTagRemoveSuccess: function(newListData) {
     console.log('onListTagRemoveSuccess', newListData);
-    this.list = newListData.list;
+    this.list = newListData;
     this.list.isSaving = false;
     this.emit('change');
   },

@@ -23,8 +23,6 @@ var TagSearch = React.createClass({
         _this.searchForTags(query);
       }
     );
-
-    Materialize.updateTextFields();
   },
 
   searchForTags: function(query) {
