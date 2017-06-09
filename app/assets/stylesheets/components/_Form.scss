@@ -1,0 +1,10 @@
+.Form {
+  input,
+  textarea {
+    @extend .u-mb-2;
+    background-color: $white;
+    border: 1px solid $green;
+    border-radius: 0;
+    padding: $base-spacing*0.5 $base-spacing;
+  }
+}
