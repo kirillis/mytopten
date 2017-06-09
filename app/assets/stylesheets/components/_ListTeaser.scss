@@ -1,0 +1,24 @@
+.ListTeaser {
+  display: flex;
+}
+
+.ListTeaser-images {
+  display: flex;
+  flex: 1 0 33%;
+  justify-content: space-between;
+  min-width: 200px;
+}
+
+.ListTeaser-image {
+  width: 33%;
+  height: 160px;
+  background-size: cover;
+  background-position: center center;
+}
+
+.ListTeaser-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+

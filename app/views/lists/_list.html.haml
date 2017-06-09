@@ -1,10 +1,10 @@
-.ListItem.u-mb-3
-  =link_to user_list_path(list.user.name, list), class: 'ListItem-images' do
+.ListTeaser.u-mb-3
+  =link_to user_list_path(list.user.name, list), class: 'ListTeaser-images' do
     -list.list_items.each_with_index do |item, index|
       -break if index > 2
-      %img{ style: "background-image: url(#{item.image_thumb})", class: 'ListItem-image' }
+      %img{ style: "background-image: url(#{item.image_thumb})", class: 'ListTeaser-image' }
 
-  .ListItem-text.u-ml-2
+  .ListTeaser-text.u-ml-2
     =link_to list.title, user_list_path(list.user.name, list), class: 'h3'
     %p=truncate(list.description, length: 100, omission: "… (continued)")
 
