@@ -24,25 +24,26 @@ var Tag = React.createClass({
   renderTag: function() {
     var classes = classNames(
       'Tag u-p-05 u-bg-green u-color-white u-mb-05 u-mr-05', {
+      'Tag--withButton': !this.props.isSuggestion,
       'Tag--suggestion': this.props.isSuggestion,
-      'is-hidden': this.state.isHidden,
+      'Tag--isHidden': this.state.isHidden,
     });
 
     if(this.props.isSuggestion) {
       return(
         <li className={ classes } onClick={ this.handleAddClick }>
-          { this.props.data.name }
+          { this.props.data.name } <span className="u-t-muted">({ this.props.data.taggings_count })</span>
         </li>
       );
     } else {
       return(
-        <li>
+        <li className="Tag-wrapper">
           <a href={ "/tags/" + this.props.data.name }>
             <span className={ classes }>
               { this.props.data.name }
             </span>
           </a>
-          <span onClick={ this.handleRemoveClick }>X</span>
+          <i className="Tag-removeButton material-icons" onClick={ this.handleRemoveClick }>remove_circle</i>
         </li>
       );
     }

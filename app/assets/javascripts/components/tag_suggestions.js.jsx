@@ -5,28 +5,25 @@ var TagSuggestions = React.createClass({
     this.props.onAddClicked(data.name);
   },
 
-  saveNewTag: function(tagData) {
-    this.getFlux().actions.list.updateTags({
-      listId: this.props.listId,
-      newTag: tagData
-    });
-  },
-
   render: function() {
     return (
-      <ul>
-        { this.props.tagSuggestions.map(function (tag) {
-            return (
-              <Tag
-                isSuggestion="true"
-                data={ tag }
-                addClickHandler={ this.handleTagAddClicked }
-                key={ tag.id }
-              />
-            );
-          }.bind(this))
-        }
-      </ul>
+      <div>
+        <p className="u-fw-700">Tag suggestions</p>
+        <p className="u-t-muted">{ this.props.tagSuggestions.length ? '' : 'Type in the searchbox above to see existing tags to choose from...' }</p>
+        <ul className="Tags--list">
+          { this.props.tagSuggestions.map(function (tag) {
+              return (
+                <Tag
+                  isSuggestion="true"
+                  data={ tag }
+                  addClickHandler={ this.handleTagAddClicked }
+                  key={ tag.id }
+                />
+              );
+            }.bind(this))
+          }
+        </ul>
+      </div>
     );
   }
 });

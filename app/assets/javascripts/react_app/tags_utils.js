@@ -1,5 +1,5 @@
 App.updateTags = function(payload, success, error) {
-  console.log('updateTags()', payload);
+  // console.log('updateTags()', payload);
   $.ajax({
     url: '/lists/' + payload.listId + '/tags',
     method: 'PUT',

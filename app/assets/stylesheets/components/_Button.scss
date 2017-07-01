@@ -31,6 +31,7 @@
 .Button--disabled {
   color: $grey-med;
   border-color: $grey-med;
+  cursor: not-allowed;
 
   > .material-icons {
     color: $grey-med;

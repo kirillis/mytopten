@@ -62,6 +62,7 @@ App.actions = {
     },
 
     updateTags: function(newTagData) {
+      // console.log('updateTags', newTagData);
       this.dispatch(App.constants.LIST_TAGS_UPDATE);
       App.updateTags(
         newTagData,

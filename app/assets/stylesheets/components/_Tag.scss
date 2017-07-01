@@ -1,3 +1,15 @@
+.Tags--list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Tag-wrapper {
+  position: relative;
+}
+
 .Tag {
   display: inline-block;
   border-radius: 5px;
@@ -6,15 +18,29 @@
 
 .Tag:hover {
   background-color: $green-dark;
-} 
+  cursor: pointer;
+}
 
 .Tag--detailed {
   flex-basis: 33%;
 }
 
-.Tags--list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
+.Tag--withButton {
+  padding-right: 40px;
+}
+
+.Tag--isHidden {
+  display: none;
+}
+
+.Tag-removeButton {
+  position: absolute;
+  top: 4px;
+  right: 15px;
+  color: $white;
+  cursor: pointer;
+
+  &:hover {
+    color: $green-dark;
+  }
 }

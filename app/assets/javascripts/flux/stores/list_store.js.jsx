@@ -31,8 +31,8 @@ App.listStore = Fluxxor.createStore({
   getState: function() {
     return {
       list: this.list,
-      listDetails:this.list,
-      listTags:this.list.tags,
+      listDetails: this.list,
+      listTags: this.list.tags,
       listItems: this.list.list_items,
       itemsToSave: this.itemsToSave
     };
@@ -43,8 +43,7 @@ App.listStore = Fluxxor.createStore({
   },
 
   onListUpdateSuccess: function(data) {
-    MTT.toaster.showSingleMessage('List details saved.', MTT.toaster.duration, MTT.toaster.success);
-    this.list = data.list;
+    this.list = data;
     this.emit('change');
   },
 
@@ -120,7 +119,7 @@ App.listStore = Fluxxor.createStore({
   },
 
   onListTagsUpdate: function() {
-    this.list.isSaving = true;
+    // this.list.isSaving = true;
     this.emit('change');
   },
 

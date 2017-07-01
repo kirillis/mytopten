@@ -61,7 +61,6 @@ var List = React.createClass({
     var props = this.props;
     var state = this.state;
     var _this = this;
-    console.log('this.state.listItems', this.state.listItems);
     var listItems = this.state.listItems.map(function(item) {
       return <ListItem
               data = { item }
