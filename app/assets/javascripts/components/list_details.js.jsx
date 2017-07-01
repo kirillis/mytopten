@@ -60,65 +60,44 @@ var ListDetails = React.createClass({
   render: function() {
     var saveButton = this.getSaveButton();
     return (
-      <div>
-        <div className="Grid Form u-mt-4">
-          <div className="Grid-cell 1-of-4--desk u-t-align-right">
-          </div>
-          <div className="Grid-cell 3-of-4--desk">
-            <h2>{ this.props.title }</h2>
-            <p>
-              List author <a href = { '/' + this.props.author.name }>{ this.props.author.name }</a>
-            </p>
-          </div>
+      <div className="Form">
+        <h2>Details</h2>
+        <p>
+          Author <a href = { '/' + this.props.author.name }>{ this.props.author.name }</a>
+        </p>
+      
+        <label htmlFor="title">List title</label>
 
-          <div className="Grid-cell 1-of-4--desk u-t-align-right">
-            <label htmlFor="title">List title</label>
-          </div>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          required="required"
+          value={ this.state.title }
+          onChange={ this.handleTitleChange }
+        />
 
-          <div className="Grid-cell 3-of-4--desk">
-            <input
-              type="text"
-              name="title"
-              id="title"
-              required="required"
-              value={ this.state.title }
-              onChange={ this.handleTitleChange }
-            />
-          </div>
+        <label htmlFor="description">Description</label>
+        <textarea
+          rows="10"
+          id="description"
+          className="materialize-textarea validate"
+          required="required"
+          value={ this.state.description }
+          onChange={ this.handleDescriptionChange }
+        >
+        </textarea>
 
-          <div className="Grid-cell 1-of-4--desk u-t-align-right">
-            <label htmlFor="description">Description</label>
-          </div>
-          <div className="Grid-cell 3-of-4--desk">
-            <textarea
-              rows="20"
-              cols="100"
-              id="description"
-              className="materialize-textarea validate"
-              required="required"
-              value={ this.state.description }
-              onChange={ this.handleDescriptionChange }
-            >
-            </textarea>
-          </div>
+        <input
+          id="public"
+          type="checkbox"
+          checked={ this.state.public }
+          onChange={ this.handlepublicChange }
+        />
+        <label htmlFor="public">Make this list public</label>
 
-          <div className="Grid-cell 1-of-4--desk">
-          </div>
-          <div className="Grid-cell 3-of-4--desk">
-            <input
-              id="public"
-              type="checkbox"
-              checked={ this.state.public }
-              onChange={ this.handlepublicChange }
-            />
-            <label htmlFor="public">Make this list public</label>
-          </div>
+        <div className="u-mt-1">{ saveButton }</div>
 
-          <div className="Grid-cell 1-of-4--desk"></div>
-          <div className="Grid-cell 3-of-4--desk">
-            <div className="u-mt-1">{ saveButton }</div>
-          </div>
-        </div>
       </div>
     );
   }

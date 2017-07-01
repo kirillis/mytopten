@@ -3,7 +3,7 @@ var Tags = React.createClass({
 
   renderTags: function() {
     return (
-      <ul>
+      <ul className="Tags--list">
         { this.props.tags.map(function(tag) {
           return (
             <Tag
@@ -28,6 +28,7 @@ var Tags = React.createClass({
   render: function() {
     return (
       <div className="Tags">
+        <h2>Tags</h2>
         { this.renderTags() }
         <TagSearchController listId={ this.props.listId } />
       </div>
