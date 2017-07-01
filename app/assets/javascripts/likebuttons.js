@@ -8,7 +8,6 @@ class LikeButton {
 
   clickHandler() {
     if($('body').hasClass('is-guest')) {
-      MTT.toaster.showSingleMessage('You need to login to favorite this.', MTT.toaster.duration, MTT.toaster.success);
       return;
     }
 
@@ -19,10 +18,8 @@ class LikeButton {
     }).success((data) => {
       if(data.liked) {
         this.element.addClass('likebutton--has-liked');
-        MTT.toaster.showSingleMessage('Item was added to your favorites.', MTT.toaster.duration, MTT.toaster.success);
       } else {
         this.element.removeClass('likebutton--has-liked');
-        MTT.toaster.showSingleMessage('Item was removed to your favorites.', MTT.toaster.duration, MTT.toaster.success);
       }
     }).error((jqXHR, textStatus, errorThrown) => {
       console.log('textStatus, errorThrown', textStatus, errorThrown);
