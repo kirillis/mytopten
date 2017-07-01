@@ -51,9 +51,9 @@ var ListDetails = React.createClass({
 
   getSaveButton: function() {
     if(this.state.hasChanged) {
-      return <a onClick={ this.saveData }><i className="material-icons">cloud</i>Save</a>
+      return <a onClick={ this.saveData } className="Button Button--withIcon"><i className="material-icons">save</i>Save</a>
     } else {
-      return <a><i className="material-icons">cloud</i>Save</a>
+      return <span className="Button Button--withIcon Button--disabled"><i className="material-icons">save</i>Save</span>
     }
   },
 
@@ -61,12 +61,17 @@ var ListDetails = React.createClass({
     var saveButton = this.getSaveButton();
     return (
       <div>
-        <p>
-          List author <a href = { '/' + this.props.author.name }>{ this.props.author.name }</a>
-        </p>
+        <div className="Grid Form u-mt-4">
+          <div className="Grid-cell 1-of-4--desk u-t-align-right">
+          </div>
+          <div className="Grid-cell 3-of-4--desk">
+            <h2>{ this.props.title }</h2>
+            <p>
+              List author <a href = { '/' + this.props.author.name }>{ this.props.author.name }</a>
+            </p>
+          </div>
 
-        <div className="Grid Form">
-          <div className="Grid-cell 1-of-4--desk">
+          <div className="Grid-cell 1-of-4--desk u-t-align-right">
             <label htmlFor="title">List title</label>
           </div>
 
@@ -81,7 +86,7 @@ var ListDetails = React.createClass({
             />
           </div>
 
-          <div className="Grid-cell 1-of-4--desk">
+          <div className="Grid-cell 1-of-4--desk u-t-align-right">
             <label htmlFor="description">Description</label>
           </div>
           <div className="Grid-cell 3-of-4--desk">
@@ -109,7 +114,10 @@ var ListDetails = React.createClass({
             <label htmlFor="public">Make this list public</label>
           </div>
 
-          { saveButton }
+          <div className="Grid-cell 1-of-4--desk"></div>
+          <div className="Grid-cell 3-of-4--desk">
+            <div className="u-mt-1">{ saveButton }</div>
+          </div>
         </div>
       </div>
     );

@@ -1,8 +1,4 @@
 .container
-  -if current_user == @user
-    =link_to 'Edit', user_list_edit_path(current_user.name, @list), class: 'btn'
-    =link_to 'Delete', user_list_destroy_path(current_user.name, @list), method: :delete, class: 'btn red'
-
   .List.u-mt-4
     -if @list
       .List-header.u-mb-3
@@ -20,9 +16,15 @@
         -if @list.tags
           .u-t-align-center
             =render partial: "tags/tag", collection: @list.tags
+
+        -if current_user == @user
+          .u-t-align-center
+            =link_to 'Edit', user_list_edit_path(current_user.name, @list), class: 'Button'
+            =link_to 'Delete', user_list_destroy_path(current_user.name, @list), method: :delete, class: 'Button'
       
       .List-itemsContainer
         =render partial: "lists/list_item", collection: @list.list_items
+
 
     -else
       %p No list found.

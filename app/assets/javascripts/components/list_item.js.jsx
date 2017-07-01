@@ -54,12 +54,12 @@ var ListItem = React.createClass({
   render: function() {
     var saveButton = this.state.hasChanged ? <button onClick={ this.saveData }>Save</button> : '';
     return (
-      <div className="Item Form u-mb-4" data-rank={ this.props.data.rank } data-id={ this.props.data.id }>
+      <div className="ListItem Form u-mb-4" data-rank={ this.props.data.rank } data-id={ this.props.data.id }>
         <div className="Grid">
 
           <div className="Grid-cell 1-of-4">
-            <div className="Item-dragHandle">drag</div>
-            <div className="Item-mediaContainer">
+            <div className="ListItem-dragHandle"><i className="material-icons">drag_handle</i></div>
+            <div className="ListItem-mediaContainer">
               <a href={ this.props.data.image_large } className="">
                 <img src={ this.props.data.image_thumb } className="" />
               </a>

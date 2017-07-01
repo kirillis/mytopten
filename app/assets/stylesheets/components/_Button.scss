@@ -1,0 +1,38 @@
+.Button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid $green;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 100ms ease-in;
+
+  > .material-icons {
+    position: absolute;
+    top: 6px;
+    left: 18px;
+  }
+
+  &:not(.Button--disabled):hover {
+    background-color: $green;
+    border-color: $green-dark;
+    color: $white;
+
+    > .material-icons {
+      color: $white;
+    }
+  }
+}
+
+.Button--withIcon {
+  padding-left: 55px;
+}
+
+.Button--disabled {
+  color: $grey-med;
+  border-color: $grey-med;
+
+  > .material-icons {
+    color: $grey-med;
+  }
+}
