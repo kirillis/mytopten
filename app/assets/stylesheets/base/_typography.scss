@@ -9,7 +9,7 @@ p {
 }
 
 a {
-  color: $green;
+  color: $c-gamma;
   text-decoration: none;
 
   &:hover {
@@ -30,7 +30,7 @@ h6, .h6 {
 h2,
 .h2
  {
-  color: $grey-med;
+  color: $c-gamma;
   font-weight: 600;
   font-size: 1.5rem;
   text-decoration: none;

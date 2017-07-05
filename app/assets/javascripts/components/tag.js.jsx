@@ -23,7 +23,7 @@ var Tag = React.createClass({
 
   renderTag: function() {
     var classes = classNames(
-      'Tag u-p-05 u-bg-green u-color-white u-mb-05 u-mr-05', {
+      'Tag u-p-05 u-bg-gamma u-color-white u-mb-05 u-mr-05', {
       'Tag--withButton': !this.props.isSuggestion,
       'Tag--suggestion': this.props.isSuggestion,
       'Tag--isHidden': this.state.isHidden,

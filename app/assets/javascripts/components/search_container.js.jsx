@@ -1,5 +1,7 @@
 var SearchContainer = React.createClass({
   sendQuery: function() {
+    if(this.state.searchQuery === '') { return; };
+
     $.ajax({
       url: '/search/amazon/?query=' + this.state.searchQuery,
       method: 'get',
@@ -9,37 +11,38 @@ var SearchContainer = React.createClass({
         alert('Search error:', errorThrown);
       },
       success: function(data, textStatus, jqXHR) {
-        this.setState({ listItems: data });
+        this.setState({
+          listItems: data
+        });
       }.bind(this)
     });
   },
 
-  handleUserInput: function(searchQuery) {
-    this.state.hasChanged = true;
-    this.setState({ searchQuery: searchQuery });
+  componentWillReceiveProps: function(nextProps) {
+    if(this.props.searchQuery != nextProps.searchQuery) {
+      this.setState({
+        searchQuery: nextProps.searchQuery,
+      })
+    }
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    if(prevState.searchQuery != this.state.searchQuery) {
+      this.sendQuery();
+    }
   },
 
   getInitialState: function() {
     return {
-      searchQuery: '',
-      hasChanged: false,
+      searchQuery: this.props.searchQuery,
       listItems: []
     };
   },
 
   render: function() {
-    var searchButton = this.state.hasChanged ? <button onClick={ this.sendQuery }>Search</button> : '';
     return (
-      <div className="Search">
-        <h4>Search amazon books:</h4>
-        <SearchBox
-          searchQuery={ this.state.searchQuery }
-          onUserInput={ this.handleUserInput }
-          onSendQuery={ this.sendQuery }
-        />
-
-        { searchButton }
-        <hr />
+      <div>
+        <h2>Amazon suggestions</h2>
         <SearchResultsList listItems={ this.state.listItems } />
       </div>
     );

@@ -1,0 +1,23 @@
+#LoadingIndicator {
+  display: none;
+  background-color: rgba($white, 0.55);
+  z-index: 100;
+
+  &.is-active {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  > p {
+    background-color: $white;
+    padding: 30px;
+    border: 1px solid $green;
+    border-radius: 3px;
+  }
+}

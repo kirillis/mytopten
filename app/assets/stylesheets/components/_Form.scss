@@ -16,7 +16,7 @@
     line-height: 1.6;
 
     &:focus {
-      border-color: $green;
+      border-color: $c-gamma-light;
       outline: none;
     }
   }
@@ -28,5 +28,9 @@
 
   input[type="checkbox"] {
     margin-right: 10px;
+  }
+
+  input[type="file"] {
+    margin-bottom: 2rem;
   }
 }

@@ -17,7 +17,7 @@
 }
 
 .Tag:hover {
-  background-color: $green-dark;
+  background-color: $c-gamma-light;
   cursor: pointer;
 }
 
@@ -41,6 +41,6 @@
   cursor: pointer;
 
   &:hover {
-    color: $green-dark;
+    color: $c-gamma-light;
   }
 }

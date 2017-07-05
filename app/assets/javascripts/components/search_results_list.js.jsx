@@ -4,8 +4,7 @@ var SearchResultsList = React.createClass({
       return <SearchResultItem data={ item } key={ App.makeId() } />;
     });
     return (
-      <div className="SearchResultsList">
-        <h4>SearchResultsList</h4>
+      <div>
         { listItems }
       </div>
     );

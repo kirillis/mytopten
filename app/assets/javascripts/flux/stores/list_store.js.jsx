@@ -77,7 +77,7 @@ App.listStore = Fluxxor.createStore({
     var list_items = this.list.list_items;
     for(var i = 0; i < list_items.length; i++) {
       var listItem = list_items[i];
-      if(listItem.id === payload.list_item.id) {
+      if(listItem.id === payload.id) {
         list_items[i].isSaving = false;
         break;
       }
@@ -101,7 +101,6 @@ App.listStore = Fluxxor.createStore({
   },
 
   onItemAdd: function(payload) {
-    MTT.toaster.showSingleMessage('Item added to list.', MTT.toaster.duration, MTT.toaster.success);
     this.list.list_items.push(payload);
     this.emit('change');
   },

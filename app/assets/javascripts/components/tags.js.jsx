@@ -27,7 +27,7 @@ var Tags = React.createClass({
 
   render: function() {
     return (
-      <div className="Tags">
+      <div className="Tags u-border-beta u-p-1">
         <h2>Tags</h2>
         { this.renderTags() }
         <TagSearchController listId={ this.props.listId } />

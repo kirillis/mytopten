@@ -32,10 +32,10 @@ var List = React.createClass({
     var self = this;
     return new Sortable(document.querySelector('.ListItems'), {
         animation: 120,
-        handle: ".Item-dragHandle",
-        draggable: ".Item",
-        ghostClass: "Item--ghost",
-        chosenClass: "Item--chosen",
+        handle: ".ListItemCondensed-dragHandle",
+        draggable: ".ListItem-wrapper",
+        ghostClass: "ListItem-wrapper--ghost",
+        chosenClass: "ListItem-wrapper--chosen",
         dataIdAttr: 'data-rank',
         scroll: true,
         scrollSensitivity: 30,
@@ -52,9 +52,22 @@ var List = React.createClass({
     });
   },
 
+  handleTitleEntered: function(title) {
+    console.log('list::handleTitleEntered():', title);
+    this.setState({
+      titleEntered: title,
+    });
+  },
+
   componentDidMount: function() {
     this.sortableInstance = this.getSortableInstance();
     window.sortablePlugin = this.sortableInstance;
+  },
+
+  getInitialState: function() {
+    return {
+      titleEntered: '',
+    }
   },
 
   render: function() {
@@ -90,13 +103,26 @@ var List = React.createClass({
           </div>
         </div>
 
-
+      <div className="u-mt-3">
+        <h2 className="u-mt-4 u-mb-3">These <strong>{ this.state.listItems.length }</strong> items are on your list:</h2>
         <div className="ListItems">
           { listItems }
         </div>
-
-        <SearchContainer />
       </div>
+
+      <div className="Grid u-mt-3">
+        <div className="Grid-cell 2-of-3--desk">
+          <ListItemAdd
+            onTitleEntered={ this.handleTitleEntered }
+            listId = { this.state.listDetails.id }
+          />
+        </div>
+
+        <div className="Grid-cell 1-of-3--desk">
+          <SearchContainer searchQuery={ this.state.titleEntered }/>
+        </div>
+      </div>
+    </div>
     );
   }
 });

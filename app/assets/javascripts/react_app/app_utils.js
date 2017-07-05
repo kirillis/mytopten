@@ -9,8 +9,8 @@ App.makeId = function() {
 
 App.setLoadingState = function(isLoading) {
   if(isLoading) {
-    $('#loading-indicator').addClass('active');
+    $('#LoadingIndicator').addClass('is-active');
   } else {
-    $('#loading-indicator').removeClass('active');
+    $('#LoadingIndicator').removeClass('is-active');
   }
 };

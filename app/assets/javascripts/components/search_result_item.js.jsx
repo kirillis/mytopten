@@ -8,21 +8,19 @@
 
   render: function() {
     return (
-      <li className="SearchResult-item">
-        <div className="Arrange">
-          <div className="Arrange-sizeFit">
-            <img src={ this.props.data.thumbnail_url ? this.props.data.thumbnail_url : '' } />
-            <img src={ this.props.data.large_url ? this.props.data.large_url : '' } />
-          </div>
+      <li className="SearchResult-item u-mb-2">
+        <div className="Grid">
 
-          <div className="Arrange-sizeFill">
-            <h4>{ this.props.data.title }</h4>
-            <p>
-              { this.props.data.author }
-            </p>
+          <div className="Grid-cell 1-of-2">
+            <img src={ this.props.data.thumbnail_url ? this.props.data.thumbnail_url : '' } />
+          </div>
+  
+          <div className="Grid-cell 1-of-2">
+            <p><strong>{ this.props.data.title }</strong></p>
+            <p className="u-t-muted">{ this.props.data.author }</p>
+            <button onClick={ this.handleAddItemClick } className="Button">Add to list</button>
           </div>
         </div>
-        <button onClick={ this.handleAddItemClick }>Add to list</button>
       </li>
     );
   }

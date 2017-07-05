@@ -15,19 +15,12 @@
   %body{ class: (current_user ? 'is-loggedin' : 'is-guest') }
     = render "layouts/menu_top"
 
-    #loading-indicator
-      .preloader-wrapper.big.active
-        .spinner-layer.spinner-blue-only
-          .circle-clipper.left
-            .circle
-          .gap-patch
-            .circle
-          .circle-clipper.right
-            .circle
+    #LoadingIndicator
+      %p Loading...
 
     = yield
 
-    %footer
+    %footer.u-mt-4
       %span.flash-messages{data: {messages: flash.to_json}}
 
   %script#dsq-count-scr{scr: "//mytopten-1.disqus.com/count.js", async: true }

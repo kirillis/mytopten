@@ -5,10 +5,24 @@ $grey-med: #b5b5b5;
 $green: #71b429;
 $green-dark: #3b6013;
 $white: #ffffff;
+$black: #000000;
 $red: red;
+$yellow: #efed15;
+$mint: #7dfa97;
+$blue-light: #283763;
+$blue-med: #23273b;
+$blue-dark: #11141e;
+
+$c-alpha: $yellow;
+$c-beta: $mint;
+$c-gamma: $blue-med;
+$c-gamma-dark: $blue-dark;
+$c-gamma-light: $blue-light;
 
 $colors:
-  (grey, $grey),
+  (alpha, $c-alpha),
+  (beta, $c-beta),
+  (gamma, $c-gamma),
   (grey-light, $grey-light),
   (grey-med, $grey-med),
   (green, $green),

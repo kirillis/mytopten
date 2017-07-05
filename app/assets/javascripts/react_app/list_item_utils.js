@@ -28,6 +28,7 @@ App.normalizeItemData = function(data, provider) {
       newData.link = data.amazon_url;
       newData.image_thumb_url = data.thumbnail_url;
       newData.image_large_url = data.large_url;
+      newData.description = data.author;
       // console.log('normalizing data', newData, data);
       return newData;
     default:
@@ -44,7 +45,7 @@ App.updateItem = function(payload, successCallback, errorCallback) {
     contentType: 'application/json',
 
     success: function(data, textStatus, jqXHR) {
-      successCallback(data);
+      successCallback(payload.newItemData);
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
