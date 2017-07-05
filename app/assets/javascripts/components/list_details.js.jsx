@@ -61,10 +61,8 @@ var ListDetails = React.createClass({
     var saveButton = this.getSaveButton();
     return (
       <div className="Form">
-        <h2>Details</h2>
-        <p>
-          Author <a href = { '/' + this.props.author.name }>{ this.props.author.name }</a>
-        </p>
+        <h2>Edit your list here</h2>
+        <p>You created this list <strong>{ this.props.created_at }</strong> ago and the last update was <strong>{ this.props.updated_at }</strong> ago.</p>
       
         <label htmlFor="title">List title</label>
 

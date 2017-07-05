@@ -85,13 +85,15 @@ var List = React.createClass({
     return (
       <div className="container">
         <div className="Grid u-mt-3">
-          <div className="Grid-cell 2-of-3--desk">
+          <div className="Grid-cell 2-of-3--desk u-mb-2">
 
             <ListDetails
               title = { this.state.listDetails.title }
               description = { this.state.listDetails.description }
               author = { this.state.listDetails.user }
               public = { this.state.listDetails.public }
+              created_at = { this.state.listDetails.created_at }
+              updated_at = { this.state.listDetails.updated_at }
             />
           </div>
 
@@ -111,7 +113,7 @@ var List = React.createClass({
       </div>
 
       <div className="Grid u-mt-3">
-        <div className="Grid-cell 2-of-3--desk">
+        <div className="Grid-cell 2-of-3--desk u-mb-2">
           <ListItemAdd
             onTitleEntered={ this.handleTitleEntered }
             listId = { this.state.listDetails.id }

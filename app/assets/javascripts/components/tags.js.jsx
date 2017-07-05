@@ -1,6 +1,12 @@
 var Tags = React.createClass({
   mixins: [FluxMixin],
 
+  emptyCopy: function() {
+    if(this.props.tags.length === 0) {
+      return "No tags yet, create some below :-)";
+    }
+  },
+
   renderTags: function() {
     return (
       <ul className="Tags--list">
@@ -29,6 +35,9 @@ var Tags = React.createClass({
     return (
       <div className="Tags u-border-beta u-p-1">
         <h2>Tags</h2>
+        <p className='u-t-muted'>
+          { this.emptyCopy() }
+        </p>
         { this.renderTags() }
         <TagSearchController listId={ this.props.listId } />
       </div>
