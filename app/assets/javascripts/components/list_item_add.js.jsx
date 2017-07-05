@@ -9,7 +9,7 @@ componentDidMount: function() {
     .filter(function (text) {
       return text.length > 2;
     })
-    .debounce(300)
+    .debounce(500)
     .distinctUntilChanged()
     .subscribe(
       function (data) {
@@ -117,7 +117,6 @@ render: function() {
           type='file'
           name='image_main'
         />
-        <br />
 
         <label htmlFor='link'>Link</label>
         <input
