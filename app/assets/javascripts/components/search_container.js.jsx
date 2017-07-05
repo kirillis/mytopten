@@ -2,6 +2,8 @@ var SearchContainer = React.createClass({
   sendQuery: function() {
     if(this.state.searchQuery === '') { return; };
 
+    this.setState({ isSearching: true });
+
     $.ajax({
       url: '/search/amazon/?query=' + this.state.searchQuery,
       method: 'get',
@@ -12,8 +14,12 @@ var SearchContainer = React.createClass({
       },
       success: function(data, textStatus, jqXHR) {
         this.setState({
-          listItems: data
+          listItems: data,
+          isSearching: false
         });
+      }.bind(this),
+      always: function() {
+        this.setState({ isSearching: false })
       }.bind(this)
     });
   },
@@ -35,7 +41,8 @@ var SearchContainer = React.createClass({
   getInitialState: function() {
     return {
       searchQuery: this.props.searchQuery,
-      listItems: []
+      listItems: [],
+      isSearching: false
     };
   },
 
@@ -43,7 +50,7 @@ var SearchContainer = React.createClass({
     return (
       <div>
         <h2>Amazon suggestions</h2>
-        <SearchResultsList listItems={ this.state.listItems } />
+        <SearchResultsList listItems={ this.state.listItems } isSearching={ this.state.isSearching } />
       </div>
     );
   }
