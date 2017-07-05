@@ -1,7 +1,7 @@
 .Button {
   position: relative;
   display: inline-block;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border: 1px solid $c-gamma;
   border-radius: 3px;
   cursor: pointer;
@@ -13,7 +13,7 @@
   > .material-icons {
     position: absolute;
     top: 6px;
-    left: 18px;
+    left: 9px;
   }
 
   &:not(.Button--disabled):hover {
@@ -28,7 +28,7 @@
 }
 
 .Button--withIcon {
-  padding-left: 55px;
+  padding-left: 36px;
 }
 
 .Button--disabled {
