@@ -31,6 +31,6 @@
 // VENDOR
 //= require rx.lite
 //= require jquery.elastic.source
-
+//= require Sortable.min
 
 //= require_tree .
