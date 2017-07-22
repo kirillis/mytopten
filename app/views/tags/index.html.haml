@@ -1,6 +1,9 @@
-%h2 A list of all tags
+.u-bg-beta.u-p-5.u-mb-3
+  .container
+    %h2 A list of all tags
 -if @tags
-  .u-d-flex.u-f-wrap
-    =render partial: "tags/tag_detailed", collection: @tags
+  .container
+    .Tags
+      =render partial: "tags/tag_detailed", collection: @tags
 -else
   %p No tags found.

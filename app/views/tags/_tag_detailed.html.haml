@@ -1,6 +1,4 @@
-.Tag.Tag--detailed
-  =link_to tag_path(tag_detailed.name) do
-    %span.Tag.u-px-2.u-py-1.u-bg-green.u-color-white.u-mb-2.u-mr-1
-      ="#{tag_detailed.name}"
-  %span.u-mr-2.u-mb-2
+=link_to tag_path(tag_detailed.name), class: 'Tag Tag--detailed u-px-2 u-py-1 u-mb-1 u-mr-1' do
+  ="#{tag_detailed.name}"
+  %p.u-t-muted.u-d-inline-block
     ="#{tag_detailed.taggings_count} Lists"
