@@ -15,13 +15,13 @@
   %body{ class: (current_user ? 'is-loggedin' : 'is-guest') }
     = render "layouts/menu_top"
 
-    #LoadingIndicator
-      %p Loading...
-
     = yield
 
+    =link_to user_list_new_path(current_user.name), class: 'AddNewButton' do
+      %i.material-icons add
+
     %footer
-      %span.flash-messages{data: {messages: flash.to_json}}
+      %span.flash-messages{data: { messages: flash.to_json }}
 
   %script#dsq-count-scr{scr: "//mytopten-1.disqus.com/count.js", async: true }
 
