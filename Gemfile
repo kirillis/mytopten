@@ -19,6 +19,7 @@ gem 'paperclip'
 gem 'aws-sdk', '~> 1.6'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'inline_svg', '1.1.0'
+gem 'toastr-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

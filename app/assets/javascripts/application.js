@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require classnames
+//= require toastr
 
 // REACT
 //= require react

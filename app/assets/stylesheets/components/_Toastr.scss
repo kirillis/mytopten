@@ -1,0 +1,23 @@
+.toast {
+  background-color: $yellow;
+}
+
+.toast-success {
+  background-color: $mint;
+
+  .toast-message {
+    color: $blue-dark;
+  }
+}
+
+.toast-error {
+  background-color: $red;
+}
+
+.toast-info {
+  background-color: $blue-light;
+}
+
+.toast-warning {
+  background-color: $blue-dark;
+}

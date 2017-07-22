@@ -45,10 +45,10 @@ App.listStore = Fluxxor.createStore({
   onListUpdateSuccess: function(data) {
     this.list = data;
     this.emit('change');
+    toastr.success('List was updated successfully.');
   },
 
   onListUpdateFailure: function(data) {
-    console.log('storeList: onListUpdateFailure', data);
     this.list.title = data.oldData.title;
     this.list.description = data.oldData.description;
     this.emit('change');
@@ -65,6 +65,7 @@ App.listStore = Fluxxor.createStore({
       }
     }
     this.emit('change');
+    toastr.success('Item was updated successfully.');
   },
 
   onUpdateMultipleItems: function(payload) {
@@ -103,6 +104,7 @@ App.listStore = Fluxxor.createStore({
   onItemAdd: function(payload) {
     this.list.list_items.push(payload);
     this.emit('change');
+    toastr.success('Item was added to your list.');
   },
 
   onItemDelete: function(itemId) {
@@ -115,6 +117,7 @@ App.listStore = Fluxxor.createStore({
     }
 
     this.emit('change');
+    toastr.success('Item was removed from your list.');
   },
 
   onListTagsUpdate: function() {
