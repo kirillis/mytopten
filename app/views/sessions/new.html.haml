@@ -1,28 +1,30 @@
-.u-bg-grey-light.u-mb-5
+.u-bg-grey-light
   .container.u-py-5
     .Grid
       .Grid-cell.1-of-4--desk
-      .Grid-cell.3-of-4--desk
+      .Grid-cell.2-of-4--desk
         %h2 Log In
 
     = form_tag sessions_path, method: 'post', class: 'Form' do
       .Grid.u-mb-4
         .Grid-cell.1-of-4--desk.u-t-align-right
           = label_tag :name
-
-        .Grid-cell.3-of-4--desk
+        .Grid-cell.2-of-4--desk
           = text_field_tag :name, nil, required: true, class: 'validate'
+        .Grid-cell.1-of-4--desk.u-t-align-right
 
         .Grid-cell.1-of-4--desk.u-t-align-right
           = label_tag :password
-        .Grid-cell.3-of-4--desk
+        .Grid-cell.2-of-4--desk
           = password_field_tag :password, nil, required: true, class: 'validate'
+        .Grid-cell.1-of-4--desk.u-t-align-right
 
         .Grid-cell.1-of-4--desk
-        .Grid-cell.3-of-4--desk
-
-          %button{:name => "action", :type => "submit"}
+        .Grid-cell.2-of-4--desk
+          %button{ name: 'action', type: 'submit', class: 'Button Button--withIcon' }
             Log In
             %i.material-icons send
 
-    = render 'forgot_password_form'
+  .u-bg-beta
+    .container.u-p-4
+      = render 'forgot_password_form'
