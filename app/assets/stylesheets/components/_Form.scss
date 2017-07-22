@@ -1,5 +1,6 @@
 .Form {
   input[type="text"],
+  input[type="password"],
   textarea {
     @extend .u-mb-2;
     box-sizing: border-box;
