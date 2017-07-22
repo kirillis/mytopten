@@ -1,12 +1,34 @@
+.u-bg-beta
+  .container.u-py-4
+    .Grid
+      .Grid-cell.1-of-4--desk
+      .Grid-cell.2-of-4--desk
+        %h2 Are you new here?
+        %p.u-t-muted Create your own account now!
+      .Grid-cell.1-of-4--desk
+
+      .Grid-cell.1-of-4--desk
+      .Grid-cell.2-of-4--desk
+        =link_to user_register_path, class: 'Button Button--withIcon' do
+          %i.material-icons add
+          Create a new account
+
+
 .u-bg-grey-light
-  .container.u-py-5
+  .container.u-py-4
     .Grid
       .Grid-cell.1-of-4--desk
       .Grid-cell.2-of-4--desk
         %h2 Log In
+        %p.u-t-muted
+          You can use your 
+          %strong username
+          or your  
+          %strong email
+          to login.
 
     = form_tag sessions_path, method: 'post', class: 'Form' do
-      .Grid.u-mb-4
+      .Grid
         .Grid-cell.1-of-4--desk.u-t-align-right
           = label_tag :name
         .Grid-cell.2-of-4--desk
@@ -25,6 +47,6 @@
             Log In
             %i.material-icons send
 
-  .u-bg-beta
-    .container.u-p-4
-      = render 'forgot_password_form'
+.u-bg-alpha
+  .container.u-py-4
+    = render 'forgot_password_form'

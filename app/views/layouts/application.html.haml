@@ -17,8 +17,12 @@
 
     = yield
 
-    =link_to user_list_new_path(current_user.name), class: 'AddNewButton' do
-      %i.material-icons add
+    -if current_user
+      =link_to user_list_new_path(current_user.name), class: 'AddNewButton' do
+        %i.material-icons add
+    -else
+      =link_to user_log_in_path, class: 'AddNewButton' do
+        %i.material-icons add
 
     %footer
       %span.flash-messages{data: { messages: flash.to_json }}
