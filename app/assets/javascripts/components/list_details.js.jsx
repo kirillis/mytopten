@@ -1,3 +1,4 @@
+
 var ListDetails = React.createClass({
   mixins: [FluxMixin],
 
@@ -14,6 +15,14 @@ var ListDetails = React.createClass({
     this.setState({
       hasChanged: true,
       title: event.target.value
+    });
+  },
+
+  handleQuillInput: function(text) {
+    console.log('handleQuillInput', event);
+    this.setState({
+      hasChanged: true,
+      description: text
     });
   },
 
@@ -63,9 +72,18 @@ var ListDetails = React.createClass({
       <div className="Form">
         <h2>Edit your list here</h2>
         <p>You created this list <strong>{ this.props.created_at }</strong> ago and the last update was <strong>{ this.props.updated_at }</strong> ago.</p>
-      
-        <label htmlFor="title">List title</label>
+        <div className="u-mb-3">
+          <a href={ "/" + this.props.author.name + "/lists/" + this.props.listId } className="Button Button--withIcon">
+            <i className="material-icons">view_headline</i>
+            View
+          </a>
+          <a className="Button Button--withIcon" data-method="delete" href={ "/" + this.props.author.name + "/lists/" + this.props.listId } rel="nofollow">
+            <i className="material-icons">delete</i>
+            Delete
+          </a>
+        </div>
 
+        <label htmlFor="title">List title</label>
         <input
           type="text"
           name="title"
@@ -76,15 +94,9 @@ var ListDetails = React.createClass({
         />
 
         <label htmlFor="description">Description</label>
-        <textarea
-          rows="10"
-          id="description"
-          className="materialize-textarea validate"
-          required="required"
-          value={ this.state.description }
-          onChange={ this.handleDescriptionChange }
-        >
-        </textarea>
+        <QuillEditor 
+          text={ this.props.description }
+          handleInput={ this.handleQuillInput } />
 
         <input
           id="public"
@@ -94,7 +106,9 @@ var ListDetails = React.createClass({
         />
         <label htmlFor="public">Make this list public</label>
 
-        <div className="u-mt-1">{ saveButton }</div>
+        <div>
+          <div className="u-mt-1 u-d-inline-block">{ saveButton }</div>
+        </div>
 
       </div>
     );
