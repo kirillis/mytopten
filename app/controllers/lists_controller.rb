@@ -78,13 +78,17 @@ class ListsController < ApplicationController
   end
 
   def new
-    @new_list = List.new
+    @list = List.new
   end
 
   def create
-    @list = current_user.lists.create(list_params)
-    @list.save
-    redirect_to user_list_path(@list.user.name, @list)
+    @list = current_user.lists.new(list_params)
+    if @list.save
+      redirect_to user_list_path(@list.user.name, @list)
+    else
+      flash[:error] = 'These fields are required.'
+      render 'new'
+    end
   end
 
   def update
@@ -123,9 +127,9 @@ class ListsController < ApplicationController
 
   def destroy
     if List.find(params[:list_id]).destroy
-      redirect_to user_lists_path(current_user.name), notice: 'List deleted.'
+      redirect_to user_path(current_user.name), info: 'List deleted.'
     else
-      redirect_to user_lists_path(current_user.name), notice: 'Error: List not deleted.'
+      redirect_to user_path(current_user.name), info: 'Error: List not deleted.'
     end
   end
 
