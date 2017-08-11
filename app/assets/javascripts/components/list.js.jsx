@@ -94,6 +94,7 @@ var List = React.createClass({
               public = { this.state.listDetails.public }
               created_at = { this.state.listDetails.created_at }
               updated_at = { this.state.listDetails.updated_at }
+              listId = { this.state.listDetails.id }
             />
           </div>
 
@@ -106,7 +107,18 @@ var List = React.createClass({
         </div>
 
       <div className="u-mt-3">
-        <h2 className="u-mt-4 u-mb-3">These <strong>{ this.state.listItems.length }</strong> items are on your list:</h2>
+          {listItems.length === 0 ?
+            (
+              <div>
+                <h2 className="u-mt-4">No items on list, yet</h2>
+                <p>Use the form below to add items to your list.</p>
+              </div>
+            ) : (
+              <h2 className="u-mt-4 u-mb-3">
+                These <strong>{ this.state.listItems.length }</strong> items are on your list:
+              </h2>
+            )
+          }
         <div className="ListItems">
           { listItems }
         </div>
