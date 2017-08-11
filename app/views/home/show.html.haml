@@ -9,13 +9,9 @@
           %p No tags found.
 
 .container
-  .Grid
-    .Grid-cell.2-of-3--desk
-      -unless @lists.empty?
-        %h2 Popular lists right now
-        =render @lists
-      -else
-        %p No lists created yet.
-    .Grid-cell.1-of-3--desk
-      %h2 Sidebar
-      %p More content herer.
+  -unless @lists.empty?
+    %h2 Popular lists right now
+    .Grid
+      =render @lists
+  -else
+    %p No lists created yet.

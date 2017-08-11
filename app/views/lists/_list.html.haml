@@ -1,22 +1,38 @@
-.ListTeaser.u-mb-3
-  =link_to user_list_path(list.user.name, list), class: 'ListTeaser-images' do
-    -list.list_items.each_with_index do |item, index|
-      -break if index > 2
-      %img{ style: "background-image: url(#{item.image_thumb})", class: 'ListTeaser-image' }
+.Grid-cell.1-of-3--desk
+  .ListTeaser.u-mb-3
 
-  .ListTeaser-text.u-ml-2
-    =link_to list.title, user_list_path(list.user.name, list), class: 'h3'
-    %p=truncate(list.description, length: 100, omission: "… (continued)")
+    .ListTeaser-text.u-bg-beta
+      .u-p-1
+        =link_to list.title, user_list_path(list.user.name, list), class: 'h3 u-d-inline-block'
 
-    %p.u-color-grey-med
-      =inline_svg 'heart.svg', class: 'Icon Icon--heart'
-      =list.cached_votes_total
-      , submitted
-      =distance_of_time_in_words_to_now(list.created_at)
-      ago by #{ link_to "#{list.user.name}", user_path(list.user.name) }
+    .u-m-1
+      =link_to user_list_path(list.user.name, list), class: 'ListTeaser-images' do
+        -list.list_items.each_with_index do |item, index|
+          -break if index > 2
+          %img{ src: "#{item.image_thumb}", class: "ListTeaser-image ListTeaser-image--#{index}" }
 
-    -if current_user == list.user
-      =link_to 'Edit', user_list_edit_path(current_user.name, list)
+    .u-p-1
+      -list.list_items.each_with_index do |item, index|
+        -break if index > 2
+        %p
+          %strong=index+1
+          &mdash;
+          =item.title
+      %p.u-t-muted.u-t-align-center
+        %strong
+          =list.list_items.count
+        more items
+  
+    .u-bg-grey-light.u-p-1
+      %p.u-t-muted
+        =inline_svg 'heart.svg', class: 'Icon Icon--heart'
+        =list.cached_votes_total
+        , submitted
+        =distance_of_time_in_words_to_now(list.created_at)
+        ago by #{ link_to "#{list.user.name}", user_path(list.user.name)}
 
-    .u-d-block
-      =render :partial => 'tags/tag_small', :collection => list.tags
+        -if current_user == list.user
+          =link_to 'edit', user_list_edit_path(current_user.name, list), class: 'u-bg-grey-med u-px-1 u-ml-1'
+
+      .u-d-block
+        =render :partial => 'tags/tag_small', :collection => list.tags
