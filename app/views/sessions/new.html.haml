@@ -3,22 +3,6 @@
     .Grid
       .Grid-cell.1-of-4--desk
       .Grid-cell.2-of-4--desk
-        %h2 Are you new here?
-        %p.u-t-muted Create your own account now!
-      .Grid-cell.1-of-4--desk
-
-      .Grid-cell.1-of-4--desk
-      .Grid-cell.2-of-4--desk
-        =link_to user_register_path, class: 'Button Button--withIcon' do
-          %i.material-icons add
-          Create a new account
-
-
-.u-bg-grey-light
-  .container.u-py-4
-    .Grid
-      .Grid-cell.1-of-4--desk
-      .Grid-cell.2-of-4--desk
         %h2 Log In
         %p.u-t-muted
           You can use your 
@@ -46,6 +30,21 @@
           %button{ name: 'action', type: 'submit', class: 'Button Button--withIcon' }
             Log In
             %i.material-icons send
+
+.u-bg-grey-light
+  .container.u-py-4
+    .Grid
+      .Grid-cell.1-of-4--desk
+      .Grid-cell.2-of-4--desk
+        %h2 Are you new here?
+        %p.u-t-muted Create your own account now!
+      .Grid-cell.1-of-4--desk
+
+      .Grid-cell.1-of-4--desk
+      .Grid-cell.2-of-4--desk
+        =link_to user_register_path, class: 'Button Button--withIcon' do
+          %i.material-icons add
+          Create a new account
 
 .u-bg-alpha
   .container.u-py-4
