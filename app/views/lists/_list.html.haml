@@ -5,7 +5,9 @@
       =link_to list.title, user_list_path(list.user.name, list), class: 'h3 u-d-inline-block u-fw-100'
 
   -if current_user == list.user
-    =link_to 'Edit this list', user_list_edit_path(current_user.name, list), class: 'u-bg-grey-light u-p-05 u-d-block u-t-align-center'
+    =link_to user_list_edit_path(current_user.name, list), class: 'u-bg-grey-light u-p-05 u-d-block u-t-align-center' do
+      %i.material-icons mode_edit
+      Edit this list
 
   .u-m-1
     =link_to user_list_path(list.user.name, list), class: 'ListTeaser-images' do
@@ -21,9 +23,10 @@
         %span.u-t-muted &#124;
         =item.title
     =link_to user_list_path(list.user.name, list), class: 'u-t-muted u-t-align-center u-d-block' do
-      %strong
-        =list.list_items.count-3
-      more items
+      -if list.list_items.count-3 != 0
+        %strong
+          =list.list_items.count-3
+        more items
 
     .u-mt-2.u-t-align-center
       =render :partial => 'tags/tag_small', :collection => list.tags
@@ -31,6 +34,7 @@
   .u-bg-grey-light.u-p-1
     %p.u-t-muted.u-t-align-center
       =inline_svg 'heart.svg', class: 'Icon Icon--heart'
-      ="#{list.cached_votes_total}, submitted"
+      ="#{list.cached_votes_total} "
+      &ndash; 
       =distance_of_time_in_words_to_now(list.created_at)
-      ago by #{ link_to "#{list.user.name}", user_path(list.user.name)}
+      ago by #{ link_to "#{list.user.name}", user_path(list.user.name), class: 'u-fw-700'}
