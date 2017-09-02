@@ -16,6 +16,10 @@ class TagsController < ApplicationController
 
   def show
     @tag_name = params[:tag_name]
-    @lists = List.tagged_with(@tag_name).includes(:user, :list_items)
+    @lists = List
+      .published
+      .order(cached_votes_total: :desc)
+      .tagged_with(@tag_name)
+      .includes(:user, :list_items)
   end
 end
