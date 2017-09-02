@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
   validates :name, length: {minimum: 3}, uniqueness: true
   validates :password, length: {minimum: 3}
   validates :password, confirmation: true
-  validates :email, uniqueness: true
+  validates :email, uniqueness: { allow_blank: true, allow_nil: true }
 end
