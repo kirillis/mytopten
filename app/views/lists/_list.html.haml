@@ -19,12 +19,13 @@
     -list.list_items.each_with_index do |item, index|
       -break if index > 2
       %p
-        %strong=index+1
+        %span.u-fw-700
+          =index+1
         %span.u-t-muted &#124;
         =item.title
     =link_to user_list_path(list.user.name, list), class: 'u-t-muted u-t-align-center u-d-block' do
       -if list.list_items.count-3 != 0
-        %strong
+        %span.u-fw-700
           =list.list_items.count-3
         more items
 
