@@ -1,35 +1,42 @@
 .container
-  .List.u-mt-4
-    -if @list
-      .List-header.u-mb-3
-        .List-title.u-pb-2.u-t-align-center.u-color-green=@list.title
-        %p.List-subtitle.u-t-align-center
-          by
-          =link_to @user.name, user_path(@user.name)
-          on 
-          =@list.created_at.strftime('%d %B %Y')
-        %p.List-description.u-pb-2=@list.description.html_safe
-        %p.u-t-align-center
-          =inline_svg 'heart.svg', class: 'Icon Icon--heart'
-          =@list.cached_votes_total
+  .Grid
+    .Grid-cell.2-of-3--desk
+      .List.u-mt-4.u-mx-3
+        -if @list
+          .List-header.u-mb-3
+            -if current_user == @user
+              .u-t-align-center.u-mb-3
+                =link_to 'Edit this list', user_list_edit_path(current_user.name, @list), class: 'Button'
+            .List-title.u-pb-2.u-t-align-center.u-fw-100.u-color-gamma=@list.title
+            %p.List-subtitle.u-t-align-center.u-fw-100
+              %strong
+                =@list.created_at.strftime('%d %B %Y')
+              &mdash; by
+              =link_to @user.name, user_path(@user.name)
 
-        -if @list.tags
-          .u-t-align-center
-            =render partial: "tags/tag", collection: @list.tags
+
+            .List-description.u-fw-100.u-t-align-center.u-pb-2=@list.description.html_safe
+
+            .u-t-align-center  
+              =render partial: "lists/likebutton", locals: { list: @list}
+
+            -if @list.tags
+              .u-t-align-center
+                =render partial: "tags/tag", collection: @list.tags
+          
+          .List-itemsContainer
+            =render partial: "lists/list_item", collection: @list.list_items
+
+
+        -else
+          %p No list found.
 
         -if current_user == @user
-          .u-t-align-center
-            =link_to 'Edit', user_list_edit_path(current_user.name, @list), class: 'Button'
-      
-      .List-itemsContainer
-        =render partial: "lists/list_item", collection: @list.list_items
+          =link_to 'Edit this list', user_list_edit_path(current_user.name, @list)
 
-
-    -else
-      %p No list found.
-
-    -if current_user == @user
-      =link_to 'Edit this list', user_list_edit_path(current_user.name, @list)
+    .Grid-cell.1-of-3--desk
+      .u-p-1.u-mt-4
+        =render @lists
 
 .u-bg-grey-light.u-mt-5
   .container

@@ -1,4 +1,5 @@
-=link_to tag_path(tag_detailed.name), class: 'Tag Tag--detailed u-p-05 u-mb-05 u-mr-05' do
-  ="#{tag_detailed.name}"
-  %p.u-t-muted.u-d-inline-block
-    ="(#{tag_detailed.taggings_count})"
+=link_to tag_path(tag_detailed.name), class: 'Tag Tag--detailed u-mb-05 u-mr-05' do
+  %p.u-p-05.u-bg-blue-light.u-d-inline-block
+    =tag_detailed.taggings_count
+  %span.u-p-05
+    ="#{tag_detailed.name}"

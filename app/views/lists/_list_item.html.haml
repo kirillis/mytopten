@@ -1,8 +1,10 @@
 %li.ListItem.Grid.u-mb-3
-  .Grid-cell.1-of-4
-    %a.ListItem-imageLink{ href: list_item.image_large }
+  .Grid-cell.1-of-4.u-t-align-right
+    %a.ListItem-imageLink.u-mr-2{ href: list_item.image_large }
       %img.ListItem-image{ src: list_item.image_thumb }/
   .Grid-cell.3-of-4
     %h3=list_item.title
-    %p.ListItem-desciption=list_item.description
+    %p.ListItem-desciption
+      &mdash; 
+      =list_item.description
     =link_to "Link", list_item.link

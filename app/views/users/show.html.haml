@@ -1,14 +1,29 @@
 -unless @user.nil?
-  .u-bg-grey-light.u-mb-5
-    .container.u-py-5
-      %h2
-        ="All lists by #{@user.name}"
-      %p
-        Email:
-        =@user.email
-      %p
-        Number of lists:
-        =@lists.count
+  .u-bg-beta.u-mb-5
+    .container.u-py-2
+
+      .Grid.Grid--flush.u-t-align-center
+        .Grid-cell.1-of-3--handheld-and-up
+          %p.u-m-0.u-t-uppercase
+            All lists by
+          %h2.u-m-0.u-fw-700
+            =@user.name
+        .Grid-cell.1-of-3--handheld-and-up
+          %p.u-m-0.u-t-uppercase
+            Lists
+          %h2.u-m-0.u-fw-700
+            =@lists.count
+        .Grid-cell.1-of-3--handheld-and-up
+          %p.u-m-0.u-t-uppercase
+            Member since
+          %h2.u-m-0.u-fw-700
+            =distance_of_time_in_words_to_now(@user.created_at)
 
   .container
-    =render @lists
+    -unless @lists.empty?
+      .Grid
+        -@lists.each do |list|
+          .Grid-cell.1-of-2--handheld-and-up.1-of-3--desk
+            =render list
+    -else
+      %p No lists created yet.
