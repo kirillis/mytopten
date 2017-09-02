@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   def index
-    @tags = ActsAsTaggableOn::Tag.most_used
+    @total_lists_count = List.published.count
+    @tags = ActsAsTaggableOn::Tag.all.order(name: :asc)
   end
 
   def search
