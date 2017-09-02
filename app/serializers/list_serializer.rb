@@ -8,7 +8,8 @@ class ListSerializer < ActiveModel::Serializer
               :created_at,
               :updated_at,
               :tags,
-              :tag_list
+              :tag_list,
+              :cached_votes_total
   has_one :user
   has_many :list_items
 
