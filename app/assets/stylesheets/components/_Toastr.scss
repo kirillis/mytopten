@@ -1,3 +1,8 @@
+#toast-container > div {
+  opacity: 1;
+  box-shadow: none;
+}
+
 .toast {
   background-color: $yellow;
 }
