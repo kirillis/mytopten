@@ -17,6 +17,7 @@ class ListsController < ApplicationController
   end
 
   def show
+    @lists = List.includes(:user, :list_items).limit(50)
     @user = User.find_by(name: params[:user_name])
     if @user
       @list = @user.lists.find_by(id: params[:list_id])
