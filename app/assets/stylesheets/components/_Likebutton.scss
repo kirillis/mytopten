@@ -1,0 +1,31 @@
+.Likebutton {
+  opacity: 1;
+  transition: opacity 150ms;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 2px 20px;
+  border-radius: 3px;
+
+  &.is-disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.Likebutton__filled {
+  display: none;
+}
+
+.Likebutton__border {
+  display: inline;
+}  
+
+.Likebutton--has-liked {
+  .Likebutton__filled {
+    display: inline;
+  }
+
+  .Likebutton__border {
+    display: none;
+  }
+}

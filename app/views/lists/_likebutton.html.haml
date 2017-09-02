@@ -1,8 +1,12 @@
 -if current_user
-  .likebutton.js-likebutton{ data: { list_id: @list.id }, class: ('likebutton--has-liked' if current_user.voted_up_on? @list) }
-    %i.material-icons.likebutton__filled favorite
-    %i.material-icons.likebutton__border favorite_border
+  %p.Likebutton.u-bg-grey-light.u-d-inline-block.js-likebutton{ data: { list_id: @list.id }, class: ('Likebutton--has-liked' if current_user.voted_up_on? @list) }
+    %i.material-icons.Likebutton__filled favorite
+    %i.material-icons.Likebutton__border favorite_border
+    %span.js-likebutton-count=@list.cached_votes_total
+    likes
 
 -else
-  .likebutton.js-likebutton
+  %p.Likebutton.u-bg-grey-light.u-d-inline-block.js-likebutton
     %i.material-icons favorite_border
+    %span=@list.cached_votes_total
+    likes
