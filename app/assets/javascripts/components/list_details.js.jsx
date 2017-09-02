@@ -70,45 +70,33 @@ var ListDetails = React.createClass({
     var saveButton = this.getSaveButton();
     return (
       <div className="Form">
-        <h2>Edit your list here</h2>
-        <p>You created this list <strong>{ this.props.created_at }</strong> ago and the last update was <strong>{ this.props.updated_at }</strong> ago.</p>
-        <div className="u-mb-3">
-          <a href={ "/" + this.props.author.name + "/lists/" + this.props.listId } className="Button Button--withIcon">
-            <i className="material-icons">view_headline</i>
-            View
-          </a>
-          <a className="Button Button--withIcon" data-method="delete" href={ "/" + this.props.author.name + "/lists/" + this.props.listId } rel="nofollow">
-            <i className="material-icons">delete</i>
-            Delete
-          </a>
-        </div>
 
-        <label htmlFor="title">List title</label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          required="required"
-          value={ this.state.title }
-          onChange={ this.handleTitleChange }
-        />
+          <label htmlFor="title">List title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            required="required"
+            value={ this.state.title }
+            onChange={ this.handleTitleChange }
+          />
 
-        <label htmlFor="description">Description</label>
-        <QuillEditor 
-          text={ this.props.description }
-          handleInput={ this.handleQuillInput } />
+          <label htmlFor="description">Description</label>
+          <QuillEditor 
+            text={ this.props.description }
+            handleInput={ this.handleQuillInput } />
 
-        <input
-          id="public"
-          type="checkbox"
-          checked={ this.state.public }
-          onChange={ this.handlepublicChange }
-        />
-        <label htmlFor="public">Make this list public</label>
+          <input
+            id="public"
+            type="checkbox"
+            checked={ this.state.public }
+            onChange={ this.handlepublicChange }
+          />
+          <label htmlFor="public">Make this list public</label>
 
-        <div>
-          <div className="u-mt-1 u-d-inline-block">{ saveButton }</div>
-        </div>
+          <div>
+            <div className="u-mt-1 u-d-inline-block">{ saveButton }</div>
+          </div>
 
       </div>
     );

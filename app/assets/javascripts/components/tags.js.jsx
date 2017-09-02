@@ -33,13 +33,15 @@ var Tags = React.createClass({
 
   render: function() {
     return (
-      <div className="Tags u-border-beta u-p-1">
-        <h2>Tags</h2>
-        <p className='u-t-muted'>
-          { this.emptyCopy() }
-        </p>
-        { this.renderTags() }
-        <TagSearchController listId={ this.props.listId } />
+      <div className="container">
+        <div className="Tags u-border-beta u-p-1">
+          <h2>Tags</h2>
+          <p className='u-t-muted'>
+            { this.emptyCopy() }
+          </p>
+          { this.renderTags() }
+          <TagSearchController listId={ this.props.listId } />
+        </div>
       </div>
     );
   }
