@@ -33,6 +33,7 @@ Mytopten::Application.routes.draw do
   # LISTS
   resources :lists, only: [:create, :update]
   get 'lists/newest', tp: 'lists#newest', as: 'lists_newest'
+  get 'lists/popular/:timeframe', to: 'lists#popular_timeframe', as: 'lists_popular_timeframe'
   get ':user_name/lists', to: 'lists#index', as: 'user_lists'
   get ':user_name/lists/new', to: 'lists#new', as: 'user_list_new'
   get ':user_name/lists/:list_id', to: 'lists#show', as: 'user_list'
