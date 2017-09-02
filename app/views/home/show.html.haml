@@ -10,7 +10,16 @@
 
 .container
   -unless @lists.empty?
-    %h2 Popular lists right now
+    %h2 
+      Popular lists of 
+      %span.u-color-grey-med
+        =link_to 'alltime', lists_popular_timeframe_path('alltime'), class: 'u-fw-700'
+        &ndash; 
+        =link_to 'this year', lists_popular_timeframe_path('year'), class: 'u-color-grey-med'
+        &ndash; 
+        =link_to 'this month', lists_popular_timeframe_path('month'), class: 'u-color-grey-med'
+        &ndash; 
+        =link_to 'this week', lists_popular_timeframe_path('week'), class: 'u-color-grey-med'
     .Grid
       -@lists.each do |list|
         .Grid-cell.1-of-3--desk
