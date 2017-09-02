@@ -1,5 +1,5 @@
-.u-bg-beta.u-mb-5
-  .container.u-py-5
+.u-bg-grad-mint.u-mb-5
+  .container.u-py-2
     .Grid
       .Grid-cell.2-of-3--desk
         %h2 Popular tags right now
@@ -12,6 +12,8 @@
   -unless @lists.empty?
     %h2 Popular lists right now
     .Grid
-      =render @lists
+      -@lists.each do |list|
+        .Grid-cell.1-of-3--desk
+          =render list
   -else
     %p No lists created yet.
