@@ -4,16 +4,17 @@
       .List.u-mt-4.u-mx-3
         -if @list
           .List-header.u-mb-3
-            -if current_user == @user
-              .u-t-align-center.u-mb-3
-                =link_to 'Edit this list', user_list_edit_path(current_user.name, @list), class: 'Button'
-            .List-title.u-pb-2.u-t-align-center.u-fw-100.u-color-gamma=@list.title
+            .List-title.u-pb-2.u-pt-1.u-t-align-center.u-fw-100.u-color-gamma=@list.title
             %p.List-subtitle.u-t-align-center.u-fw-100
               %strong
                 =@list.created_at.strftime('%d %B %Y')
               &mdash; by
-              =link_to @user.name, user_path(@user.name)
+              %span.u-fw-700
+                =link_to @user.name, user_path(@user.name)
 
+              -if current_user == @user
+                .u-t-align-center.u-mb-3
+                  =link_to 'Edit this list', user_list_edit_path(current_user.name, @list), class: 'Button'
 
             .List-description.u-fw-100.u-t-align-center.u-pb-2=@list.description.html_safe
 
@@ -30,9 +31,6 @@
 
         -else
           %p No list found.
-
-        -if current_user == @user
-          =link_to 'Edit this list', user_list_edit_path(current_user.name, @list)
 
     .Grid-cell.1-of-3--desk
       .u-p-1.u-mt-4
