@@ -16,6 +16,12 @@ class ListsController < ApplicationController
     end
   end
 
+  def newest
+    @tags = ActsAsTaggableOn::Tag.most_used(20)
+    @lists = List.includes(:user, :list_items, :tags).order(created_at: :desc).limit(50)
+    render "home/show"
+  end
+
   def show
     @lists = List.includes(:user, :list_items, :tags).limit(50)
     @user = User.find_by(name: params[:user_name])
