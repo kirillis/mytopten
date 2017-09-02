@@ -33,7 +33,7 @@ class ListsController < ApplicationController
     list = List.find_by(id: params[:list_id])
     if list and current_user
       if current_user.voted_up_on? list
-        current_user.dislikes list
+        list.unliked_by current_user
         liked_status = false
       else
         current_user.likes list
