@@ -4,11 +4,11 @@
       =inline_svg "logo.svg"
     %ul.MainNav-links
       %li.MainNav-link
-        =link_to 'Lists', root_path
+        =link_to 'Popular lists', root_path, class: current_page?(root_path) ? 'is-active' : ''
       %li.MainNav-link
-        =link_to 'Tags', tags_path
+        =link_to 'Newest lists', root_path, class: current_page?(root_path) ? 'is-active' : ''
       %li.MainNav-link
-        =link_to 'Newest', root_path
+        =link_to 'Explore tags', tags_path, class: current_page?(tags_path) ? 'is-active' : ''
 
       -if logged_in?
         %li.MainNav-link
@@ -17,4 +17,4 @@
           =link_to 'Log Out', user_log_out_path, method: :delete
       -else
         %li.MainNav-link
-          =link_to 'Login', user_log_in_path
+          =link_to 'Login', user_log_in_path, class: current_page?(user_log_in_path) ? 'is-active' : ''
