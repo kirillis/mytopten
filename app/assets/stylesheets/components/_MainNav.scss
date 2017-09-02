@@ -16,6 +16,7 @@
 
 .MainNav-link {
   display: block;
+  margin-left: 10px;
 
   > a {
     color: $c-gamma;
@@ -23,10 +24,17 @@
     font-weight: 300;
     padding-left: 40px;
     font-size: 17px;
-    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    padding: 5px;
+
+    &.is-active {
+      border-color: $black;
+      font-weight: 600;
+    }
 
     &:hover {
-      color: $green;
+      // color: $green;
+      border-color: $black;
     }
   }
 }

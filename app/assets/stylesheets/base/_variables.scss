@@ -8,7 +8,7 @@ $white: #ffffff;
 $black: #000000;
 $red: red;
 $yellow: #efed15;
-$mint: #7dfa97;
+$mint: #60f680;
 $blue-light: #283763;
 $blue-med: #23273b;
 $blue-dark: #11141e;
@@ -27,6 +27,7 @@ $colors:
   (grey-med, $grey-med),
   (green, $green),
   (green-dark, $green-dark),
-  (white, $white);
+  (white, $white),
+  (blue-light, $blue-light);
 
 $base-spacing: 1rem;
