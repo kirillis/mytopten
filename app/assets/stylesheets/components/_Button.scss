@@ -48,11 +48,13 @@
   font-size: 50px;
   background-color: $c-alpha;  
   border-radius: 40px;
-  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.38);
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.35);
   transition: all 300ms ease;
+  transform: translateY(0);
 
   &:hover {
     background-color: $c-gamma-dark;
     color: $white;
+    transform: translateY(-5px);
   }
 }
