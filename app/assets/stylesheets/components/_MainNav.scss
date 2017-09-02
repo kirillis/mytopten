@@ -24,11 +24,11 @@
     font-weight: 300;
     padding-left: 40px;
     font-size: 17px;
-    border-bottom: 1px solid transparent;
+    // border-bottom: 1px solid transparent;
     padding: 5px;
 
     &.is-active {
-      border-color: $black;
+      // border-color: $black;
       font-weight: 600;
     }
 

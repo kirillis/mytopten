@@ -29,10 +29,16 @@
   box-sizing: border-box;
   color: $white;
   background-color: $c-gamma;
-  transition: background-color 100ms ease-in;
+  transition: all 100ms ease-in;
 
   > p {
     margin-bottom: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  &:hover {
+    color: $white;
   }
 }
 

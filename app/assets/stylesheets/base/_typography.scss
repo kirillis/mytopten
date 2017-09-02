@@ -3,6 +3,10 @@ body {
   font-size: 16px;
 }
 
+::selection {
+  background: $c-alpha;
+}
+
 p {
   margin-top: 0;
   line-height: 1.7;
