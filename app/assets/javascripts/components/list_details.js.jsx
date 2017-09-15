@@ -1,4 +1,3 @@
-
 var ListDetails = React.createClass({
   mixins: [FluxMixin],
 
@@ -19,7 +18,6 @@ var ListDetails = React.createClass({
   },
 
   handleQuillInput: function(text) {
-    console.log('handleQuillInput', event);
     this.setState({
       hasChanged: true,
       description: text
