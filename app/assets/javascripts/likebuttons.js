@@ -2,8 +2,8 @@ class LikeButton {
   constructor(index, element) {
     this.id = index;
     this.element = $(element);
-    this.listId = this.element.data('list-id');    
-    this.element.on('click', (event) => {  this.clickHandler(event) });
+    this.listId = this.element.data('list-id');
+    this.element.on('click', (event) => { this.clickHandler(event) });
     this.countElement = this.element.find('.js-likebutton-count');
   }
 
@@ -13,7 +13,7 @@ class LikeButton {
   }
 
   clickHandler() {
-    if($('body').hasClass('is-guest')) {
+    if ($('body').hasClass('is-guest')) {
       toastr['warning']('Please log-in to like a list.');
       return;
     }
@@ -23,7 +23,7 @@ class LikeButton {
       url: `/lists/${this.listId}/toggle_like`,
       dataType: 'json',
     }).success((data) => {
-      if(data.liked) {
+      if (data.liked) {
         toastr['success']('List added to your likes.');
         this.element.addClass('Likebutton--has-liked');
       } else {
@@ -40,8 +40,8 @@ class LikeButton {
   }
 }
 
-$(function() {
-  $('.js-likebutton').each( (index, element) => {
+$(function () {
+  $('.js-likebutton').each((index, element) => {
     new LikeButton(index, element);
   })
 });
