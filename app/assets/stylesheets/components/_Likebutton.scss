@@ -12,20 +12,18 @@
   }
 }
 
-.Likebutton__filled {
-  display: none;
-}
+.Likebutton__icon.Icon {
+  width: 22px;
 
-.Likebutton__border {
-  display: inline;
-}  
+  #fill {
+    fill: transparent;
 
-.Likebutton--has-liked {
-  .Likebutton__filled {
-    display: inline;
+    .Likebutton--has-liked & {
+      fill: $black;
+    }
   }
 
-  .Likebutton__border {
-    display: none;
+  #border {
+    fill: $black;
   }
 }
