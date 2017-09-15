@@ -1,17 +1,17 @@
 %footer.u-bg-gamma-dark.u-mt-4
   %span.flash-messages{data: { messages: flash.to_json }}
   .container
-    .Grid
-      .Grid-cell.1-of-2.u-color-white
+    .Grid.u-mt-4
+      .Grid-cell.1-of-2--desk
         %h2 Lists
         =link_to 'Popular lists', root_path
-        =link_to 'Newest lists', root_path
-        =link_to 'Create list', root_path
-        =link_to 'Search list', root_path
-      .Grid-cell.1-of-2
+        =link_to 'Newest lists', lists_newest_path
+        =link_to 'Search list', search_site_path
+
+      .Grid-cell.1-of-2--desk
         %h2 Tags
-        =link_to 'Browse tags', root_path
-        
-        %h2 User
+        =link_to 'Browse tags', tags_path
+
+        %h2.u-mt-2 User
         =link_to 'Create account', root_path
         =link_to 'Login', root_path
