@@ -24,7 +24,7 @@ var QuillEditor = React.createClass({
           ],
           clipboard: true
         },
-        placeholder: 'Compose an epic...',
+        placeholder: 'Enter text here...',
         theme: 'snow'
       });
     },
