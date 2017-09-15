@@ -11,8 +11,9 @@ Mytopten::Application.routes.draw do
   put 'lists/:list_id/tags', to: 'lists#update_tags', as: 'list_tags_update'
 
   # SEARCH
-  get 'search/amazon', to: 'search#amazon', as: :search_amazon
-  get 'search', to: 'search#index'
+  get 'search/', to: 'search#show', as: 'search_site'
+  get 'search/site', to: 'search#site', as: 'search_site_results'
+  get 'api/search/amazon', to: 'search#amazon', as: 'search_amazon'
 
   # SESSIONS
   resources :sessions, only: [:new, :create]

@@ -1,0 +1,27 @@
+.u-bg-grad-mint.u-mb-5
+  .container.u-py-2
+    %h2 Popular tags right now
+    -if @tags
+      =render partial: "tags/tag", collection: @tags
+    -else
+      %p No tags found.
+
+.container
+  = form_tag search_site_results_path, method: 'get', action: 'site', class: 'Form' do
+    .Grid.u-mb-5
+      .Grid-cell.1-of-4--desk.u-t-align-right
+      .Grid-cell.2-of-4--desk
+        %h2 Search all public lists
+      .Grid-cell.1-of-4--desk.u-t-align-right
+
+      .Grid-cell.1-of-4--desk.u-t-align-right
+        = label_tag :query, 'Search for'
+      .Grid-cell.2-of-4--desk
+        = text_field_tag :query, nil, required: true, class: 'validate'
+      .Grid-cell.1-of-4--desk.u-t-align-right
+
+      .Grid-cell.1-of-4--desk
+      .Grid-cell.2-of-4--desk
+        %button{ type: 'submit', class: 'Button Button--withIcon' }
+          Search
+          %i.material-icons send

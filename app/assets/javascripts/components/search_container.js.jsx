@@ -5,7 +5,7 @@ var SearchContainer = React.createClass({
     this.setState({ isSearching: true });
 
     $.ajax({
-      url: '/search/amazon/?query=' + this.state.searchQuery,
+      url: '/api/search/amazon/?query=' + this.state.searchQuery,
       method: 'get',
       dataType: 'json',
       contentType: 'application/json',
