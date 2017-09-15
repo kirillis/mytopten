@@ -28,8 +28,8 @@
       =link_to user_log_in_path, class: 'AddNewButton' do
         %i.material-icons add
 
-    %footer
-      %span.flash-messages{data: { messages: flash.to_json }}
+    = render "layouts/footer"
+
 
   / %script#dsq-count-scr{scr: "//mytopten-1.disqus.com/count.js", async: true }
 
