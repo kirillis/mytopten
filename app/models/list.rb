@@ -7,4 +7,8 @@ class List < ActiveRecord::Base
   validates :description, presence: true
 
   scope :published, -> { where(public: true) }
+
+  def self.search(search)
+    published.where("title LIKE '%#{search}%' OR description LIKE '%#{search}%'")
+  end
 end
