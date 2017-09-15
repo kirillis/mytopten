@@ -1,6 +1,10 @@
-%li.collection-item.avatar
-  %img.circle{src: list_item.image_url}/
-  %span.title=list_item.title
-  %p=list_item.description
-  %a.secondary-content{:href => list_item.link}
-    %i.material-icons grade
+%li.ListItem.Grid.u-mb-3
+  .Grid-cell.1-of-4.u-t-align-right
+    %a.ListItem-imageLink.u-mr-2{ href: list_item.image_large }
+      %img.ListItem-image{ src: list_item.image_thumb }/
+  .Grid-cell.3-of-4
+    %h3=list_item.title
+    %p.ListItem-desciption
+      &mdash; 
+      =list_item.description
+    =link_to "Link", list_item.link

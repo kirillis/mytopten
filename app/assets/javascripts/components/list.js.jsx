@@ -16,7 +16,6 @@ var List = React.createClass({
   },
 
   handleItemChange: function(data) {
-    // console.log('data', data);
     var newListItems = $.extend(this.state.listItems, {});
     for (var i = newListItems.length - 1; i >= 0; i--) {
       if(data.id === newListItems[i].id) {
@@ -30,66 +29,45 @@ var List = React.createClass({
   },
 
   getSortableInstance: function() {
+    var self = this;
     return new Sortable(document.querySelector('.ListItems'), {
-        sort: true,  // sorting inside list
-        animation: 120,  // ms, animation speed moving items when sorting, `0` — without animation
-        handle: ".Item-dragHandle",  // Drag handle selector within list items
-        filter: ".ignore-elements",  // Selectors that do not lead to dragging (String or Function)
-        draggable: ".Item",  // Specifies which items inside the element should be sortable
-        ghostClass: "Item--ghost",  // Class name for the drop placeholder
-        chosenClass: "Item--chosen",  // Class name for the chosen item
-        dataIdAttr: 'data-reactid',
-        scroll: true, // or HTMLElement
-        scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
-        scrollSpeed: 10, // px
+        animation: 120,
+        handle: ".ListItemCondensed-dragHandle",
+        draggable: ".ListItem-wrapper",
+        ghostClass: "ListItem-wrapper--ghost",
+        chosenClass: "ListItem-wrapper--chosen",
+        dataIdAttr: 'data-rank',
+        scroll: true,
+        scrollSensitivity: 30,
+        scrollSpeed: 10,
 
-        setData: function (dataTransfer, dragEl) {
-          dataTransfer.setData('Text', dragEl.textContent);
-        },
-
-        // dragging started
-        onStart: function (evt) {
-          console.log('onStart', evt);
-          evt.oldIndex;  // element index within parent
-        },
-
-        // dragging ended
         onEnd: function (evt) {
-          console.log('onStart', evt);
-          sortable.toArray();
-          evt.oldIndex;  // element's old index within parent
-          evt.newIndex;  // element's new index within parent
-        },
-
-        // Element is dropped into the list from another list
-        onAdd: function (evt) {
-          var itemEl = evt.item;  // dragged HTMLElement
-          evt.from;  // previous list
-          // + indexes from onEnd
-        },
-
-        // Changed sorting within list
-        onUpdate: function (evt) {
-          var itemEl = evt.item;  // dragged HTMLElement
-          // + indexes from onEnd
-        },
-
-        // Event when you move an item in the list or between lists
-        onMove: function (evt) {
-          // Example: http://jsbin.com/tuyafe/1/edit?js,output
-          evt.dragged; // dragged HTMLElement
-          evt.draggedRect; // TextRectangle {left, top, right и bottom}
-          evt.related; // HTMLElement on which have guided
-          evt.relatedRect; // TextRectangle
-          // return false; — for cancel
+          listItemId = $(evt.item).data('id');
+          newRank = evt.newIndex;
+          $.ajax({
+            method: 'PUT',
+            url:  '/list_items/' + listItemId + '/' + newRank
+          });
         }
+    });
+  },
+
+  handleTitleEntered: function(title) {
+    console.log('list::handleTitleEntered():', title);
+    this.setState({
+      titleEntered: title,
     });
   },
 
   componentDidMount: function() {
     this.sortableInstance = this.getSortableInstance();
     window.sortablePlugin = this.sortableInstance;
-    console.log('componentDidMount');
+  },
+
+  getInitialState: function() {
+    return {
+      titleEntered: '',
+    }
   },
 
   render: function() {
@@ -105,37 +83,95 @@ var List = React.createClass({
     });
 
     return (
-      <div className="List">
-        <div className="row">
+      <div>
+        <div className="u-bg-beta">
+          <div className="container u-py-3 u-mb-3">
 
-          <div className="col s12 m6">
-            <ListDetails
-              title = { this.state.listDetails.title }
-              description = { this.state.listDetails.description }
-              author = { this.state.listDetails.user }
-              public = { this.state.listDetails.public }
-            />
-          </div>
+            <div className="Grid">
+              <div className="Grid-cell 1-of-4">
+                <h2>Edit your list here</h2>
+                <a href={ "/" + this.state.listDetails.user.name + "/lists/" + this.state.listDetails.id } className="Button Button--withIcon">
+                  <i className="material-icons">view_headline</i>
+                  View
+                </a>
+                <a className="Button Button--withIcon" data-method="delete" href={ "/" + this.state.listDetails.user.name + "/lists/" + this.state.listDetails.id } rel="nofollow">
+                  <i className="material-icons">delete</i>
+                  Delete
+                </a>
+              </div>
 
-          <div className="col s12 m5 offset-m1">
-            <Tags
-              tags = { this.state.listTags }
-              listId = { this.state.listDetails.id }
-            />
+              <div className="Grid-cell 1-of-4 u-t-align-center">
+                <p className="u-t-uppercase u-mb-0">Created</p>
+                <p className="u-fw-700 h2 u-mb-0">{ this.state.listDetails.created_at } ago</p>
+              </div>
+
+              <div className="Grid-cell 1-of-4 u-t-align-center">
+                <p className="u-t-uppercase u-mb-0">Updated</p>
+                <p className="u-fw-700 h2 u-mb-0">{ this.state.listDetails.updated_at } ago</p>
+              </div>
+
+              <div className="Grid-cell 1-of-4 u-t-align-center">
+                <p className="u-t-uppercase u-mb-0">Likes</p>
+                <p className="u-fw-700 h2 u-mb-0">{ this.state.listDetails.cached_votes_total }</p>
+              </div>
+
+            </div>
+
           </div>
         </div>
 
-        <div className="divider"></div>
-        <div className="row">
-          <div className="col s12">
+        <div className="container">
+
+          <div className="Grid">
+            <div className="Grid-cell 2-of-3--desk">
+
+              <ListDetails
+                title = { this.state.listDetails.title }
+                description = { this.state.listDetails.description }
+                public = { this.state.listDetails.public }
+                listId = { this.state.listDetails.id }
+              />
+            </div>
+
+            <div className="Grid-cell 1-of-3--desk">
+              <Tags
+                tags = { this.state.listTags }
+                listId = { this.state.listDetails.id }
+              />
+            </div>
+          </div>
+
+          <div className="u-mt-3">
+              {listItems.length === 0 ?
+                (
+                  <div>
+                    <h2 className="u-mt-4">No items on list, yet</h2>
+                    <p>Use the form below to add items to your list.</p>
+                  </div>
+                ) : (
+                  <h2 className="u-mt-4 u-mb-3">
+                    These <strong>{ this.state.listItems.length }</strong> items are on your list:
+                  </h2>
+                )
+              }
             <div className="ListItems">
               { listItems }
             </div>
           </div>
-        </div>
-        <div className="divider"></div>
 
-        <SearchContainer />
+          <div className="Grid u-mt-3">
+            <div className="Grid-cell 2-of-3--desk u-mb-2">
+              <ListItemAdd
+                onTitleEntered={ this.handleTitleEntered }
+                listId = { this.state.listDetails.id }
+              />
+            </div>
+
+            <div className="Grid-cell 1-of-3--desk">
+              <SearchContainer searchQuery={ this.state.titleEntered }/>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

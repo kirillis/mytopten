@@ -1,0 +1,20 @@
+.u-bg-grad-mint.u-mb-5
+  .container.u-py-2
+    .Grid
+      .Grid-cell.2-of-3--desk
+        %h2 Popular tags right now
+        -if @tags
+          =render partial: "tags/tag", collection: @tags
+        -else
+          %p No tags found.
+
+.container
+  -unless @lists.empty?
+    %h2 
+      Newest lists
+    .Grid
+      -@lists.each do |list|
+        .Grid-cell.1-of-3--desk
+          =render list
+  -else
+    %p No lists created yet.

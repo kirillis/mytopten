@@ -1,0 +1,40 @@
+.MainNav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.MainNav-logo svg {
+  width: 230px;
+  fill: $c-gamma;
+}
+
+.MainNav-links {
+  display: flex;
+}
+
+.MainNav-link {
+  display: block;
+  margin-left: 10px;
+
+  > a {
+    color: $c-gamma;
+    text-decoration: none;
+    font-weight: 300;
+    padding-left: 40px;
+    font-size: 17px;
+    // border-bottom: 1px solid transparent;
+    padding: 5px;
+
+    &.is-active {
+      // border-color: $black;
+      font-weight: 600;
+    }
+
+    &:hover {
+      // color: $green;
+      border-color: $black;
+    }
+  }
+}

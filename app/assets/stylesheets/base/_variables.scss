@@ -1,0 +1,34 @@
+$grey-light: #f4f4f4;
+$grey-med: #c9c9c9;
+$grey: #3a3a3a;
+$grey-med: #b5b5b5;
+$green: #71b429;
+$green-dark: #3b6013;
+$white: #ffffff;
+$black: #000000;
+$red: red;
+$yellow: #efed15;
+$mint: #60f680;
+$blue-light: #283763;
+$blue-med: #23273b;
+$blue-dark: #11141e;
+
+$c-alpha: $yellow;
+$c-beta: $mint;
+$c-gamma: $blue-med;
+$c-gamma-dark: $blue-dark;
+$c-gamma-light: $blue-light;
+
+$colors:
+  (alpha, $c-alpha),
+  (beta, $c-beta),
+  (gamma, $c-gamma),
+  (gamma-dark, $c-gamma-dark),
+  (grey-light, $grey-light),
+  (grey-med, $grey-med),
+  (green, $green),
+  (green-dark, $green-dark),
+  (white, $white),
+  (blue-light, $blue-light);
+
+$base-spacing: 1rem;

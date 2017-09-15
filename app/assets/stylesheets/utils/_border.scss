@@ -1,0 +1,14 @@
+@each $colorname, $color in $colors {
+  .u-border-#{$colorname} {
+    border: 1px solid $color;
+    border-radius: 3px;
+  }
+}
+
+.u-br-0 {
+  border-radius: 0;
+}
+
+.u-br-3 {
+  border-radius: 3px;
+}

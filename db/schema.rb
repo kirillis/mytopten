@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121142221) do
+ActiveRecord::Schema.define(version: 20161122160536) do
 
   create_table "list_items", force: true do |t|
     t.string   "title"
@@ -20,8 +20,13 @@ ActiveRecord::Schema.define(version: 20151121142221) do
     t.integer  "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_url"
+    t.string   "image_thumb_url"
     t.string   "link"
+    t.string   "image_main_file_name"
+    t.string   "image_main_content_type"
+    t.integer  "image_main_file_size"
+    t.datetime "image_main_updated_at"
+    t.string   "image_large_url"
   end
 
   add_index "list_items", ["list_id"], name: "index_list_items_on_list_id"
@@ -33,9 +38,8 @@ ActiveRecord::Schema.define(version: 20151121142221) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "public"
+    t.integer  "cached_votes_total", default: 0
   end
-
-  add_index "lists", ["user_id"], name: "index_lists_on_user_id"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -71,5 +75,20 @@ ActiveRecord::Schema.define(version: 20151121142221) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
+
+  create_table "votes", force: true do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
 
 end

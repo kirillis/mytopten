@@ -1,4 +1,4 @@
-App.saveItem = function(payload, success, error) {
+App.saveItem = function(payload, successCallback) {
   var stringData = JSON.stringify(payload);
 
   $.ajax({
@@ -8,23 +8,35 @@ App.saveItem = function(payload, success, error) {
     dataType: 'json',
     contentType: 'application/json',
 
-    success: function(data, textStatus, jqXHR) {
-      var savedItem = data.list_item;
-      savedItem.listItemID = payload.listItemID;
-      success(savedItem);
+    success: function(data) {
+      successCallback(data);
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
-      var newPayload = {
-        listItemID: payload.listItemID,
-        error: 'AJAX saving error: ' + payload.title + ' ('+ errorThrown + ')'
-      };
-      error(newPayload);
+      console.error('Error adding new list item.', jqXHR, textStatus, errorThrown);
     }
   });
 };
 
-App.updateItem = function(payload, success, error) {
+App.normalizeItemData = function(data, provider) {
+  newData = {};
+  $.extend(newData, data);
+  var normalizedData = {};
+  switch (provider) {
+    case 'AMAZON':
+      newData.title = data.title;
+      newData.link = data.amazon_url;
+      newData.image_thumb_url = data.thumbnail_url;
+      newData.image_large_url = data.large_url;
+      newData.description = data.author;
+      // console.log('normalizing data', newData, data);
+      return newData;
+    default:
+      return newData;
+  }
+};
+
+App.updateItem = function(payload, successCallback, errorCallback) {
   $.ajax({
     url: '/list_items/' + payload.itemData.id,
     method: 'PUT',
@@ -33,17 +45,17 @@ App.updateItem = function(payload, success, error) {
     contentType: 'application/json',
 
     success: function(data, textStatus, jqXHR) {
-      success(data);
+      successCallback(payload.newItemData);
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
       payload.error = errorThrown;
-      error(payload);
+      errorCallback(payload);
     },
   });
 };
 
-App.updateMultipleItems = function(payload, success, error) {
+App.updateMultipleItems = function(payload, successCallback, errorCallback) {
   $.ajax({
     url: '/list_items/' + payload.itemData.id,
     method: 'PUT',
@@ -52,27 +64,24 @@ App.updateMultipleItems = function(payload, success, error) {
     contentType: 'application/json',
 
     success: function(data, textStatus, jqXHR) {
-      success(data);
+      successCallback(data);
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
       payload.error = errorThrown;
-      error(payload);
+      errorCallback(payload);
     },
   });
 };
 
-App.deleteItem = function(itemId, success) {
+App.deleteItem = function(itemId) {
   $.ajax({
     url: '/list_items/' + itemId,
     method: 'DELETE',
     dataType: 'json',
     contentType: 'application/json',
-    error: function(jqXHR, textStatus, errorThrown) {
-      alert('Error deleting item: ' + errorThrown);
-    },
-    success: function() {
-      success(itemId);
+    error: function() {
+      console.error('Error deleting item: ', itemId);
     }
   });
 };

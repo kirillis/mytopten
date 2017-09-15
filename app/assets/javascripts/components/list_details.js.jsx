@@ -17,6 +17,13 @@ var ListDetails = React.createClass({
     });
   },
 
+  handleQuillInput: function(text) {
+    this.setState({
+      hasChanged: true,
+      description: text
+    });
+  },
+
   handleDescriptionChange: function(event) {
     this.setState({
       hasChanged: true,
@@ -39,7 +46,6 @@ var ListDetails = React.createClass({
   },
 
   componentDidMount: function() {
-    Materialize.updateTextFields();
   },
 
   saveData: function() {
@@ -52,65 +58,44 @@ var ListDetails = React.createClass({
 
   getSaveButton: function() {
     if(this.state.hasChanged) {
-      return <a className="waves-effect waves-light btn" onClick={ this.saveData }><i className="material-icons left">cloud</i>Save</a>
+      return <a onClick={ this.saveData } className="Button Button--withIcon"><i className="material-icons">save</i>Save</a>
     } else {
-      return <a className="waves-effect waves-light btn disabled"><i className="material-icons left">cloud</i>Save</a>
+      return <span className="Button Button--withIcon Button--disabled"><i className="material-icons">save</i>Save</span>
     }
   },
 
   render: function() {
     var saveButton = this.getSaveButton();
     return (
-      <div className='ListDetails'>
-        <div className="row">
-          <div className="col s12">
-            <p className="flow-text">
-              List author <a className='ListDetails-authorName' href = { '/' + this.props.author.name }>{ this.props.author.name }</a>
-            </p>
-          </div>
-        </div>
+      <div className="Form">
 
-        <div className="row">
-          <div className="input-field col s12">
-            <label htmlFor="title">List title</label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              className="validate"
-              required="required"
-              value={ this.state.title }
-              onChange={ this.handleTitleChange }
-            />
-          </div>
-        </div>
+          <label htmlFor="title">List title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            required="required"
+            value={ this.state.title }
+            onChange={ this.handleTitleChange }
+          />
 
-        <div className="row">
-          <div className="input-field col s12">
-            <textarea
-              id="description"
-              className="materialize-textarea validate"
-              required="required"
-              value={ this.state.description }
-              onChange={ this.handleDescriptionChange }
-            >
-            </textarea>
-            <label htmlFor="description">Description</label>
-          </div>
-        </div>
+          <label htmlFor="description">Description</label>
+          <QuillEditor 
+            text={ this.props.description }
+            handleInput={ this.handleQuillInput } />
 
-        <p>
           <input
             id="public"
-            className="filled-in"
             type="checkbox"
             checked={ this.state.public }
             onChange={ this.handlepublicChange }
           />
           <label htmlFor="public">Make this list public</label>
-        </p>
 
-        { saveButton }
+          <div>
+            <div className="u-mt-1 u-d-inline-block">{ saveButton }</div>
+          </div>
+
       </div>
     );
   }

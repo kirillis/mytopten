@@ -23,8 +23,6 @@ var TagSearch = React.createClass({
         _this.searchForTags(query);
       }
     );
-
-    Materialize.updateTextFields();
   },
 
   searchForTags: function(query) {
@@ -49,31 +47,32 @@ var TagSearch = React.createClass({
   },
 
   addNewButtonHandler: function() {
-    var newTagName = this.refs.searchTagsInput.getDOMNode().value;
+    var newTagName = this.refs.searchTagsInput.value;
     this.props.onAddClicked(newTagName);
     this.setState({
       tagSuggestions: [],
       hasChanged: false
     });
 
-    this.refs.searchTagsInput.getDOMNode().value = '';
+    this.refs.searchTagsInput.value = '';
   },
 
   getAddNewButton: function() {
     if(this.state.hasChanged) {
-      return <a className="waves-effect waves-light btn" onClick={ this.saveData }><i className="material-icons left">cloud</i>Add new tag</a>
+      return <a className="Button Button--withIcon" onClick={ this.addNewButtonHandler }><i className="material-icons left">add</i>Create tag</a>
     } else {
-      return <a className="waves-effect waves-light btn disabled"><i className="material-icons left">cloud</i>Add new tag</a>
+      return <span className="Button Button--withIcon Button--disabled"><i className="material-icons left">add</i>Create tag</span>
     }
   },
 
   render: function() {
     return (
-      <div className="TagSearch row">
+      <div className="TagSearch Form">
 
-        <div className="row">
-          <div className="input-field col s12">
-            <label htmlFor="tag">Add new tag...</label>
+        <label htmlFor="tag">Tag name</label>
+
+        <div className="Grid">
+          <div className="Grid-cell 1-of-2--desk">
             <input
               id="tag"
               type="text"
@@ -84,9 +83,11 @@ var TagSearch = React.createClass({
               ref="searchTagsInput"
             />
           </div>
+          <div className="Grid-cell 1-of-2--desk">
+          { this.getAddNewButton() }
+          </div>
         </div>
 
-        { this.getAddNewButton() }
       </div>
     );
   }

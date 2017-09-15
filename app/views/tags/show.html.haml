@@ -1,10 +1,15 @@
-.row
-  .col.s12
-    %p.flow-text="All lists tagged with '#{@tag_name}'"
+.u-bg-beta.u-mb-5
+  .container.u-py-2
+    .Grid
+      .Grid-cell.2-of-3--desk
+        %h2="All lists tagged with '#{@tag_name}'"
+        %p="We have found #{@lists.size} lists with htis tag."
 
-.row
-  .col.s12
-    -if @lists
-      =render @lists
-    -else
-      %p No list found.
+.container
+  -unless @lists.empty?
+    .Grid
+      -@lists.each do |list|
+        .Grid-cell.1-of-3--desk
+          =render list
+  -else
+    %p No lists created yet.

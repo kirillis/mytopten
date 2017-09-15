@@ -1,39 +1,56 @@
-%main.container
-  .row
-    .col.s12.m9.l6
-      %p.flow-text Registration
+.u-bg-grey-light.u-pb-5
+  .container.u-py-5
+    .Grid
+      .Grid-cell.1-of-4--desk.u-t-align-right
+      .Grid-cell.2-of-4--desk
+        %h2 Register
+      .Grid-cell.1-of-4--desk
 
-      -if @user.errors.any?
-        %h2
-          = pluralize(@user.errors.count, "error")
-          prohibited this user from being saved:
+    -if @user.errors.any?
+      .Grid
+        .Grid-cell.1-of-4--desk.u-t-align-right
+        .Grid-cell.2-of-4--desk
+          %h2
+            = pluralize(@user.errors.count, "error")
+            prohibited this user from being saved:
 
-        %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
+          %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
+        .Grid-cell.1-of-4--desk
 
-      = form_for @user do |f|
-        .row
-          .input-field.col.s12
-            = f.label :name
-            = f.text_field :name, required: true, class: 'validate'
+    = form_for @user, html: { class: 'Form'} do |f|
+      .Grid
+        .Grid-cell.1-of-4--desk.u-t-align-right
+          = f.label :name
+        .Grid-cell.2-of-4--desk
+          = f.text_field :name, required: true, class: 'validate'
+        .Grid-cell.1-of-4--desk
 
-        .row
-          .input-field.col.s12
+
+        .Grid-cell.1-of-4--desk.u-t-align-right
+          = f.label :password
+        .Grid-cell.2-of-4--desk
+          = f.password_field :password, required: true, class: 'validate'
+        .Grid-cell.1-of-4--desk
+
+        .Grid-cell.1-of-4--desk.u-t-align-right
+          = f.label :password_confirmation
+        .Grid-cell.2-of-4--desk
+          = f.password_field :password_confirmation, required: true, class: 'validate'
+        .Grid-cell.1-of-4--desk
+
+        .u-mt-3
+          .Grid-cell.1-of-4--desk.u-t-align-right
             = f.label :email
-            = f.email_field :email, required: true, class: 'validate'
+            %p.u-t-muted *optional
+          .Grid-cell.2-of-4--desk
+            = f.email_field :email
+          .Grid-cell.1-of-4--desk
 
-        .row
-          .input-field.col.s12
-            = f.label :password
-            = f.password_field :password, required: true, class: 'validate'
-
-        .row
-          .input-field.col.s12
-            = f.label :password_confirmation
-            = f.password_field :password_confirmation, required: true, class: 'validate'
-
-        %button.btn.waves-effect.waves-light{:name => "action", :type => "submit"}
-          Register
-          %i.material-icons.right send
+        .Grid-cell.1-of-4--desk.u-t-align-right
+        .Grid-cell.2-of-4--desk
+          %button{name: 'action', type: 'submit', class: 'Button Button--withIcon'}
+            Register
+            %i.material-icons send
 

@@ -1,0 +1,26 @@
+html {
+  background-color: $c-alpha;
+}
+
+body {
+  background-color: $white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: $base-spacing * 1.5;
+  padding-right: $base-spacing * 1.5;
+}
+
+:focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.Grid { font-size: 0; }

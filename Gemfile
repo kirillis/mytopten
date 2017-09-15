@@ -15,6 +15,11 @@ gem 'sorcery'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'materialize-sass'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+gem 'paperclip'
+gem 'aws-sdk', '~> 1.6'
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'inline_svg', '1.1.0'
+gem 'toastr-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -23,7 +28,7 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
+  # gem 'pg'
 end
 
 group :development do
@@ -36,9 +41,10 @@ group :development do
   gem 'binding_of_caller'
   gem 'better_errors'
   gem 'meta_request'
+  gem 'byebug'
 end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-ruby '2.1.5'
+ruby '2.1.0'

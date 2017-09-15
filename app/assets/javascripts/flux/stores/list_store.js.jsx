@@ -8,12 +8,7 @@ App.listStore = Fluxxor.createStore({
       App.constants.ITEM_UPDATE_FAILURE, this.onUpdateItemFailure,
 
       App.constants.ITEM_ADD, this.onItemAdd,
-      App.constants.ITEM_ADD_SUCCESS, this.onItemAddSuccess,
-      App.constants.ITEM_ADD_FAILURE, this.onItemAddFailure,
-
       App.constants.ITEM_DELETE, this.onItemDelete,
-      App.constants.ITEM_DELETE_SUCCESS, this.onItemDeleteSuccess,
-      App.constants.ITEM_DELETE_FAILURE, this.onItemDeleteFailure,
 
       App.constants.LIST_UPDATE, this.onListUpdate,
       App.constants.LIST_UPDATE_SUCCESS, this.onListUpdateSuccess,
@@ -36,8 +31,8 @@ App.listStore = Fluxxor.createStore({
   getState: function() {
     return {
       list: this.list,
-      listDetails:this.list,
-      listTags:this.list.tags,
+      listDetails: this.list,
+      listTags: this.list.tags,
       listItems: this.list.list_items,
       itemsToSave: this.itemsToSave
     };
@@ -48,13 +43,12 @@ App.listStore = Fluxxor.createStore({
   },
 
   onListUpdateSuccess: function(data) {
-    MTT.toaster.showSingleMessage('List details saved.', MTT.toaster.duration, MTT.toaster.success);
-    this.list = data.list;
+    this.list = data;
     this.emit('change');
+    toastr.success('List was updated successfully.');
   },
 
   onListUpdateFailure: function(data) {
-    console.log('storeList: onListUpdateFailure', data);
     this.list.title = data.oldData.title;
     this.list.description = data.oldData.description;
     this.emit('change');
@@ -71,6 +65,7 @@ App.listStore = Fluxxor.createStore({
       }
     }
     this.emit('change');
+    toastr.success('Item was updated successfully.');
   },
 
   onUpdateMultipleItems: function(payload) {
@@ -83,7 +78,7 @@ App.listStore = Fluxxor.createStore({
     var list_items = this.list.list_items;
     for(var i = 0; i < list_items.length; i++) {
       var listItem = list_items[i];
-      if(listItem.id === payload.list_item.id) {
+      if(listItem.id === payload.id) {
         list_items[i].isSaving = false;
         break;
       }
@@ -108,34 +103,8 @@ App.listStore = Fluxxor.createStore({
 
   onItemAdd: function(payload) {
     this.list.list_items.push(payload);
-    this.itemsToSave.push(payload.listItemID);
     this.emit('change');
-  },
-
-  onItemAddSuccess: function(savedItemData) {
-    var list_items = this.list.list_items;
-    for(var i = 0; i < list_items.length; i++) {
-      var listItem = list_items[i];
-      if(listItem.listItemID === savedItemData.listItemID) {
-        list_items[i] = savedItemData;
-        break;
-      }
-    }
-    this.itemsToSave.splice( $.inArray(savedItemData.listItemID, this.itemsToSave), 1 );
-    this.emit('change');
-  },
-
-  onItemAddFailure: function(payload) {
-    var _this = this;
-    this.itemsToSave.splice( $.inArray(payload.listItemID, this.itemsToSave), 1 );
-    this.list.list_items.forEach(function(listItem, index) {
-      if(listItem.listItemID !== undefined && listItem.listItemID == payload.listItemID) {
-        _this.list.list_items.splice(index, 1);
-        alert("Error adding new list item. Error message: " + payload.error);
-        return false;
-      }
-    });
-    this.emit('change');
+    toastr.success('Item was added to your list.');
   },
 
   onItemDelete: function(itemId) {
@@ -148,24 +117,17 @@ App.listStore = Fluxxor.createStore({
     }
 
     this.emit('change');
-  },
-
-  onItemDeleteSuccess: function(payload) {
-    console.log('Implement ListStore::onItemDeleteSuccess()', payload);
-  },
-
-  onItemDeleteFailure: function(payload) {
-    console.log('Implement ListStore::onItemDeleteFailure()', payload);
+    toastr.success('Item was removed from your list.');
   },
 
   onListTagsUpdate: function() {
-    this.list.isSaving = true;
+    // this.list.isSaving = true;
     this.emit('change');
   },
 
   onListTagsUpdateSuccess: function(newListData) {
     console.log('onListTagsUpdate', newListData);
-    this.list = newListData.list;
+    this.list = newListData;
     this.list.isSaving = false;
     this.emit('change');
   },
@@ -183,7 +145,7 @@ App.listStore = Fluxxor.createStore({
 
   onListTagRemoveSuccess: function(newListData) {
     console.log('onListTagRemoveSuccess', newListData);
-    this.list = newListData.list;
+    this.list = newListData;
     this.list.isSaving = false;
     this.emit('change');
   },

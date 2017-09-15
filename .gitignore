@@ -35,3 +35,7 @@ bower.json
 # Ignore pow environment settings
 .powenv
 _resources/
+.byebug_history
+
+# node modules
+/node_modules/

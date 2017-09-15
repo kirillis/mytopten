@@ -1,27 +1,51 @@
-.row
-  .col.s12.m9.l6
+.u-bg-beta
+  .container.u-py-4
+    .Grid
+      .Grid-cell.1-of-4--desk
+      .Grid-cell.1-of-4--desk
+        %h2 Log In
+        %p.u-t-muted
+          You can use your 
+          %strong username
+          or your  
+          %strong email
+          to login.
 
-    %p.flow-text Log In
-
-    = form_tag sessions_path, method: :post do
-      .row
-        .input-field.col.s12
+    = form_tag sessions_path, method: 'post', class: 'Form' do
+      .Grid
+        .Grid-cell.1-of-4--desk.u-t-align-right
           = label_tag :name
+        .Grid-cell.2-of-4--desk
           = text_field_tag :name, nil, required: true, class: 'validate'
+        .Grid-cell.1-of-4--desk.u-t-align-right
 
-      .row
-        .input-field.col.s12
+        .Grid-cell.1-of-4--desk.u-t-align-right
           = label_tag :password
+        .Grid-cell.2-of-4--desk
           = password_field_tag :password, nil, required: true, class: 'validate'
+        .Grid-cell.1-of-4--desk.u-t-align-right
 
-
-      .row
-        .input-field.col.s12
-          %button.btn.waves-effect.waves-light{:name => "action", :type => "submit"}
+        .Grid-cell.1-of-4--desk
+        .Grid-cell.2-of-4--desk
+          %button{ name: 'action', type: 'submit', class: 'Button Button--withIcon' }
             Log In
-            %i.material-icons.right send
+            %i.material-icons send
 
-.row
-  .col.s12.m9.l6
-    %p.flow-text Forgot your password?
+.u-bg-grey-light
+  .container.u-py-4
+    .Grid
+      .Grid-cell.1-of-4--desk
+      .Grid-cell.2-of-4--desk
+        %h2 Are you new here?
+        %p.u-t-muted Create your own account now!
+      .Grid-cell.1-of-4--desk
+
+      .Grid-cell.1-of-4--desk
+      .Grid-cell.2-of-4--desk
+        =link_to user_register_path, class: 'Button Button--withIcon' do
+          %i.material-icons add
+          Create a new account
+
+.u-bg-alpha
+  .container.u-py-4
     = render 'forgot_password_form'

@@ -2,8 +2,15 @@ require "#{Rails.root}/lib/amazon_search"
 
 class SearchController < ApplicationController
 
-  def index
-    @show_amz = "Showing amazon search template."
+  def show
+    @tags = ActsAsTaggableOn::Tag.most_used(20)
+  end
+
+  def site
+    q = params[:query]
+    @tags = ActsAsTaggableOn::Tag.most_used(20)
+    @lists = List.search(q).includes(:user, :list_items, :tags)
+    render 'site'
   end
 
   def amazon

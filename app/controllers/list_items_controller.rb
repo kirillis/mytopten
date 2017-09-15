@@ -19,24 +19,33 @@ class ListItemsController < ApplicationController
     list_item = ListItem.find(params[:id])
     list_item.update(list_item_params)
     if list_item.save
-      render json: list_item, status: :ok
+      render status: :ok, json: { text: "ListItem with ID #{params[:id]} was updated." }
     else
-      render json: list_item, status: :unprocessable_entity
+      render status: :internal_server_error, json: { text: "ListItem with ID #{params[:id]} was not updated." }
     end
   end
 
   def destroy
-    list_item = ListItem.find(params[:id])
+    list_item = ListItem.find_by(id: params[:id])
 
-    if list_item.destroy
-      render json: list_item, status: :ok
+    if list_item and list_item.destroy
+      render status: :ok, json: { text: "ListItem with ID #{params[:id]} was deleted." }
     else
-      render json: list_item, status: :unprocessable_entity
+      render status: :internal_server_error, json: { text: "ListItem with ID #{params[:id]} was not deleted." }
+    end
+  end
+
+  def change_rank
+    list_item = ListItem.find(params[:id])
+    if list_item.move_to(params[:new_rank].to_i)
+      head :ok
+    else
+      head :internal_server_error
     end
   end
 
   private
     def list_item_params
-      params.require(:list_item).permit(:title, :description, :rank, :list_id, :link, :image_url)
+      params.permit(:title, :description, :rank, :list_id, :link, :image_main, :image_large_url, :image_thumb_url)
     end
 end

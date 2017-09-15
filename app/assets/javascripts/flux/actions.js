@@ -22,37 +22,26 @@ App.actions = {
       console.log('updateMultiple');
     },
 
-    add: function(newItemData) {
+    add: function(itemData) {
       var listID = this.flux.store("ListStore").getID();
       var listItemID = App.makeId();
-      var itemData = {
-        title: newItemData.title,
-        link: newItemData.amazon_url,
-        image_url: newItemData.thumbnail_url,
-        list_id: listID,
-        rank: 0,
-        listItemID: listItemID
-      };
-
-      this.dispatch(App.constants.ITEM_ADD, itemData);
+      itemData.list_id = listID;
+      itemData.listItemID = listItemID;
       App.saveItem(
         itemData,
-        function(savedItem) {
-          this.dispatch(App.constants.ITEM_ADD_SUCCESS, savedItem);
-        }.bind(this),
-        function(error) {
-          this.dispatch(App.constants.ITEM_ADD_FAILURE, error);
+        function(newItemData) {
+          this.dispatch(App.constants.ITEM_ADD, newItemData);
         }.bind(this)
       );
     },
 
     delete: function(itemId) {
-      App.deleteItem(
-        itemId,
-        function(itemId) {
-          this.dispatch(App.constants.ITEM_DELETE, itemId);
-        }.bind(this)
-      );
+      this.dispatch(App.constants.ITEM_DELETE, itemId);
+      App.deleteItem(itemId);
+    },
+
+    addToUiOnly: function(itemData) {
+      this.dispatch(App.constants.ITEM_ADD, itemData);
     }
   },
   list: {
@@ -73,6 +62,7 @@ App.actions = {
     },
 
     updateTags: function(newTagData) {
+      // console.log('updateTags', newTagData);
       this.dispatch(App.constants.LIST_TAGS_UPDATE);
       App.updateTags(
         newTagData,
@@ -86,7 +76,7 @@ App.actions = {
     },
 
     removeTag: function(tagToRemove) {
-      // console.log('delete', tagToRemove);
+      console.log('delete', tagToRemove);
       this.dispatch(App.constants.LIST_TAG_REMOVE);
       App.removeTag(
         tagToRemove,

@@ -37,10 +37,12 @@ class AmazonSearch
     authors = items['ItemAttributes']['Author']
     if authors.is_a?(Array) then authors = authors.join(', ') end
     thumb_url = items.has_key?('MediumImage') ? items['MediumImage']['URL'] : false
+    large_url = items.has_key?('LargeImage') ? items['LargeImage']['URL'] : false
     return {
         title: items['ItemAttributes']['Title'],
         author: authors,
         thumbnail_url: thumb_url,
+        large_url: large_url,
         amazon_url: items['DetailPageURL']
       }
   end

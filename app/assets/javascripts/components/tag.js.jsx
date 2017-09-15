@@ -15,30 +15,35 @@ var Tag = React.createClass({
   },
 
   handleRemoveClick: function(event) {
+    this.setState({
+      isHidden: true
+    });
     this.props.removeClickHandler(event, this.props.data);
   },
 
   renderTag: function() {
+    var classes = classNames(
+      'Tag u-p-05 u-bg-gamma u-color-white u-mb-05 u-mr-05', {
+      'Tag--withButton': !this.props.isSuggestion,
+      'Tag--suggestion': this.props.isSuggestion,
+      'Tag--isHidden': this.state.isHidden,
+    });
+
     if(this.props.isSuggestion) {
-
-      var classes = classNames({
-      'chip Tag': true,
-      'Tag--suggestion': true,
-      'is-hidden': this.state.isHidden
-      });
-
       return(
         <li className={ classes } onClick={ this.handleAddClick }>
-          { this.props.data.name }
+          { this.props.data.name } <span className="u-t-muted">({ this.props.data.taggings_count })</span>
         </li>
       );
     } else {
       return(
-        <li className="Tag chip">
+        <li className="Tag-wrapper">
           <a href={ "/tags/" + this.props.data.name }>
-            { this.props.data.name }
+            <span className={ classes }>
+              { this.props.data.name }
+            </span>
           </a>
-          <i className="Tag-deleteButton material-icons" onClick={ this.handleRemoveClick }>close</i>
+          <i className="Tag-removeButton material-icons" onClick={ this.handleRemoveClick }>remove_circle</i>
         </li>
       );
     }

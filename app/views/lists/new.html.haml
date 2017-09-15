@@ -1,26 +1,35 @@
-.row
-  .col.s12.m9.l6
-    %p.flow-text Add a new list
+.container.u-py-4
+  .Grid
+    .Grid-cell.1-of-4--desk.u-t-align-right
+    .Grid-cell.2-of-4--desk
+      %h2 Add a new list
+      %p.u-t-muted After you have created your list you can add items and tags to it.
 
-    =form_for @new_list do |f|
-      .row
-        .input-field.col.s12
-          =f.text_field :title, class: 'validate'
-          =f.label :title, 'List title'
+  =form_for @list, html: { class: 'Form' } do |f|
+    .Grid
+      .Grid-cell.1-of-4--desk.u-t-align-right
+        =f.label :title, 'List title'
+      .Grid-cell.2-of-4--desk
+        =f.text_field :title
+      .Grid-cell.1-of-4--desk
 
-      .row
-        .input-field.col.s12
-          =f.text_area :description, class: 'materialize-textarea validate'
-          %label{:for => "description"} Add a short description here.
+    .Grid
+      .Grid-cell.1-of-4--desk.u-t-align-right
+        =f.label :description, 'List description'
+      .Grid-cell.2-of-4--desk.u-t-align-right
+        =f.text_area :description
+      .Grid-cell.1-of-4--desk
 
-      .row
-        .switch.col.s12
-          %p
-            =f.check_box :public, checked: true
-            %label{:for => "public"} This is a public list
+    .Grid
+      .Grid-cell.1-of-4--desk
+      .Grid-cell.2-of-4--desk
+        %p
+          =f.check_box :public, checked: true
+          %label{:for => "public"} This is a public list
 
-      .row
-        .col.s12
-          %button.btn.waves-effect.waves-light{:name => "action", :type => "submit"}
-            Create list
-            %i.material-icons.right add_circle_outline
+    .Grid
+      .Grid-cell.1-of-4--desk
+      .Grid-cell.2-of-4--desk
+        %button.Button.Button--withIcon{:name => "action", :type => "submit"}
+          %i.material-icons add
+          Create list

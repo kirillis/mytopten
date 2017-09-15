@@ -1,0 +1,59 @@
+.Tags--list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Tag-wrapper {
+  position: relative;
+}
+
+.Tag {
+  display: inline-block;
+  border-radius: 3px;
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.35);
+  transform: translateY(0);
+  transition: all 150ms;
+}
+
+.Tag:hover {
+  background-color: $c-gamma-light;
+  cursor: pointer;
+  transform: translateY(-2px);
+}
+
+.Tag--detailed {
+  display: inline-block;
+  box-sizing: border-box;
+  color: $white;
+  background-color: $c-gamma;
+  transition: all 100ms ease-in;
+
+  > p {
+    margin-bottom: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.Tag--withButton {
+  padding-right: 40px;
+}
+
+.Tag--isHidden {
+  display: none;
+}
+
+.Tag-removeButton {
+  position: absolute;
+  top: 4px;
+  right: 15px;
+  color: $white;
+  cursor: pointer;
+}

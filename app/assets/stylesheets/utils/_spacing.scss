@@ -1,0 +1,74 @@
+$spacings:
+  ('0', 0),
+  ('02', $base-spacing * 0.2),
+  ('05', $base-spacing * 0.5),
+  ('1', $base-spacing),
+  ('2', $base-spacing * 2),
+  ('3', $base-spacing * 3),
+  ('4', $base-spacing * 4),
+  ('5', $base-spacing * 5),
+  ('6', $base-spacing * 6);
+
+@each $spacinginterval, $spacingvalue in $spacings {
+  .u-mb-#{$spacinginterval} {
+    margin-bottom: $spacingvalue;
+  }
+
+  .u-mt-#{$spacinginterval} {
+    margin-top: $spacingvalue;
+  }
+
+  .u-ml-#{$spacinginterval} {
+    margin-left: $spacingvalue;
+  }
+
+  .u-mr-#{$spacinginterval} {
+    margin-right: $spacingvalue;
+  }
+
+  .u-mx-#{$spacinginterval} {
+    margin-right: $spacingvalue;
+    margin-left: $spacingvalue;
+  }
+
+  .u-my-#{$spacinginterval} {
+    margin-top: $spacingvalue;
+    margin-bottom: $spacingvalue;
+  }
+
+  .u-m-#{$spacinginterval} {
+    margin: $spacingvalue;
+  }
+}
+
+@each $spacinginterval, $spacingvalue in $spacings {
+  .u-pb-#{$spacinginterval} {
+    padding-bottom: $spacingvalue;
+  }
+
+  .u-pt-#{$spacinginterval} {
+    padding-top: $spacingvalue;
+  }
+
+  .u-pl-#{$spacinginterval} {
+    padding-left: $spacingvalue;
+  }
+
+  .u-pr-#{$spacinginterval} {
+    padding-right: $spacingvalue;
+  }
+
+  .u-px-#{$spacinginterval} {
+    padding-right: $spacingvalue;
+    padding-left: $spacingvalue;
+  }
+
+  .u-py-#{$spacinginterval} {
+    padding-top: $spacingvalue;
+    padding-bottom: $spacingvalue;
+  }
+
+  .u-p-#{$spacinginterval} {
+    padding: $spacingvalue;
+  }
+}

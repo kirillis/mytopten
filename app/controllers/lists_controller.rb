@@ -16,13 +16,64 @@ class ListsController < ApplicationController
     end
   end
 
+  def newest
+    @tags = ActsAsTaggableOn::Tag.most_used(20)
+    @lists = List.includes(:user, :list_items, :tags).order(created_at: :desc).limit(50)
+    render "lists/newest"
+  end
+
+  def popular_timeframe
+    @tags = ActsAsTaggableOn::Tag.most_used(20)
+    if params[:timeframe] == 'alltime'
+      @lists = List
+        .published
+        .order(cached_votes_total: :desc)
+        .includes(:user, :list_items, :tags)
+        .limit(50)
+    else
+      @lists = List
+        .published
+        .where('created_at >= ?', 1.public_send(params[:timeframe]).ago)
+        .order(cached_votes_total: :desc)
+        .includes(:user, :list_items, :tags)
+        .limit(50)
+    end
+    render "lists/popular_week"
+  end
+
   def show
+    @lists = List.includes(:user, :list_items, :tags).limit(50)
     @user = User.find_by(name: params[:user_name])
     if @user
       @list = @user.lists.find_by(id: params[:list_id])
     else
       redirect_to root_path, alert: "No such user found."
     end
+
+    if !@list.public and current_user != @user
+      redirect_to root_path, alert: "Nothing to see here."
+    end
+  end
+
+  def toggle_like
+    list = List.find_by(id: params[:list_id])
+    if list and current_user
+      if current_user.voted_up_on? list
+        list.unliked_by current_user
+        liked_status = false
+      else
+        current_user.likes list
+        liked_status = true
+      end
+      payload = { liked: liked_status }
+      status = 200
+    else
+      status = 500
+      payload = { error: 'User or list not found.' }
+    end
+
+    sleep 0.5
+    render json: payload, status: status
   end
 
   def edit
@@ -53,13 +104,17 @@ class ListsController < ApplicationController
   end
 
   def new
-    @new_list = List.new
+    @list = List.new
   end
 
   def create
-    @list = current_user.lists.create(list_params)
-    @list.save
-    redirect_to user_list_path(@list.user.name, @list)
+    @list = current_user.lists.new(list_params)
+    if @list.save
+      redirect_to user_list_path(@list.user.name, @list)
+    else
+      flash[:error] = 'These fields are required.'
+      render 'new'
+    end
   end
 
   def update
@@ -97,10 +152,10 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    if List.find(params[:id]).destroy
-      redirect_to user_lists_path(current_user.name), notice: 'List deleted.'
+    if List.find(params[:list_id]).destroy
+      redirect_to user_path(current_user.name), info: 'List deleted.'
     else
-      redirect_to user_lists_path(current_user.name), alert: 'Error: List not deleted.'
+      redirect_to user_path(current_user.name), info: 'Error: List not deleted.'
     end
   end
 

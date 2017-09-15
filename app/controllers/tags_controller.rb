@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   def index
-    @tags = ActsAsTaggableOn::Tag.all
+    @total_lists_count = List.published.count
+    @tags = ActsAsTaggableOn::Tag.all.order(name: :asc)
   end
 
   def search
@@ -15,6 +16,10 @@ class TagsController < ApplicationController
 
   def show
     @tag_name = params[:tag_name]
-    @lists = List.tagged_with(@tag_name).includes(:user)
+    @lists = List
+      .published
+      .order(cached_votes_total: :desc)
+      .tagged_with(@tag_name)
+      .includes(:user, :list_items)
   end
 end

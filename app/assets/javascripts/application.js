@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require classnames
+//= require toastr
 
 // REACT
 //= require react
@@ -31,7 +32,6 @@
 // VENDOR
 //= require rx.lite
 //= require jquery.elastic.source
-//= require materialize-sprockets
-
+//= require Sortable.min
 
 //= require_tree .

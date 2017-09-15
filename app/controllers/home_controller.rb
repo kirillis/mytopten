@@ -1,7 +1,12 @@
 class HomeController < ApplicationController
 
   def show
-    @lists = List.includes(:user).limit(50)
+    @tags = ActsAsTaggableOn::Tag.most_used(20)
+    @lists = List
+      .published
+      .order(cached_votes_total: :desc)
+      .includes(:user, :list_items, :tags)
+      .limit(50)
   end
 
 end
