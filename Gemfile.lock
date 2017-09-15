@@ -269,7 +269,7 @@ DEPENDENCIES
   vacuum
 
 RUBY VERSION
-   ruby 2.1.0p0
+   ruby 2.2.8p477
 
 BUNDLED WITH
    1.15.4
