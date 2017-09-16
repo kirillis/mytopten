@@ -20,6 +20,10 @@
             =distance_of_time_in_words_to_now(@user.created_at)
 
   .container
+    =link_to user_edit_path(@user.name), class: 'Button Button--withIcon u-mb-5' do
+      %i.material-icons mode_edit
+      Edit your account settings
+
     -unless @lists.empty?
       .Grid
         -@lists.each do |list|

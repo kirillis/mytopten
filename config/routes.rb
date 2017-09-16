@@ -23,6 +23,8 @@ Mytopten::Application.routes.draw do
   # USERS
   get 'register', to: 'users#new', as: 'user_register'
   get ':name', to: 'users#show', as: 'user'
+  get ':name/settings', to: 'users#edit', as: 'user_edit'
+  patch 'users/:id', to: 'users#update', as: 'user_update'
   post :users, to: 'users#create'
 
   # PASSWORD

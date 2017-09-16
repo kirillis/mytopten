@@ -1,0 +1,82 @@
+-unless @user.nil?
+  .u-bg-beta.u-mb-5
+    .container.u-py-2
+
+      .Grid.Grid--flush.u-t-align-center
+        .Grid-cell.1-of-3--handheld-and-up
+          %p.u-m-0.u-t-uppercase
+            Change your settings
+          %h2.u-m-0.u-fw-700
+            =@user.name
+        .Grid-cell.1-of-3--handheld-and-up
+          %p.u-m-0.u-t-uppercase
+            Lists
+          %h2.u-m-0.u-fw-700
+            =@lists.count
+        .Grid-cell.1-of-3--handheld-and-up
+          %p.u-m-0.u-t-uppercase
+            Member since
+          %h2.u-m-0.u-fw-700
+            =distance_of_time_in_words_to_now(@user.created_at)
+
+  .container
+    -if @user.errors.any?
+      .Grid
+        .Grid-cell.1-of-4--desk.u-t-align-right
+          .Grid-cell.2-of-4--desk
+            %h2
+              = pluralize(@user.errors.count, "error")
+              prohibited this user from being saved:
+
+              %ul
+                - @user.errors.full_messages.each do |msg|
+                  %li= msg
+
+    .Grid
+      = form_for @user, url: user_update_path(@user), html: {method: "patch", class: 'Form'} do |f|
+        .Grid
+          .Grid-cell.1-of-4--desk.u-t-align-right
+            = f.label :name
+          .Grid-cell.2-of-4--desk
+            = f.text_field :name, required: true, class: 'validate'
+          .Grid-cell.1-of-4--desk
+
+          .Grid-cell.1-of-4--desk.u-t-align-right
+            = f.label :email
+          .Grid-cell.2-of-4--desk
+            = f.text_field :email, required: true, class: 'validate'
+          .Grid-cell.1-of-4--desk
+
+          .Grid-cell.1-of-4--desk.u-t-align-right
+          .Grid-cell.2-of-4--desk
+            %p.u-t-muted Set a new password:
+          .Grid-cell.1-of-4--desk
+
+          .Grid-cell.1-of-4--desk.u-t-align-right
+            = f.label :password
+          .Grid-cell.2-of-4--desk
+            = f.password_field :password, class: 'validate'
+          .Grid-cell.1-of-4--desk
+
+          .Grid-cell.1-of-4--desk.u-t-align-right
+            = f.label :password_confirmation
+          .Grid-cell.2-of-4--desk
+            = f.password_field :password_confirmation, class: 'validate'
+          .Grid-cell.1-of-4--desk
+
+          .Grid-cell.1-of-4--desk.u-t-align-right
+          .Grid-cell.2-of-4--desk
+            %p.u-t-muted Always enter your current password to save:
+          .Grid-cell.1-of-4--desk
+
+          .Grid-cell.1-of-4--desk.u-t-align-right
+            = f.label :current_password
+          .Grid-cell.2-of-4--desk
+            = f.password_field :current_password, required: true, class: 'validate'
+          .Grid-cell.1-of-4--desk
+
+          .Grid-cell.1-of-4--desk.u-t-align-right
+          .Grid-cell.2-of-4--desk
+            %button{name: 'action', type: 'submit', class: 'Button Button--withIcon'}
+              Save
+              %i.material-icons send
