@@ -15,7 +15,11 @@
 
 -if @tags
   .container
-    .Tags.u-mb-5
-      =render partial: "tags/tag_detailed", collection: @tags
+    #js-react-tagFilterContainer
+      :javascript
+        $(document).ready(function() {
+          window.loadTagFilterView();
+        });
+
 -else
   %p No tags found.

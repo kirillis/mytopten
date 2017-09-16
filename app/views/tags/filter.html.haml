@@ -1,0 +1,26 @@
+.u-bg-beta.u-mb-3
+  .container.u-py-2
+    .Grid
+      .Grid-cell.2-of-3--desk
+        -if @tags
+          %h2="All lists tagged with #{@tags.join(', ')}"
+          %p="We have found #{@lists.size} lists with this tag."
+        -else
+          %h2="All lists you can filter by tags."
+
+-if @all_tags
+  .container
+    #js-react-tagFilterContainer.u-mb-4
+      :javascript
+        $(document).ready(function() {
+          window.loadTagFilterView();
+        });
+
+.container
+  -unless @lists.empty?
+    .Grid
+      -@lists.each do |list|
+        .Grid-cell.1-of-3--desk
+          =render list
+  -else
+    %p No lists created yet.

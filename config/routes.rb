@@ -5,7 +5,7 @@ Mytopten::Application.routes.draw do
 
   # TAGS
   get 'tags', to: 'tags#index', as: 'tags'
-  get 'tags/:tag_name', to: 'tags#show', as: 'tag'
+  get 'tags/filter', to: 'tags#filter', as: 'tag_filter'
   get 'tags/search/:tag_query', to: 'tags#search', as: 'tags_search'
   delete 'lists/:list_id/tag', to: 'lists#remove_tag', as: 'list_tag_remove'
   put 'lists/:list_id/tags', to: 'lists#update_tags', as: 'list_tags_update'

@@ -8,7 +8,7 @@
       %li.MainNav-link
         =link_to 'Newest', lists_newest_path, class: current_page?(lists_newest_path) ? 'is-active' : ''
       %li.MainNav-link
-        =link_to 'Tags', tags_path, class: current_page?(tags_path) ? 'is-active' : ''
+        =link_to 'Tags', tag_filter_path, class: current_page?(tag_filter_path) ? 'is-active' : ''
       %li.MainNav-link
         =link_to 'Search', search_site_path, class: current_page?(search_site_path) ? 'is-active' : ''
 

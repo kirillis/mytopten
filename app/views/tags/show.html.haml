@@ -2,7 +2,7 @@
   .container.u-py-2
     .Grid
       .Grid-cell.2-of-3--desk
-        %h2="All lists tagged with '#{@tag_name}'"
+        %h2="All lists tagged with #{@tags.join(', ')}"
         %p="We have found #{@lists.size} lists with htis tag."
 
 .container

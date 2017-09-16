@@ -6,9 +6,15 @@ App.init = function(listAuthor, listId) {
   });
 };
 
-App.makeFluxStore = function (list) {
+App.initTagFilter = function() {
+  $.getJSON('/' + listAuthor + '/lists/' + listId + '/edit.json', function(data) {
+    App.makeFluxStore(data);
+  });
+};
+
+App.makeFluxStore = function (data) {
   var tempStore = {
-    ListStore: new App.listStore({ list: list })
+    ListStore: new App.listStore({ list: data })
   };
   App.flux = new Fluxxor.Flux(tempStore, App.actions);
   App.renderApp();
@@ -22,7 +28,21 @@ App.renderApp = function() {
   );
 };
 
+App.renderTagFilter = function() {
+  $.getJSON('/tags.json', function(data) {
+
+    ReactDOM.render(
+      <TagFilter tags={data} />,
+      document.getElementById('js-react-tagFilterContainer')
+    );
+  });
+};
+
 window.loadListView = function(listAuthor, listId, currentUser) {
   App.init(listAuthor, listId, currentUser);
+};
+
+window.loadTagFilterView = function() {
+  App.renderTagFilter();
 };
 

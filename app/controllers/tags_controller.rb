@@ -1,7 +1,9 @@
 class TagsController < ApplicationController
   def index
-    @total_lists_count = List.published.count
     @tags = ActsAsTaggableOn::Tag.all.order(name: :asc)
+    respond_to do |format|
+      format.json { render json: @tags }
+    end
   end
 
   def search
@@ -14,12 +16,20 @@ class TagsController < ApplicationController
     end
   end
 
-  def show
-    @tag_name = params[:tag_name]
-    @lists = List
-      .published
-      .order(cached_votes_total: :desc)
-      .tagged_with(@tag_name)
-      .includes(:user, :list_items)
+  def filter
+    @all_tags = ActsAsTaggableOn::Tag.all.order(name: :asc)
+    if params.key?('tags')
+      @tags = Array.new(params[:tags].split(/,/))
+      @lists = List
+        .published
+        .order(cached_votes_total: :desc)
+        .tagged_with(@tags)
+        .includes(:user, :list_items)
+    else
+      @lists = List
+        .published
+        .order(cached_votes_total: :desc)
+        .includes(:user, :list_items, :tags)
+    end
   end
 end
