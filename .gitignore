@@ -39,3 +39,4 @@ _resources/
 
 # node modules
 /node_modules/
+.vscode/launch.json
