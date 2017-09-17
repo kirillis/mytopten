@@ -74,6 +74,7 @@ var TagFilter = React.createClass({
                         </div>
                     </div>
                     <div>{availableTagsList}</div>
+                    <p className="u-t-muted">Click a tag to add it to the filter.</p>
                 </div>
             </div>
         );

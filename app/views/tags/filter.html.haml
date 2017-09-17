@@ -8,10 +8,16 @@
 
 .container
   -unless @lists.empty?
-    %p.u-t-muted="#{@lists.size} lists"
+    %h2
+      %span.u-fw-700="#{@lists.size}"
+      lists
     .Grid
       -@lists.each do |list|
         .Grid-cell.1-of-3--desk
           =render list
   -else
-    %p No lists created yet.
+    %h2
+      No lists found with 
+      %span.u-fw-700 all
+      of these tags.
+    %p You can remove some tags to see better results or try different tag-combinations.
