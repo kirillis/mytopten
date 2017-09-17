@@ -24,14 +24,11 @@ var TagFilter = React.createClass({
     render: function () {
         var activeTagsList = this.state.activeTagsArray.map(function(tag, index) {
             return (
-                <span className="Tag-wrapper">
-                    <span
-                        key={index}
-                        className='Tag Tag--withButton u-p-05 u-bg-gamma u-color-white u-mb-05 u-mr-05'
-                        onClick={this.handleActiveTagClick.bind(this, tag)}>
-                        {tag}
-                    </span>
-                    <i className="Tag-removeButton material-icons">remove_circle</i>
+                <span
+                    key={index}
+                    className='Tag u-p-05 u-bg-gamma u-color-white u-mb-05 u-mr-05'
+                    onClick={this.handleActiveTagClick.bind(this, tag)}>
+                    {tag}
                 </span>
             )
         }.bind(this));
@@ -49,20 +46,35 @@ var TagFilter = React.createClass({
 
         return (
             <div>
-                <div>{activeTagsList}</div>
-                <div className="Grid">
-                    <div className="Grid-cell 1-of-4">
-                        <div className="Form">
-                            <label htmlFor="filter">Filter tags</label>
-                            <input
-                                onChange={this.handleChange}
-                                id="filter"
-                                type="text"
-                                name="filter" />
+
+                <div className="u-bg-beta u-mb-3">
+                    <div className="container u-py-2">
+                        <div className="Grid">
+                            <div className="Grid-cell 2-of-3--desk">
+
+                                <h2>{activeTagsList.length > 0 ? 'Filtering for these tags' : 'Filter all lists by tags.'}</h2>
+                                <div>{activeTagsList.length > 0 ? activeTagsList : 'Click a tag to start filtering.'}</div>
+                                <p className="u-t-muted">{activeTagsList.length === 0 ? '' : 'Click a tag to remove it from the filter.'}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div>{availableTagsList}</div>
+
+                <div className="container">
+                    <div className="Grid">
+                        <div className="Grid-cell 1-of-4">
+                            <div className="Form">
+                                <label htmlFor="filter">Search all tags for:</label>
+                                <input
+                                    onChange={this.handleChange}
+                                    id="filter"
+                                    type="text"
+                                    name="filter" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>{availableTagsList}</div>
+                </div>
             </div>
         );
     }
