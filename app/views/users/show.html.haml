@@ -1,5 +1,5 @@
 -unless @user.nil?
-  .u-bg-beta.u-mb-5
+  .u-bg-beta.u-mb-3
     .container.u-py-2
 
       .Grid.Grid--flush.u-t-align-center
@@ -20,9 +20,11 @@
             =distance_of_time_in_words_to_now(@user.created_at)
 
   .container
-    =link_to user_edit_path(@user.name), class: 'Button Button--withIcon u-mb-5' do
-      %i.material-icons mode_edit
-      Edit your account settings
+    -if current_user and current_user.id === @user.id
+      .u-mb-3
+        =link_to user_edit_path(@user.name), class: 'Button Button--withIcon' do
+          %i.material-icons mode_edit
+          Edit your account settings
 
     -unless @lists.empty?
       .Grid
