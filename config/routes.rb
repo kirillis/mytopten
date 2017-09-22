@@ -3,6 +3,8 @@ Mytopten::Application.routes.draw do
   # ROOT
   root 'home#show'
 
+  get 'qwant', to: 'qwant#show'
+
   # TAGS
   get 'tags', to: 'tags#index', as: 'tags'
   get 'tags/filter', to: 'tags#filter', as: 'tag_filter'
