@@ -13,7 +13,7 @@
     =link_to user_list_path(list.user.name, list), class: 'ListTeaser-images' do
       -list.list_items.each_with_index do |item, index|
         -break if index > 2
-        %img{ src: "#{item.image_thumb}", class: "ListTeaser-image ListTeaser-image--#{index}" }
+        %img{ src: "#{item.image_thumb_url}", class: "ListTeaser-image ListTeaser-image--#{index}" }
 
   .u-p-1
     -list.list_items.each_with_index do |item, index|
