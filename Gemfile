@@ -15,7 +15,6 @@ gem 'sorcery'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'materialize-sass'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-gem 'paperclip'
 gem 'aws-sdk', '~> 1.6'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'inline_svg', '1.1.0'
