@@ -3,7 +3,7 @@ class ListItemSerializer < ActiveModel::Serializer
              :title,
              :description,
              :rank,
-             :image_large,
-             :image_thumb,
+             :image_large_url,
+             :image_thumb_url,
              :link
 end
