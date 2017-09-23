@@ -27,16 +27,16 @@ var ListItemAdd = React.createClass({
             title: '',
             description: '',
             link: '',
-            imageUrl: 'http://placehold.it/350x150',
-            hasChanged: false,
-            csrfToken: $('meta[name=csrf-token]').attr('content')
+            image_thumb_url: '',
+            image_large_url: '',
+            hasChanged: false
         };
     },
 
-    descriptionChange: function (event) {
+    descriptionChange: function (text) {
         this.setState({
             hasChanged: true,
-            description: event.target.value
+            description: text
         });
     },
 
@@ -57,50 +57,33 @@ var ListItemAdd = React.createClass({
     imageUrlChange: function (event) {
         this.setState({
             hasChanged: true,
-            imageUrl: event.target.value
+            image_thumb_url: event.target.value
         });
     },
 
-    handleImagePicked: function (imageUrl) {
-        console.log('handleImagePicked', imageUrl);
+    handleImagePicked: function (image_thumb_url, image_large_url) {
         this.setState({
             hasChanged: true,
-            imageUrl: imageUrl
+            image_thumb_url: image_thumb_url,
+            image_large_url: image_large_url,
         });
     },
 
     handleAddItemClick: function (event) {
         event.preventDefault();
         if (!this.isValid()) {
-            console.log('no valid');
+            toastr.warning('Please fill out all required fields.');
             return;
         }
-        console.log('valid');
 
-        var self = this;
-        var form = this.refs.uploadForm;
-        formData = new FormData(form);
-        App.setLoadingState(true);
-
-        $.ajax({
-            url: '/list_items/',
-            method: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false
-        }).done(function (data) {
-            self.getFlux().actions.listItem.addToUiOnly(data);
-            self.setState({
-                title: '',
-                description: '',
-                link: '',
-                imageUrl: '',
-                hasChanged: false,
-            });
-        }).fail(function () {
-            console.error('Error adding new list item.');
-        }).always(function () {
-            App.setLoadingState(false);
+        this.getFlux().actions.listItem.add(this.state);
+        this.seState({
+            title: '',
+            description: '',
+            link: '',
+            image_thumb_url: '',
+            image_large_url: '',
+            hasChanged: false
         });
     },
 
@@ -108,21 +91,7 @@ var ListItemAdd = React.createClass({
         return (
             <div className="ListItemAdd u-p-2 u-border-beta">
                 <h2>Add new item</h2>
-                <form ref='uploadForm' className='Form'>
-
-                    <input
-                        name='list_id'
-                        className='u-d-none'
-                        value={this.props.listId}
-                        readOnly
-                    />
-
-                    <input
-                        name='authenticity_token'
-                        className='u-d-none'
-                        value={this.state.csrfToken}
-                        readOnly
-                    />
+                <div className='Form'>
 
                     <label htmlFor='title'>Title</label>
                     <input
@@ -134,11 +103,10 @@ var ListItemAdd = React.createClass({
                     />
 
                     <label htmlFor='description'>Description</label>
-                    <textarea
-                        name='description'
-                        rows='4'
-                        onChange={this.descriptionChange}
-                    />
+                    <QuillEditor 
+                        elementId='list-item-add'
+                        text={ this.state.description }
+                        handleInput={ this.descriptionChange } />
 
                     <label htmlFor='link'>Link</label>
                     <input
@@ -147,23 +115,28 @@ var ListItemAdd = React.createClass({
                         onChange={this.linkChange}
                     />
 
-                    <img src={this.state.imageUrl} />
+                    <img src={this.state.image_thumb_url} /><br/>
 
                     <label htmlFor='image_url'>Image URL</label>
-                    <input
-                        type='text'
-                        name='image_url'
-                        value={this.state.imageUrl}
-                        onChange={this.imageUrlChange}
-                    />
-
-                    <ImageSearch onImagePicked={this.handleImagePicked}/>
+                    <div className="Grid">
+                        <div className="Grid-cell 3-of-4">
+                            <input
+                                type='text'
+                                name='image_url'
+                                value={this.state.image_thumb_url}
+                                onChange={this.imageUrlChange}
+                            />
+                        </div>
+                        <div className="Grid-cell 1-of-4">
+                            <ImageSearch onImagePicked={this.handleImagePicked}/>
+                        </div>
+                    </div>
 
                     <button className="Button Button--withIcon" onClick={this.handleAddItemClick}>
                         <i className="material-icons">add</i>
                         Add to list
                     </button>
-                </form>
+                </div>
             </div>
         );
     }

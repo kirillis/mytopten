@@ -48,7 +48,7 @@ var ImageSearch = React.createClass({
     },
 
     imageClicked: function(image) {
-        this.props.onImagePicked(image.thumbnail);
+        this.props.onImagePicked(image.thumbnail, image.media_fullsize);
         this.setState({isOpen: false});
     },
 
@@ -66,7 +66,7 @@ var ImageSearch = React.createClass({
     },
 
     render: function () {
-        var classes = classNames('Qwant', {
+        var classes = classNames('Qwant Form', {
             'is-active': this.state.isOpen
         });
 
@@ -74,14 +74,24 @@ var ImageSearch = React.createClass({
 
         return (
             <div>
-                <div onClick={this.openCloseClickHandler}>Open search images</div>
+                <div onClick={this.openCloseClickHandler} className="Button Button--withIcon">
+                    <i className="material-icons">add_to_photos</i>
+                    Imagesearch
+                </div>
                 <div className={classes}>
                     <input
+                        type='text'
                         placeholder="Search..."
                         onKeyUp={ this.handleKeyUp }
                         />
-                    <div onClick={this.searchImages}>Search</div>
-                    <div onClick={this.openCloseClickHandler}>Close</div>
+                    <div onClick={this.searchImages} className="Button Button--withIcon">
+                        <i className="material-icons">search</i>
+                        Search
+                    </div>
+                    <div onClick={this.openCloseClickHandler} className="Button Button--withIcon">
+                        <i className="material-icons">close</i>
+                        Close
+                    </div>
                     <div className="Qwant__results">
                         { resultsList }
                     </div>

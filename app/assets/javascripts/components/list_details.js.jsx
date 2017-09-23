@@ -81,6 +81,7 @@ var ListDetails = React.createClass({
 
           <label htmlFor="description">Description</label>
           <QuillEditor 
+            elementId='list-details'
             text={ this.props.description }
             handleInput={ this.handleQuillInput } />
 
