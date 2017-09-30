@@ -48,3 +48,6 @@ end
 # gem 'debugger', group: [:development, :test]
 
 ruby '2.2.8'
+
+# Added at 2017-09-29 16:07:57 +0200 by krisimmig:
+gem "kaminari", "~> 1.0"
