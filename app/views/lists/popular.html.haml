@@ -1,6 +1,12 @@
-.u-bg-grad-mint.u-mb-5
+=content_for :page_title do
+  Popular Lists
+
+.u-mb-2
   .container.u-py-2
-    %h2 Popular tags right now
+    %h2.u-mb-2
+      Popular tags
+      = link_to tag_filter_path, title: 'Filter by tag' do
+        =inline_svg('filter.svg', {class: 'Icon u-ml-05'})
     -if @tags
       =render partial: "tags/tag", collection: @tags
     -else
@@ -8,20 +14,16 @@
 
 .container
   %h2
-    Popular lists of 
-    %span.u-color-grey-med
-      =link_to 'alltime', lists_popular_timeframe_path('alltime'), class: "#{params[:timeframe] == 'alltime' ? 'u-fw-700' : 'u-color-grey-med'}"
-      &ndash; 
-      =link_to 'this year', lists_popular_timeframe_path('year'), class: "#{params[:timeframe] == 'year' ? 'u-fw-700' : 'u-color-grey-med'}"
-      &ndash; 
-      =link_to 'this month', lists_popular_timeframe_path('month'), class: "#{params[:timeframe] == 'month' ? 'u-fw-700' : 'u-color-grey-med'}"
-      &ndash; 
-      =link_to 'this week', lists_popular_timeframe_path('week'), class: "#{params[:timeframe] == 'week' ? 'u-fw-700' : 'u-color-grey-med'}"
+    Popular lists
+    =link_to 'alltime', lists_popular_timeframe_path('alltime'), class: @timeframe == 'alltime' ? 'Button' : 'Button Button--inactive'
+    =link_to 'this year', lists_popular_timeframe_path('year'), class: @timeframe == 'year' ? 'Button' : 'Button Button--inactive'
+    =link_to 'this month', lists_popular_timeframe_path('month'), class: @timeframe == 'month' ? 'Button' : 'Button Button--inactive'
+    =link_to 'this week', lists_popular_timeframe_path('week'), class: @timeframe == 'week' ? 'Button' : 'Button Button--inactive'
 
   -unless @lists.empty?
     .Grid
       -@lists.each do |list|
-        .Grid-cell.1-of-3--desk
+        .Grid-cell.1-of-4--desk
           =render list
   -else
     %p No lists created yet.

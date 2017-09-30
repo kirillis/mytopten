@@ -1,41 +1,38 @@
-.ListTeaser.u-mb-3
+=link_to user_list_path(list.user.name, list) do
+  .ListTeaser.u-mb-3
+    .ListTeaser-text
+      .u-p-1.u-t-align-center=list.title
 
-  .ListTeaser-text.u-bg-beta
-    .u-p-1.u-t-align-center
-      =link_to list.title, user_list_path(list.user.name, list), class: 'h3 u-d-inline-block u-fw-100'
-
-  -if current_user == list.user
-    =link_to user_list_edit_path(current_user.name, list), class: 'u-bg-grey-light u-p-05 u-d-block u-t-align-center' do
-      %i.material-icons mode_edit
-      Edit this list
-
-  .u-m-1
-    =link_to user_list_path(list.user.name, list), class: 'ListTeaser-images' do
+    .u-m-1
       -list.list_items.each_with_index do |item, index|
         -break if index > 2
         %img{ src: "#{item.image_thumb_url}", class: "ListTeaser-image ListTeaser-image--#{index}" }
 
-  .u-p-1
-    -list.list_items.each_with_index do |item, index|
-      -break if index > 2
-      %p
-        %span.u-fw-700
-          =index+1
-        %span.u-t-muted &#124;
-        =item.title
-    =link_to user_list_path(list.user.name, list), class: 'u-t-muted u-t-align-center u-d-block' do
+    .u-p-1
+      -list.list_items.each_with_index do |item, index|
+        -break if index > 2
+        %p
+          %span.u-fw-700
+            =index+1
+          %span.u-t-muted &#124;
+          =item.title
       -if list.list_items.count-3 != 0
         %span.u-fw-700
           =list.list_items.count-3
         more items
 
-    .u-mt-2.u-t-align-center
-      =render :partial => 'tags/tag_small', :collection => list.tags
+      .u-mt-2.u-t-align-center
+        =render :partial => 'tags/tag_small', :collection => list.tags
 
-  .u-bg-grey-light.u-p-1
-    %p.u-t-muted.u-t-align-center
-      =inline_svg 'heart.svg', class: 'Icon Icon--heart'
-      ="#{list.cached_votes_total} "
-      &ndash; 
-      =distance_of_time_in_words_to_now(list.created_at)
-      ago by #{ link_to "#{list.user.name}", user_path(list.user.name), class: 'u-fw-700'}
+    .u-p-1
+      %p.u-t-muted.u-t-align-center
+        =inline_svg 'heart.svg', class: 'Icon Icon--heart'
+        ="#{list.cached_votes_total} "
+        &ndash; 
+        =distance_of_time_in_words_to_now(list.created_at)
+        ago by #{ link_to "#{list.user.name}", user_path(list.user.name), class: 'u-fw-700'}
+
+-if current_user == list.user
+  =link_to user_list_edit_path(current_user.name, list), class: 'u-p-05 u-d-block u-t-align-center' do
+    %i.material-icons mode_edit
+    Edit this list

@@ -1,6 +1,12 @@
-.u-bg-grad-mint.u-mb-5
+=content_for :page_title do
+  Popular Alltime
+
+.u-mb-2
   .container.u-py-2
-    %h2 Popular tags right now
+    %h2.u-mb-2
+      Popular tags
+      = link_to tag_filter_path, title: 'Filter by tag' do
+        =inline_svg('filter.svg', {class: 'Icon u-c-blue u-ml-05'})
     -if @tags
       =render partial: "tags/tag", collection: @tags
     -else
@@ -9,18 +15,14 @@
 .container
   -unless @lists.empty?
     %h2 
-      Popular lists of 
-      %span.u-color-grey-med
-        =link_to 'alltime', lists_popular_timeframe_path('alltime'), class: 'u-fw-700'
-        &ndash; 
-        =link_to 'this year', lists_popular_timeframe_path('year'), class: 'u-color-grey-med'
-        &ndash; 
-        =link_to 'this month', lists_popular_timeframe_path('month'), class: 'u-color-grey-med'
-        &ndash; 
-        =link_to 'this week', lists_popular_timeframe_path('week'), class: 'u-color-grey-med'
+      Popular lists
+      =link_to 'alltime', lists_popular_timeframe_path('alltime'), class: 'Button'
+      =link_to 'this year', lists_popular_timeframe_path('year'), class: 'Button Button--inactive'
+      =link_to 'this month', lists_popular_timeframe_path('month'), class: 'Button Button--inactive'
+      =link_to 'this week', lists_popular_timeframe_path('week'), class: 'Button Button--inactive'
     .Grid
       -@lists.each do |list|
-        .Grid-cell.1-of-3--desk
+        .Grid-cell.1-of-4--desk
           =render list
 
     .Grid
