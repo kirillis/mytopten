@@ -6,7 +6,7 @@
     %h2.u-mb-2
       Popular tags
       = link_to tag_filter_path, title: 'Filter by tag' do
-        =inline_svg('filter.svg', {class: 'Icon u-ml-05'})
+        =inline_svg('filter.svg', {class: 'Icon u-c-blue u-ml-05'})
     -if @tags
       =render partial: "tags/tag", collection: @tags
     -else
