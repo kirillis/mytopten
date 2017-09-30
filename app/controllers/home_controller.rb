@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       .published
       .order(cached_votes_total: :desc)
       .includes(:user, :list_items, :tags)
-      .limit(50)
+      .page params[:page]
   end
 
 end

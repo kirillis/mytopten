@@ -30,6 +30,7 @@ class TagsController < ApplicationController
         .published
         .order(cached_votes_total: :desc)
         .includes(:user, :list_items, :tags)
+        .limit(30)
     end
   end
 end

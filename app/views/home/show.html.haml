@@ -22,5 +22,10 @@
       -@lists.each do |list|
         .Grid-cell.1-of-3--desk
           =render list
+
+    .Grid
+      .Grid-cell.1-of-3--desk
+        = paginate @lists
+
   -else
     %p No lists created yet.

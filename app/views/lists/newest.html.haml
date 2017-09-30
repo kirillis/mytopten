@@ -1,7 +1,7 @@
 .u-bg-grad-mint.u-mb-5
   .container.u-py-2
     .Grid
-      .Grid-cell.2-of-3--desk
+      .Grid-cell
         %h2 Popular tags right now
         -if @tags
           =render partial: "tags/tag", collection: @tags
@@ -16,5 +16,10 @@
       -@lists.each do |list|
         .Grid-cell.1-of-3--desk
           =render list
+
+    .Grid
+      .Grid-cell.1-of-3--desk
+        = paginate @lists
+
   -else
     %p No lists created yet.

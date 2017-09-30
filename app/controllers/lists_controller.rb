@@ -18,7 +18,10 @@ class ListsController < ApplicationController
 
   def newest
     @tags = ActsAsTaggableOn::Tag.most_used(20)
-    @lists = List.includes(:user, :list_items, :tags).order(created_at: :desc).limit(50)
+    @lists = List
+      .includes(:user, :list_items, :tags)
+      .order(created_at: :desc)
+      .page params[:page]
     render "lists/newest"
   end
 
@@ -29,20 +32,23 @@ class ListsController < ApplicationController
         .published
         .order(cached_votes_total: :desc)
         .includes(:user, :list_items, :tags)
-        .limit(50)
+        .page params[:page]
     else
       @lists = List
         .published
         .where('created_at >= ?', 1.public_send(params[:timeframe]).ago)
         .order(cached_votes_total: :desc)
         .includes(:user, :list_items, :tags)
-        .limit(50)
+        .page params[:page]
     end
-    render "lists/popular_week"
+    render "lists/popular"
   end
 
   def show
-    @lists = List.includes(:user, :list_items, :tags).limit(50)
+    @lists = List
+      .includes(:user, :list_items, :tags)
+      .order(cached_votes_total: :desc)
+      .limit(10)
     @user = User.find_by(name: params[:user_name])
     if @user
       @list = @user.lists.find_by(id: params[:list_id])
