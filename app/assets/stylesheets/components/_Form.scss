@@ -7,7 +7,7 @@
     box-sizing: border-box;
     width: 100%;
     padding: 0.5rem 0.8rem 0.3rem;
-    border: 1px solid $grey-med;
+    border: 1px solid $grey;
     border-radius: 0;
     background-color: $white;
     transition: border-color 100ms ease-in;
@@ -18,7 +18,7 @@
     line-height: 1.6;
 
     &:focus {
-      border-color: $c-gamma-light;
+      border-color: $blue;
       outline: none;
     }
   }
@@ -40,7 +40,7 @@
   .field_with_errors {
     input,
     textarea {
-    border-color: $red;
+    border-color: $blue;
     }
   }
 }

@@ -4,25 +4,25 @@
 }
 
 .toast {
-  background-color: $yellow;
+  background-color: $blue;
 }
 
 .toast-success {
-  background-color: $mint;
+  background-color: $blue;
 
   .toast-message {
-    color: $blue-dark;
+    color: $blue;
   }
 }
 
 .toast-error {
-  background-color: $red;
+  background-color: $blue;
 }
 
 .toast-info {
-  background-color: $blue-light;
+  background-color: $blue;
 }
 
 .toast-warning {
-  background-color: $blue-dark;
+  background-color: $blue;
 }

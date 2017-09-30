@@ -12,14 +12,15 @@
 
 .Tag {
   display: inline-block;
-  border-radius: 3px;
+  border-radius: 2px;
   box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.35);
   transform: translateY(0);
   transition: all 150ms;
+  color: rgba($white, 0.91);
 }
 
 .Tag:hover {
-  background-color: $c-gamma-light;
+  background-color: $blue;
   cursor: pointer;
   transform: translateY(-2px);
 }
@@ -28,7 +29,7 @@
   display: inline-block;
   box-sizing: border-box;
   color: $white;
-  background-color: $c-gamma;
+  background-color: $blue;
   transition: all 100ms ease-in;
 
   > p {

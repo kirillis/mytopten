@@ -45,12 +45,12 @@
   left: 0;
   transform: translateY(-50%);
   border: none;
-  background-color: $c-beta;
+  background-color: $blue;
   box-shadow: none;
   cursor: pointer;
 
   &:hover {
-    background-color: $c-gamma;
+    background-color: $blue;
     color: $white;
   }
 }

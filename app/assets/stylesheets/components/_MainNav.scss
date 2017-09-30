@@ -7,7 +7,6 @@
 
 .MainNav-logo svg {
   width: 230px;
-  fill: $c-gamma;
 }
 
 .MainNav-links {
@@ -16,25 +15,41 @@
 
 .MainNav-link {
   display: block;
-  margin-left: 10px;
+  position: relative;
+  margin-left: 15px;
+  padding-right: 15px;
 
   > a {
-    color: $c-gamma;
-    text-decoration: none;
-    font-weight: 300;
+    color: $black;
     padding-left: 40px;
-    font-size: 17px;
-    // border-bottom: 1px solid transparent;
     padding: 5px;
+    font-weight: 300;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
 
     &.is-active {
-      // border-color: $black;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     &:hover {
-      // color: $green;
-      border-color: $black;
+      color: $blue;
     }
+  }
+
+  &:after {
+    content: '';
+    background-color: $grey-dark;
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    right: 0;
+    top: -2px;
+    opacity: 0.4;
+  }
+
+  &:last-child:after {
+    display: none;
   }
 }
