@@ -27,7 +27,8 @@ class ListsController < ApplicationController
 
   def popular_timeframe
     @tags = ActsAsTaggableOn::Tag.most_used(20)
-    if params[:timeframe] == 'alltime'
+    @timeframe = params[:timeframe]
+    if @timeframe == 'alltime'
       @lists = List
         .published
         .order(cached_votes_total: :desc)
@@ -36,7 +37,7 @@ class ListsController < ApplicationController
     else
       @lists = List
         .published
-        .where('created_at >= ?', 1.public_send(params[:timeframe]).ago)
+        .where('created_at >= ?', 1.public_send(@timeframe).ago)
         .order(cached_votes_total: :desc)
         .includes(:user, :list_items, :tags)
         .page params[:page]
