@@ -7,6 +7,7 @@ class HomeController < ApplicationController
       .order(cached_votes_total: :desc)
       .includes(:user, :list_items, :tags)
       .page params[:page]
+    render "lists/popular"
   end
 
 end
