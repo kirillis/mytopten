@@ -1,11 +1,11 @@
 -if current_user
-  %p.Likebutton.u-d-inline-block.js-likebutton{ data: { list_id: @list.id }, class: ('Likebutton--has-liked' if current_user.voted_up_on? @list) }
+  %p.Likebutton.u-d-inline-block.Button.js-likebutton{ data: { list_id: @list.id }, class: ('Likebutton--has-liked' if current_user.voted_up_on? @list) }
     =inline_svg 'heart.svg', class: 'Icon Icon--heart Likebutton__icon'
     %span.js-likebutton-count=@list.cached_votes_total
     likes
 
 -else
-  %p.Likebutton.u-d-inline-block.js-likebutton
+  %p.Likebutton.u-d-inline-block.js-likebutton.Button
     =inline_svg 'heart.svg', class: 'Icon Icon--heart Likebutton__icon'
     %span=@list.cached_votes_total
     likes

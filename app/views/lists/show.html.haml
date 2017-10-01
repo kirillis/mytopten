@@ -1,3 +1,6 @@
+=content_for :page_title do
+  =@list.title
+
 .container
   .Grid
     .Grid-cell.2-of-3--desk
@@ -6,24 +9,24 @@
           .List-header.u-mb-3
             .List-title.u-pb-2.u-pt-1.u-t-align-center.u-fw-100.u-color-gamma=@list.title
             %p.List-subtitle.u-t-align-center.u-fw-100
-              %strong
-                =@list.created_at.strftime('%d %B %Y')
-              &mdash; by
-              %span.u-fw-700
+              =@list.created_at.strftime('%d %B %Y')
+              , by
+              %span.u-fw-700.u-c-black
                 =link_to @user.name, user_path(@user.name)
 
               -if current_user == @user
                 .u-t-align-center.u-mb-3
                   =link_to 'Edit this list', user_list_edit_path(current_user.name, @list), class: 'Button'
 
-            .List-description.u-fw-100.u-t-align-center.u-pb-2=@list.description.html_safe
-
-            .u-t-align-center  
-              =render partial: "lists/likebutton", locals: { list: @list}
-
             -if @list.tags
               .u-t-align-center
                 =render partial: "tags/tag", collection: @list.tags
+
+            .u-t-align-center.u-mt-2
+              =render partial: "lists/likebutton", locals: { list: @list}
+
+            .List-description.u-fw-100.u-pb-2=@list.description.html_safe
+
           
           .List-itemsContainer
             =render partial: "lists/list_item", collection: @list.list_items
@@ -34,7 +37,8 @@
 
     .Grid-cell.1-of-3--desk
       .u-p-1.u-mt-4
-        =render @lists
+        %h2 Similar lists
+        =render partial: "lists/list", collection: @lists, locals: { mod: 'small'}
 
 .u-mt-5
   .container

@@ -1,38 +1,36 @@
-=link_to user_list_path(list.user.name, list) do
-  .ListTeaser.u-mb-3
+.ListTeaser.u-mb-3.u-mx-05{ class: (defined? mod) ? "ListTeaser--#{mod}" : '' }
+  =link_to user_list_path(list.user.name, list) do
     .ListTeaser-text
-      .u-p-1.u-t-align-center=list.title
+      .u-ff-ptsans.u-pt-2.u-pb-1.u-t-align-center=list.title
 
-    .u-m-1
+    .ListTeaser-imageWrapper
+      .u-m-1.u-d-flex.u-f-space-between.u-f-align-center
+        -list.list_items.each_with_index do |item, index|
+          -break if index > 2
+          %div.ListTeaser-image
+            %img{ src: "#{item.image_thumb_url}" }
+
+    .ListTeaser-items.u-ff-ptsans.u-p-1
       -list.list_items.each_with_index do |item, index|
         -break if index > 2
-        %img{ src: "#{item.image_thumb_url}", class: "ListTeaser-image ListTeaser-image--#{index}" }
-
-    .u-p-1
-      -list.list_items.each_with_index do |item, index|
-        -break if index > 2
-        %p
-          %span.u-fw-700
+        .u-d-flex
+          .ListTeaser-number.u-ff-open.u-fw-700.u-t-align-center
             =index+1
-          %span.u-t-muted &#124;
-          =item.title
-      -if list.list_items.count-3 != 0
+          %p.u-ml-1=item.title
+
+  .ListTeaser-metabox.u-bg-blue.u-t-align-center.u-pt-1
+    -if list.list_items.count-3 != 0
+      =link_to user_list_path(list.user.name, list), class: 'ListTeaser-moreLink' do
         %span.u-fw-700
           =list.list_items.count-3
         more items
 
-      .u-mt-2.u-t-align-center
-        =render :partial => 'tags/tag_small', :collection => list.tags
+    .u-mt-1.u-t-align-center
+      =render :partial => 'tags/tag_small', :collection => list.tags
 
-    .u-p-1
-      %p.u-t-muted.u-t-align-center
+    .u-d-flex.u-f-space-between.u-p-1.u-c-white
+      %p.u-m-0
         =inline_svg 'heart.svg', class: 'Icon Icon--heart'
         ="#{list.cached_votes_total} "
-        &ndash; 
-        =distance_of_time_in_words_to_now(list.created_at)
-        ago by #{ link_to "#{list.user.name}", user_path(list.user.name), class: 'u-fw-700'}
-
--if current_user == list.user
-  =link_to user_list_edit_path(current_user.name, list), class: 'u-p-05 u-d-block u-t-align-center' do
-    %i.material-icons mode_edit
-    Edit this list
+      %p.u-m-0
+        by #{ link_to "#{list.user.name}", user_path(list.user.name), class: 'u-fw-700'}

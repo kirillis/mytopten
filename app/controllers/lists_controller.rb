@@ -46,16 +46,20 @@ class ListsController < ApplicationController
   end
 
   def show
-    @lists = List
-      .includes(:user, :list_items, :tags)
-      .order(cached_votes_total: :desc)
-      .limit(10)
+    # @lists = List
+    #   .includes(:user, :list_items, :tags)
+    #   .order(cached_votes_total: :desc)
+    #   .limit(10)
     @user = User.find_by(name: params[:user_name])
     if @user
       @list = @user.lists.find_by(id: params[:list_id])
     else
       redirect_to root_path, alert: "No such user found."
     end
+
+    @lists = @list
+      .find_related_tags
+      .includes(:user, :list_items, :tags)
 
     if !@list.public and current_user != @user
       redirect_to root_path, alert: "Nothing to see here."

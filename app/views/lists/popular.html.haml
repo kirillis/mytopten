@@ -13,7 +13,7 @@
       %p No tags found.
 
 .container
-  %h2
+  %h2.u-mb-2
     Popular lists
     =link_to 'alltime', lists_popular_timeframe_path('alltime'), class: @timeframe == 'alltime' ? 'Button' : 'Button Button--inactive'
     =link_to 'this year', lists_popular_timeframe_path('year'), class: @timeframe == 'year' ? 'Button' : 'Button Button--inactive'
@@ -21,7 +21,7 @@
     =link_to 'this week', lists_popular_timeframe_path('week'), class: @timeframe == 'week' ? 'Button' : 'Button Button--inactive'
 
   -unless @lists.empty?
-    .Grid
+    .Grid.Grid--flush
       -@lists.each do |list|
         .Grid-cell.1-of-4--desk
           =render list

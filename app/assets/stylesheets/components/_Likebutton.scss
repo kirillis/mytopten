@@ -10,20 +10,29 @@
     opacity: 0.6;
     pointer-events: none;
   }
+
+  &:hover.Likebutton--has-liked .Likebutton__icon.Icon #fill {
+    fill: $white;
+  }
+
+  &:hover .Likebutton__icon.Icon #border {
+    fill: $white;
+  }
 }
 
 .Likebutton__icon.Icon {
   width: 22px;
+  margin-bottom: -2px;
 
   #fill {
     fill: transparent;
 
     .Likebutton--has-liked & {
-      fill: $black;
+      fill: $blue;
     }
   }
 
   #border {
-    fill: $black;
+    fill: $blue;
   }
 }

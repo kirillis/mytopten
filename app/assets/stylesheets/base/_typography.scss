@@ -4,7 +4,7 @@ body {
 }
 
 ::selection {
-  background: $blue;
+  background: rgba($blue, 0.5);
 }
 
 p {

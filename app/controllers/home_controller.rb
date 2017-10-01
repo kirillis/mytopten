@@ -8,6 +8,7 @@ class HomeController < ApplicationController
       .includes(:user, :list_items, :tags)
       .page params[:page]
 
+    @timeframe = 'alltime'
     render "lists/popular"
   end
 
