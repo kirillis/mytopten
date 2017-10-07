@@ -56,6 +56,16 @@
   }
 }
 
+.Tag__prefix {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+
+.Tag__content {
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
 .Tag--withButton {
   padding-right: 40px;
 }
