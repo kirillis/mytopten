@@ -18,7 +18,7 @@
             =index+1
           %p.u-ml-1=item.title
 
-  .ListTeaser-metabox.u-bg-blue.u-t-align-center.u-pt-1
+  .ListTeaser-metabox.u-bg-blue.u-t-align-center.u-pt-1.u-px-05
     -if list.list_items.count-3 != 0
       =link_to user_list_path(list.user.name, list), class: 'ListTeaser-moreLink' do
         %span.u-fw-700
