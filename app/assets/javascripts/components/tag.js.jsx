@@ -14,8 +14,8 @@ var Tag = React.createClass({
     this.props.addClickHandler(event, this.props.data);
   },
 
-  handleFilterClick: function (event) {
-    this.props.addFilterHandler(event, this.props.data);
+  tagClickHandler: function (event) {
+    this.props.tagClickHandler(event, this.props.data);
   },
 
   handleRemoveClick: function (event) {
@@ -27,7 +27,7 @@ var Tag = React.createClass({
 
   renderTag: function () {
     var classes = classNames(
-      'Tag u-p-05 u-bg-gamma u-color-white u-mb-05 u-mr-05', {
+      'Tag u-p-05 u-bg-gamma u-color-white u-mb-2 u-mr-05', {
         'Tag--withButton': !this.props.isSuggestion,
         'Tag--suggestion': this.props.isSuggestion,
         'Tag--isHidden': this.state.isHidden,
@@ -39,13 +39,19 @@ var Tag = React.createClass({
           {this.props.data.name} <span className="u-t-muted">({this.props.data.taggings_count})</span>
         </li>
       );
-    } else if (this.props.type === 'filter') {
+    } else if (this.props.type === 'add') {
       return (
-        <span onClick={this.handleFilterClick}>
-          <span className='Tag u-p-05 u-bg-gamma u-color-white u-mb-05 u-mr-05'>
-            {this.props.data.name}
-          </span>
-        </span>
+        <div className='Tag Tag--add u-c-white u-mb-1 u-mr-05' onClick={this.tagClickHandler}>
+          <div className="Tag__prefix u-d-inline-block u-bg-blue-light u-px-05 u-py-05 u-fw-700">+</div>
+          <div className="Tag__content u-d-inline-block u-bg-blue u-pl-05 u-px-1 u-py-05">{this.props.data.name}</div>
+        </div>
+      );
+    } else if (this.props.type === 'remove') {
+      return (
+        <div className='Tag Tag--add u-c-white u-mb-1 u-mr-05' onClick={this.tagClickHandler}>
+          <div className="Tag__prefix u-d-inline-block u-bg-blue-light u-px-05 u-py-05 u-fw-700">&ndash;</div>
+          <div className="Tag__content u-d-inline-block u-bg-blue u-pl-05 u-px-1 u-py-05">{this.props.data.name}</div>
+        </div>
       );
     } else {
       return (
