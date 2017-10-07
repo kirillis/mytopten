@@ -1,23 +1,22 @@
+=content_for :page_title do
+  Filter all lists
+
 -if @all_tags
-  #js-react-tagFilterContainer.u-mb-4
+  #js-react-tagFilterContainer.u-mb-1
     :javascript
       $(document).ready(function() {
         window.loadTagFilterView();
       });
 
-
 .container
-  -unless @lists.empty?
-    %h2
-      %span.u-fw-700="#{@lists.size}"
-      lists
-    .Grid
+  .Grid.Grid--flush
+    -if @lists.empty?
+      .Grid-cell
+        .u-bg-blue-light.u-c-white.u-t-align-center.u-py-3.u-px-2.u-fw-100.u-br-3
+          %span.u-fw-700 No lists with these tags found.
+          You can remove some tags or try a different combination.
+
+    -else
       -@lists.each do |list|
-        .Grid-cell.1-of-3--desk
+        .Grid-cell.1-of-4--desk
           =render list
-  -else
-    %h2
-      No lists found with 
-      %span.u-fw-700 all
-      of these tags.
-    %p You can remove some tags to see better results or try different tag-combinations.
