@@ -43,7 +43,7 @@ var Tag = React.createClass({
       return (
         <div className='Tag Tag--add u-ff-ptsans u-c-white u-mb-1 u-mr-05' onClick={this.tagClickHandler}>
           <div className="Tag__prefix u-d-inline-block u-bg-blue-light u-px-05 u-py-04 u-fw-700">+</div>
-          <div className="Tag__content u-d-inline-block u-bg-blue u-pl-05 u-px-1 u-py-04">{this.props.data.name}</div>
+          <div className="Tag__content u-d-inline-block u-bg-blue u-pl-05 u-px-1 u-py-04">{this.props.data.name} ({this.props.data.taggings_count})</div>
         </div>
       );
     } else if (this.props.type === 'remove') {

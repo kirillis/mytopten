@@ -2,6 +2,7 @@ $white: #ffffff;
 $black: #000000;
 $blue: #008dff;
 $blue-light: #4ab6ff;
+$blue-xlight: #eef5ff;
 $grey-light: #fcfcfc;
 $grey: #d8d8d8;
 $grey-dark: #aaaaaa;
@@ -11,6 +12,7 @@ $colors:
   (black, $black),
   (blue, $blue),
   (blue-light, $blue-light),
+  (blue-xlight, $blue-xlight),
   (grey, $grey),
   (grey-light, $grey-light),
   (grey-dark, $grey-dark);

@@ -14,9 +14,9 @@
       -list.list_items.each_with_index do |item, index|
         -break if index > 2
         .u-d-flex
-          .ListTeaser-number.u-ff-open.u-fw-700.u-c-blue.u-t-align-center
+          .ListTeaser-number.u-ff-open.u-fw-100.u-c-blue.u-t-align-center
             =index+1
-          %p.u-ml-1=item.title
+          %p.u-ml-1=truncate item.title, length: 50
 
   .ListTeaser-metabox.u-bg-blue.u-t-align-center.u-pt-1.u-px-05
     -if list.list_items.count-3 != 0
