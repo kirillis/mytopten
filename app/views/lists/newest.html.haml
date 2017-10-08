@@ -16,13 +16,13 @@
   -unless @lists.empty?
     %h2 
       Newest lists
-    .Grid
+    .Grid.Grid--flush
       -@lists.each do |list|
-        .Grid-cell.1-of-3--desk
+        .Grid-cell.1-of-4--desk
           =render list
 
     .Grid
-      .Grid-cell.1-of-3--desk
+      .Grid-cell
         = paginate @lists
 
   -else
