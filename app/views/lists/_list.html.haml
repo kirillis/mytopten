@@ -1,7 +1,7 @@
 .ListTeaser.u-mb-3.u-mx-05{ class: (defined? mod) ? "ListTeaser--#{mod}" : '' }
   =link_to user_list_path(list.user.name, list) do
     .ListTeaser-text
-      .u-ff-ptsans.u-pt-2.u-pb-1.u-t-align-center=list.title
+      .u-ff-open.u-fw-100.u-pt-2.u-pb-1.u-t-align-center=list.title
 
     .ListTeaser-imageWrapper
       .u-m-1.u-d-flex.u-f-space-between.u-f-align-center
@@ -14,7 +14,7 @@
       -list.list_items.each_with_index do |item, index|
         -break if index > 2
         .u-d-flex
-          .ListTeaser-number.u-ff-open.u-fw-700.u-t-align-center
+          .ListTeaser-number.u-ff-open.u-fw-700.u-c-blue.u-t-align-center
             =index+1
           %p.u-ml-1=item.title
 
