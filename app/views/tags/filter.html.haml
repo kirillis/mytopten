@@ -10,13 +10,23 @@
 
 .container
   .Grid.Grid--flush
-    -if @lists.empty?
-      .Grid-cell
-        .u-bg-blue-light.u-c-white.u-t-align-center.u-py-3.u-px-2.u-fw-100.u-br-3
-          %span.u-fw-700 No lists with these tags found.
-          You can remove some tags or try a different combination.
 
-    -else
+    -if @lists.present?
+
       -@lists.each do |list|
         .Grid-cell.1-of-4--desk
           =render list
+
+    -else
+
+      -if @tags.present?
+
+        .Grid-cell
+          .u-bg-blue-light.u-c-white.u-t-align-center.u-py-3.u-px-2.u-fw-100.u-br-3
+            No lists with all of these tags found.
+
+      -else
+
+        .Grid-cell
+          .u-bg-blue-light.u-c-white.u-t-align-center.u-py-3.u-px-2.u-fw-100.u-br-3
+            Click a tag to start filtering. You can combine multiple tags to find the content you are looking for.

@@ -22,9 +22,11 @@ var TagFilter = React.createClass({
     },
 
     getHeadline() {
-        return(
-            <h2>Lists with tags</h2>
-        )
+        if (this.state.activeTagsArray.length > 0) {
+            return (
+                <h2>Lists with tags</h2>
+            )
+        }
     },
 
     render: function () {
@@ -59,10 +61,10 @@ var TagFilter = React.createClass({
                         placeholder="Search..." />
                 </div>
 
-                <div>{availableTagsList}</div>
+                <div className="u-mb-4">{availableTagsList}</div>
 
                 <div className="u-mt-2">
-                    {activeTagsList.length > 0 ? this.getHeadline() : <Alert />}
+                    { this.getHeadline() }
                     <div>{activeTagsList}</div>
                 </div>
 
