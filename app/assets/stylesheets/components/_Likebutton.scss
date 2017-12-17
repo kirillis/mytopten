@@ -5,34 +5,30 @@
   font-size: 24px;
   padding: 2px 20px;
   border-radius: 3px;
+  background-color: transparent;
 
   &.is-disabled {
     opacity: 0.6;
     pointer-events: none;
   }
-
-  &:hover.Likebutton--has-liked .Likebutton__icon.Icon #fill {
-    fill: $white;
-  }
-
-  &:hover .Likebutton__icon.Icon #border {
-    fill: $white;
-  }
 }
 
 .Likebutton__icon.Icon {
-  width: 22px;
+  width: 23px;
   margin-bottom: -2px;
 
-  #fill {
+  #inner {
     fill: transparent;
-
-    .Likebutton--has-liked & {
-      fill: $blue;
-    }
   }
 
-  #border {
+  #outline {
     fill: $blue;
   }
+
+  .Likebutton--has-liked & {
+      #inner {
+        fill: $blue;
+      }
+  }
 }
+
