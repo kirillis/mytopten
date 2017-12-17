@@ -41,3 +41,5 @@ _resources/
 /node_modules/
 .vscode/launch.json
 vendor/gems
+Vagrantfile
+.vagrant/
