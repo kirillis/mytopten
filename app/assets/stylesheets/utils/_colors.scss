@@ -6,6 +6,6 @@
   .u-c-#{$colorname},
   .u-c-#{$colorname} a {
     color: $color;
-    fill: $color;
+    fill: $color !important;
   }
 }
