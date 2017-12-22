@@ -31,7 +31,7 @@ var QuillEditor = React.createClass({
 
   render: function () {
     return (
-      <div>
+      <div className="QuillEditor">
         <div id={this.props.elementId}>
         </div>
       </div>
