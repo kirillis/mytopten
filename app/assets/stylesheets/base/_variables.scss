@@ -3,9 +3,12 @@ $black: #000000;
 $blue: #4E8AE1;
 $blue-light: #4ab6ff;
 $blue-xlight: #eef5ff;
+$blue-grey: #8ea8ce;
 $grey-light: #fcfcfc;
 $grey: #d8d8d8;
 $grey-dark: #aaaaaa;
+$green: #15a032;
+$red: #c70d0d;
 
 $colors:
   (white, $white),
@@ -15,7 +18,9 @@ $colors:
   (blue-xlight, $blue-xlight),
   (grey, $grey),
   (grey-light, $grey-light),
-  (grey-dark, $grey-dark);
+  (grey-dark, $grey-dark),
+  (green, $green),
+  (red, $red);
 
 $base-spacing: 0.8rem;
 $max-width: 1100px;
