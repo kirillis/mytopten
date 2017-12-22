@@ -1,8 +1,8 @@
 .MainNav {
   display: flex;
   justify-content: space-between;
-  padding-top: 11px;
-  padding-bottom: 11px;
+  padding-top: 25px;
+  padding-bottom: 32px;
 }
 
 .MainNav-logo svg {
@@ -26,7 +26,6 @@
     color: $black;
     padding-left: 40px;
     padding: 5px;
-    font-weight: 300;
     font-size: 15px;
     text-decoration: none;
     text-transform: uppercase;
