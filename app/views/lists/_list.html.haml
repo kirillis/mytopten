@@ -1,7 +1,7 @@
-.ListTeaser.u-mb-3.u-mx-05{ class: (defined? mod) ? "ListTeaser--#{mod}" : '' }
+.ListTeaser.u-mb-3{ class: (defined? mod) ? "ListTeaser--#{mod}" : '' }
   =link_to user_list_path(list.user.name, list) do
-    .ListTeaser-text
-      .u-ff-open.u-fw-100.u-pt-2.u-pb-1.u-t-align-center=list.title
+    .ListTeaser-text.u-ff-open.u-fw-100.u-mx-05.u-pt-2.u-pb-1.u-t-align-center
+      =list.title
 
     .ListTeaser-imageWrapper
       .u-m-1.u-d-flex.u-f-space-between.u-f-align-center
