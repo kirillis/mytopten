@@ -46,7 +46,7 @@ class ListsController < ApplicationController
   end
 
   def show
-
+    @tags = ActsAsTaggableOn::Tag.most_used(10)
     @user = User.find_by(name: params[:user_name])
     if @user
       @list = @user.lists.find_by(id: params[:list_id])
