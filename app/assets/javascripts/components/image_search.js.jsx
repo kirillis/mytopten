@@ -54,7 +54,6 @@ var ImageSearch = React.createClass({
 
     handleKeyUp: function(event) {
         event.preventDefault();
-        console.log(event.target.value);
 
         this.setState({
             query: event.target.value
@@ -75,7 +74,7 @@ var ImageSearch = React.createClass({
         return (
             <div>
                 <div onClick={this.openCloseClickHandler} className="Button Button--withIcon">
-                    <i className="material-icons">add_to_photos</i>
+                    <i className="material-icons">image</i>
                     Imagesearch
                 </div>
                 <div className={classes}>
