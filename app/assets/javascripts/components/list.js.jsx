@@ -53,7 +53,6 @@ var List = React.createClass({
   },
 
   handleTitleEntered: function(title) {
-    console.log('list::handleTitleEntered():', title);
     this.setState({
       titleEntered: title,
     });
@@ -84,46 +83,21 @@ var List = React.createClass({
 
     return (
       <div>
-        <div className="u-bg-beta">
-          <div className="container u-py-3 u-mb-3">
-
-            <div className="Grid">
-              <div className="Grid-cell 1-of-4">
-                <h2>Edit your list here</h2>
-                <a href={ "/" + this.state.listDetails.user.name + "/lists/" + this.state.listDetails.id } className="Button Button--withIcon">
-                  <i className="material-icons">view_headline</i>
-                  View
-                </a>
-                <a className="Button Button--withIcon" data-method="delete" href={ "/" + this.state.listDetails.user.name + "/lists/" + this.state.listDetails.id } rel="nofollow">
-                  <i className="material-icons">delete</i>
-                  Delete
-                </a>
-              </div>
-
-              <div className="Grid-cell 1-of-4 u-t-align-center">
-                <p className="u-t-uppercase u-mb-0">Created</p>
-                <p className="u-fw-700 h2 u-mb-0">{ this.state.listDetails.created_at } ago</p>
-              </div>
-
-              <div className="Grid-cell 1-of-4 u-t-align-center">
-                <p className="u-t-uppercase u-mb-0">Updated</p>
-                <p className="u-fw-700 h2 u-mb-0">{ this.state.listDetails.updated_at } ago</p>
-              </div>
-
-              <div className="Grid-cell 1-of-4 u-t-align-center">
-                <p className="u-t-uppercase u-mb-0">Likes</p>
-                <p className="u-fw-700 h2 u-mb-0">{ this.state.listDetails.cached_votes_total }</p>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
         <div className="container">
 
           <div className="Grid">
-            <div className="Grid-cell 2-of-3--desk">
+            <div className="Grid-cell 3-of-5--desk">
+
+              <h2>Edit your list</h2>
+              <p className="u-mb-2 u-fw-100">{this.state.listDetails.cached_votes_total} Likes, Created {this.state.listDetails.created_at} ago</p>
+              <a href={"/" + this.state.listDetails.user.name + "/lists/" + this.state.listDetails.id} className="Button Button--withIcon">
+                <i className="material-icons">view_headline</i>
+                View
+              </a>
+              <a className="Button Button--withIcon Button--danger" data-method="delete" href={"/" + this.state.listDetails.user.name + "/lists/" + this.state.listDetails.id} rel="nofollow">
+                <i className="material-icons">delete</i>
+                Delete
+              </a>
 
               <ListDetails
                 title = { this.state.listDetails.title }
@@ -133,7 +107,7 @@ var List = React.createClass({
               />
             </div>
 
-            <div className="Grid-cell 1-of-3--desk">
+            <div className="Grid-cell 2-of-5--desk">
               <Tags
                 tags = { this.state.listTags }
                 listId = { this.state.listDetails.id }
@@ -141,35 +115,36 @@ var List = React.createClass({
             </div>
           </div>
 
-          <div className="u-mt-3">
+          <div className="u-mt-4">
               {listItems.length === 0 ?
                 (
                   <div>
-                    <h2 className="u-mt-4">No items on list, yet</h2>
+                    <h2>No items on list, yet</h2>
                     <p>Use the form below to add items to your list.</p>
                   </div>
                 ) : (
-                  <h2 className="u-mt-4 u-mb-3">
+                  <h2 className="u-mb-3">
                     These <strong>{ this.state.listItems.length }</strong> items are on your list:
                   </h2>
                 )
               }
-            <div className="ListItems">
-              { listItems }
-            </div>
+          </div>
+        </div>
+
+        <div className="ListItems">
+          {listItems}
+        </div>
+
+        <div className="Grid u-mt-3">
+          <div className="Grid-cell 2-of-3--desk u-mb-2">
+            <ListItemAdd
+              onTitleEntered={ this.handleTitleEntered }
+              listId = { this.state.listDetails.id }
+            />
           </div>
 
-          <div className="Grid u-mt-3">
-            <div className="Grid-cell 2-of-3--desk u-mb-2">
-              <ListItemAdd
-                onTitleEntered={ this.handleTitleEntered }
-                listId = { this.state.listDetails.id }
-              />
-            </div>
-
-            <div className="Grid-cell 1-of-3--desk">
-              <SearchContainer searchQuery={ this.state.titleEntered }/>
-            </div>
+          <div className="Grid-cell 1-of-3--desk">
+            <SearchContainer searchQuery={ this.state.titleEntered }/>
           </div>
         </div>
       </div>
