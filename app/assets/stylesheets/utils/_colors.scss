@@ -1,11 +1,11 @@
 @each $colorname, $color in $colors {
   .u-bg-#{$colorname} {
-    background-color: $color;
+    background-color: $color !important;
   }
 
   .u-c-#{$colorname},
   .u-c-#{$colorname} a {
-    color: $color;
+    color: $color !important;
     fill: $color !important;
   }
 }
