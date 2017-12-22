@@ -1,6 +1,12 @@
 #toast-container > div {
   opacity: 1;
-  box-shadow: none;
+  box-shadow: 0px 4px 11px 0px rgba(10, 10, 10, 0.2);
+}
+
+.toast-top-center {
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .toast {
@@ -8,7 +14,7 @@
 }
 
 .toast-success {
-  background-color: $blue;
+  background-color: $green;
 
   .toast-message {
     color: $white;
@@ -16,7 +22,7 @@
 }
 
 .toast-error {
-  background-color: $blue;
+  background-color: $red;
 }
 
 .toast-info {
@@ -24,5 +30,5 @@
 }
 
 .toast-warning {
-  background-color: $blue;
+  background-color: $red;
 }
