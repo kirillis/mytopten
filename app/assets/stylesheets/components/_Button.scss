@@ -1,8 +1,9 @@
 .Button {
   position: relative;
   display: inline-block;
-  padding: 6px 16px;
+  padding: 8px 16px;
   margin-right: 5px;
+  text-align: left;
   border: 1px solid $blue;
   border-radius: 2px;
   transition: all 100ms ease-in;
@@ -18,18 +19,11 @@
     left: 9px;
   }
 
-  &:not(.Button--disabled):hover {
-    background-color: $blue;
-    border-color: $blue;
-    color: $white;
-
-    > .material-icons {
-      color: $white;
-    }
-  }
-
+  &:not(.Button--disabled):hover,
   &:not(.Button--disabled):active {
     background-color: darken($blue, 10%);
+    border-color: darken($blue, 10%);
+    color: $white;
   }
 }
 
@@ -39,6 +33,19 @@
 
 .Button--disabled {
   cursor: not-allowed;
+  background-color: $blue-grey;
+  border-color: $blue-grey;
+}
+
+.Button--danger {
+  background-color: $red;
+  border-color: $red;
+
+  &:not(.Button--disabled):hover,
+  &:not(.Button--disabled):active {
+    background-color: darken($red, 10%);
+    border-color: darken($red, 10%);
+  }
 }
 
 .Button--inactive {
@@ -62,10 +69,10 @@
   box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.35);
   transition: all 300ms ease;
   transform: translateY(0);
+  color: $white;
 
   &:hover {
-    background-color: $blue;
-    color: $white;
+    background-color: $blue-light;
     transform: translateY(-5px);
   }
 }
