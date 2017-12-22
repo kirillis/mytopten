@@ -15,10 +15,11 @@ p {
 a {
   text-decoration: none;
   transition: color 150ms;
+  color: $blue;
 
   &:hover {
-    color: $blue;
-  } 
+    color: $blue-light;
+  }
 }
 
 h1, .h1,
