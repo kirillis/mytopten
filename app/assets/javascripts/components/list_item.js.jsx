@@ -29,6 +29,7 @@ var ListItem = React.createClass({
   },
 
   handleImagePicked: function (image_thumb_url, image_large_url) {
+    console.log(image_thumb_url, image_large_url);
     this.setState({
       hasChanged: true,
       image_thumb_url: image_thumb_url,
@@ -51,6 +52,8 @@ var ListItem = React.createClass({
     var newItemData = $.extend({}, itemData);
     newItemData.title = this.state.title;
     newItemData.description = this.state.description;
+    newItemData.image_thumb_url = this.state.image_thumb_url;
+    newItemData.image_large_url = this.state.image_large_url;
     newItemData.rank = this.state.rank;
     this.getFlux().actions.listItem.update(itemData, newItemData);
     this.setState({
@@ -138,7 +141,7 @@ var ListItem = React.createClass({
               <p dangerouslySetInnerHTML={{ __html: this.state.description }}></p>
             </div>
 
-            <div className="Button--edit" onClick={this.toggleEditMode}>
+            <div className="Button--corner" onClick={this.toggleEditMode}>
               <i className="material-icons">edit</i>
             </div>
           </div>
