@@ -2,7 +2,10 @@ var SearchContainer = React.createClass({
   sendQuery: function() {
     if(this.state.searchQuery === '') { return; };
 
-    this.setState({ isSearching: true });
+    this.setState({
+      isSearching: true,
+      listItems: []
+    });
 
     $.ajax({
       url: '/api/search/amazon/?query=' + this.state.searchQuery,
@@ -49,7 +52,7 @@ var SearchContainer = React.createClass({
   render: function() {
     return (
       <div>
-        <h2>Amazon suggestions</h2>
+        <h2 className="u-mb-2">Amazon suggestions</h2>
         <SearchResultsList listItems={ this.state.listItems } isSearching={ this.state.isSearching } />
       </div>
     );
