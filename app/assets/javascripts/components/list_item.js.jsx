@@ -1,13 +1,6 @@
 var ListItem = React.createClass({
   mixins: [FluxMixin],
 
-  rankChange: function (event) {
-    this.setState({
-      rank: event.target.value,
-      hasChanged: true
-    });
-  },
-
   titleChange: function (event) {
     this.setState({
       title: event.target.value,
