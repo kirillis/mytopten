@@ -43,7 +43,8 @@ var List = React.createClass({
 
         onEnd: function (evt) {
           listItemId = $(evt.item).data('id');
-          newRank = evt.newIndex;
+          newRank = evt.newIndex + 1;
+          console.log('drag end: ', newRank);
           $.ajax({
             method: 'PUT',
             url:  '/list_items/' + listItemId + '/' + newRank
