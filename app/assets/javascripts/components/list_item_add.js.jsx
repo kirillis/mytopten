@@ -116,13 +116,6 @@ var ListItemAdd = React.createClass({
                                 text={this.state.description}
                                 handleInput={this.descriptionChange} />
 
-                            <label htmlFor='link'>Link</label>
-                            <input
-                                type='text'
-                                name='link'
-                                onChange={this.linkChange}
-                            />
-
                             <button className="Button Button--withIcon" onClick={this.handleAddItemClick}>
                                 <i className="material-icons">add</i>
                                 Add
