@@ -88,17 +88,23 @@ var List = React.createClass({
 
           <div className="Grid">
             <div className="Grid-cell 3-of-5--desk">
+              <div className="Grid">
+                <div className="Grid-cell 1-of-2--desk">
+                  <h2>Edit your list</h2>
+                  <p className="u-mb-2 u-fw-100">{this.state.listDetails.cached_votes_total} Likes, created {this.state.listDetails.created_at} ago</p>
+                </div>
 
-              <h2>Edit your list</h2>
-              <p className="u-mb-2 u-fw-100">{this.state.listDetails.cached_votes_total} Likes, Created {this.state.listDetails.created_at} ago</p>
-              <a href={"/" + this.state.listDetails.user.name + "/lists/" + this.state.listDetails.id} className="Button Button--withIcon">
-                <i className="material-icons">view_headline</i>
-                View
-              </a>
-              <a className="Button Button--withIcon Button--danger" data-method="delete" href={"/" + this.state.listDetails.user.name + "/lists/" + this.state.listDetails.id} rel="nofollow">
-                <i className="material-icons">delete</i>
-                Delete
-              </a>
+                <div className="Grid-cell 1-of-2--desk u-t-align-right">
+                  <a href={"/" + this.state.listDetails.user.name + "/lists/" + this.state.listDetails.id} className="Button Button--withIcon">
+                    <i className="material-icons">view_headline</i>
+                    View
+                  </a>
+                  <a className="Button Button--withIcon Button--danger" data-method="delete" href={"/" + this.state.listDetails.user.name + "/lists/" + this.state.listDetails.id} rel="nofollow">
+                    <i className="material-icons">delete</i>
+                    Delete
+                  </a>
+                </div>
+              </div>
 
               <ListDetails
                 title = { this.state.listDetails.title }
