@@ -6,11 +6,6 @@
   border-radius: 4px;
 }
 
-.ListItem-image {
-  width: 100px;
-  max-width: initial;
-}
-
 .ListItem-wrapper--condensed {
   .ListItem {
     display: none;
@@ -62,23 +57,8 @@
   flex-basis: 100px;
 }
 
-.ListItemCondensed-editButton {
-  margin-left: auto;
-  align-self: flex-end;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: $blue;
-  color: $white;
-  border-top-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  padding: 10px;
-  cursor: pointer;
-  transition: all 150ms;
-
-  &:hover {
-    background-color: $blue-light;
-  }
+.ListItem-imageWrapper {
+  position: relative;
 }
 
 .ListItemCondensed--title {

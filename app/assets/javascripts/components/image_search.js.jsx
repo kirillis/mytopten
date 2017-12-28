@@ -27,7 +27,7 @@ var ImageSearch = React.createClass({
 
     getInitialState: function () {
         return {
-            query: 'cars',
+            query: '',
             isOpen: false,
             results: []
         };
@@ -49,7 +49,9 @@ var ImageSearch = React.createClass({
 
     imageClicked: function(image) {
         this.props.onImagePicked(image.thumbnail, image.media_fullsize);
-        this.setState({isOpen: false});
+        this.setState({
+            isOpen: false
+        });
     },
 
     handleKeyUp: function(event) {
@@ -73,9 +75,8 @@ var ImageSearch = React.createClass({
 
         return (
             <div>
-                <div onClick={this.openCloseClickHandler} className="Button Button--withIcon">
-                    <i className="material-icons">image</i>
-                    Imagesearch
+                <div onClick={this.openCloseClickHandler} className="Button--edit">
+                    <i className="material-icons">edit</i>
                 </div>
                 <div className={classes}>
                     <input

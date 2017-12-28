@@ -57,6 +57,24 @@
     color: $grey;
   }
 }
+.Button--edit {
+  margin-left: auto;
+  align-self: flex-end;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: $blue;
+  color: $white;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 150ms;
+
+  &:hover {
+    background-color: darken($blue, 10%);
+  }
+}
 
 .AddNewButton i {
   position: fixed;

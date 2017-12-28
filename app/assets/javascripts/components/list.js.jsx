@@ -135,16 +135,20 @@ var List = React.createClass({
           {listItems}
         </div>
 
-        <div className="Grid u-mt-3">
-          <div className="Grid-cell 2-of-3--desk u-mb-2">
-            <ListItemAdd
-              onTitleEntered={ this.handleTitleEntered }
-              listId = { this.state.listDetails.id }
-            />
-          </div>
+        <div className="container">
+          <div className="Grid u-mt-3">
+            <div className="Grid-cell 2-of-3--desk u-mb-2">
+              <div className="u-bg-blue-xlight">
+                <ListItemAdd
+                  onTitleEntered={ this.handleTitleEntered }
+                  listId = { this.state.listDetails.id }
+                  />
+              </div>
+            </div>
 
-          <div className="Grid-cell 1-of-3--desk">
-            <SearchContainer searchQuery={ this.state.titleEntered }/>
+            <div className="Grid-cell 1-of-3--desk">
+              <SearchContainer searchQuery={ this.state.titleEntered }/>
+            </div>
           </div>
         </div>
       </div>

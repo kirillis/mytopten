@@ -89,10 +89,10 @@ var ListItem = React.createClass({
             <div className="Grid Form">
               <div className="Grid-cell 1-of-5--lap-and-up">
                 <div className="ListItem-mediaContainer u-t-align-center">
-                  <a href={this.state.image_large_url} target="_blank">
-                    <img src={this.state.image_thumb_url} className="ListItem-image" />
-                  </a>
-                  <div className="u-mt-1">
+                  <div className="ListItem-imageWrapper u-d-inline-block">
+                    <a href={this.state.image_large_url} target="_blank">
+                      <img src={this.state.image_thumb_url} className="ListItem-image" />
+                    </a>
                     <ImageSearch onImagePicked={this.handleImagePicked} />
                   </div>
                 </div>
@@ -138,7 +138,7 @@ var ListItem = React.createClass({
               <p dangerouslySetInnerHTML={{ __html: this.state.description }}></p>
             </div>
 
-            <div className="ListItemCondensed-editButton" onClick={this.toggleEditMode}>
+            <div className="Button--edit" onClick={this.toggleEditMode}>
               <i className="material-icons">edit</i>
             </div>
           </div>
