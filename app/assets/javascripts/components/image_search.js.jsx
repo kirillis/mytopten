@@ -75,22 +75,27 @@ var ImageSearch = React.createClass({
 
         return (
             <div>
-                <div onClick={this.openCloseClickHandler} className="Button--edit">
+                <div onClick={this.openCloseClickHandler} className="Button--corner">
                     <i className="material-icons">edit</i>
                 </div>
                 <div className={classes}>
-                    <input
-                        type='text'
-                        placeholder="Search..."
-                        onKeyUp={ this.handleKeyUp }
-                        />
-                    <div onClick={this.searchImages} className="Button Button--withIcon">
-                        <i className="material-icons">search</i>
-                        Search
+                    <div className="Grid">
+                        <div className="Grid-cell 1-of-3--desk">
+                            <input
+                                className="Qwant__queryInput"
+                                type='text'
+                                placeholder="Search..."
+                                onKeyUp={this.handleKeyUp}
+                            />
+                            <div onClick={this.searchImages} className="Button Button--withIcon">
+                                <i className="material-icons">search</i>
+                                Search
+                            </div>
+                        </div>
                     </div>
-                    <div onClick={this.openCloseClickHandler} className="Button Button--withIcon">
+
+                    <div onClick={this.openCloseClickHandler} className="Button--corner">
                         <i className="material-icons">close</i>
-                        Close
                     </div>
                     <div className="Qwant__results">
                         { resultsList }
