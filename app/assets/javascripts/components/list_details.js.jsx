@@ -7,6 +7,7 @@ var ListDetails = React.createClass({
       description: this.props.description,
       public: this.props.public,
       hasChanged: false,
+      timeoutBeforeSave: false
     };
   },
 
@@ -22,6 +23,17 @@ var ListDetails = React.createClass({
       hasChanged: true,
       description: text
     });
+
+    if(this.state.timeoutBeforeSave) {
+      window.clearTimeout(this.state.timeoutBeforeSave);
+      this.setState({ timeoutBeforeSave: false});
+    }
+
+    let timeout = window.setTimeout( () => {
+      this.saveData();
+    }, 1000);
+
+    this.setState({ timeoutBeforeSave: timeout})
   },
 
   handleDescriptionChange: function(event) {
@@ -36,6 +48,8 @@ var ListDetails = React.createClass({
       hasChanged: true,
       public: !this.state.public
     });
+
+    this.saveData();
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -46,6 +60,15 @@ var ListDetails = React.createClass({
   },
 
   componentDidMount: function() {
+    var keyups = Rx.Observable.fromEvent(this.refs.titleInput, 'keyup')
+      .pluck('target', 'value')
+      .debounce(1000)
+      .subscribe(
+        (data) => {
+          console.log('300ms debounced.');
+          this.saveData();
+        }
+      );
   },
 
   saveData: function() {
@@ -56,21 +79,13 @@ var ListDetails = React.createClass({
     this.setState({hasChanged: false});
   },
 
-  getSaveButton: function() {
-    if(this.state.hasChanged) {
-      return <a onClick={ this.saveData } className="Button Button--withIcon"><i className="material-icons">save</i>Save</a>
-    } else {
-      return <span className="Button Button--withIcon Button--disabled"><i className="material-icons">save</i>Save</span>
-    }
-  },
-
   render: function() {
-    var saveButton = this.getSaveButton();
     return (
       <div className="Form">
 
           <label htmlFor="title">List title</label>
           <input
+            ref="titleInput"
             type="text"
             name="title"
             id="title"
@@ -92,10 +107,6 @@ var ListDetails = React.createClass({
             onChange={ this.handlepublicChange }
           />
           <label htmlFor="public">Make this list public</label>
-
-          <div>
-            <div className="u-mt-1 u-d-inline-block">{ saveButton }</div>
-          </div>
 
       </div>
     );
