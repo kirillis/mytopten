@@ -125,7 +125,7 @@ var ListItemAdd = React.createClass({
 
                             <button className="Button Button--withIcon" onClick={this.handleAddItemClick}>
                                 <i className="material-icons">add</i>
-                                Add to list
+                                Add
                             </button>
                         </div>
                     </div>
