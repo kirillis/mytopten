@@ -43,13 +43,11 @@ var ListDetails = React.createClass({
     });
   },
 
-  handlepublicChange: function(event) {
+  handlePublicChange: function(event) {
     this.setState({
       hasChanged: true,
       public: !this.state.public
-    });
-
-    this.saveData();
+    }, this.saveData);
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -76,6 +74,7 @@ var ListDetails = React.createClass({
       oldData: this.props,
       newData: this.state
     });
+
     this.setState({hasChanged: false});
   },
 
@@ -104,7 +103,7 @@ var ListDetails = React.createClass({
             id="public"
             type="checkbox"
             checked={ this.state.public }
-            onChange={ this.handlepublicChange }
+            onChange={ this.handlePublicChange }
           />
           <label htmlFor="public">Make this list public</label>
 
