@@ -14,20 +14,6 @@
       .Grid-cell.1-of-4--desk
 
     .Grid
-      .Grid-cell.1-of-4--desk.u-t-align-right
-        =f.label :description, 'List description'
-      .Grid-cell.2-of-4--desk.u-t-align-right
-        =f.text_area :description
-      .Grid-cell.1-of-4--desk
-
-    .Grid
-      .Grid-cell.1-of-4--desk
-      .Grid-cell.2-of-4--desk
-        %p
-          =f.check_box :public, checked: true
-          %label{:for => "public"} This is a public list
-
-    .Grid
       .Grid-cell.1-of-4--desk
       .Grid-cell.2-of-4--desk
         %button.Button.Button--withIcon{:name => "action", :type => "submit"}
