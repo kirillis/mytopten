@@ -16,7 +16,7 @@
   -unless @lists.empty?
     %h2 
       Newest lists
-    .Grid.Grid--flush
+    .Grid
       -@lists.each do |list|
         .Grid-cell.1-of-4--desk
           =render list
