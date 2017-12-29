@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require classnames
 //= require toastr
+//= require main-nav
 
 // REACT
 //= require react

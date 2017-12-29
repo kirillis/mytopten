@@ -1,31 +1,53 @@
 .MainNav {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 11px;
+  flex-direction: column;
   justify-content: space-between;
-  padding-top: 25px;
-  padding-bottom: 32px;
+  background-color: $white;
+  z-index: 100;
+  box-shadow: 0px 4px 11px 0px rgba(10, 10, 10, 0.06);
 }
 
 .MainNav-logo svg {
-  width: 230px;
+  width: 150px;
 
   .st1 { fill: $blue;}
   .st2 { fill: $white;}
 }
 
 .MainNav-links {
-  display: flex;
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  background: white;
+  box-shadow: 0 11px 13px 0px rgba(10, 10, 10, 0.06);
+
+  .is-open & {
+    display: flex;
+  }
 }
 
 .MainNav-link {
   display: block;
   position: relative;
-  margin-left: 15px;
-  padding-right: 15px;
+  margin-left: 0;
+  padding-right: 30px;
+  padding-left: $base-spacing * 1.5;
 
   > a {
+    display: block;
+    padding: 16px 16px 16px 0;
     color: $black;
-    padding-left: 40px;
-    padding: 5px;
     font-size: 15px;
     text-decoration: none;
     text-transform: uppercase;
@@ -39,19 +61,66 @@
       color: $blue;
     }
   }
+}
 
-  &:after {
-    content: '';
-    background-color: $grey-dark;
-    height: 100%;
-    width: 1px;
-    position: absolute;
-    right: 0;
-    top: -2px;
-    opacity: 0.4;
+.MainNav-toggle {
+  position: absolute;
+  top: 23px;
+  right: 20px;
+}
+
+@include av-mq(lap-and-up) {
+  .MainNav {
+    flex-direction: row;
+    position: relative;
+    top: initial;
+    left: initial;
+    width: auto;
+    padding-top: 25px;
+    padding-bottom: 32px;
+    box-shadow: none;
   }
 
-  &:last-child:after {
+  .MainNav-logo svg {
+    width: 230px;
+  }
+
+  .MainNav-toggle {
     display: none;
+  }
+
+  .MainNav-links {
+    display: flex;
+    position: relative;
+    top: initial;
+    width: auto;
+    margin: 16px 0;
+    flex-direction: row;
+    box-shadow: none;
+  }
+
+  .MainNav-link {
+    margin-left: 15px;
+    padding-right: 15px;
+    padding-left: 0;
+
+    > a {
+      padding: 5px;
+    }
+
+    &:after {
+      content: '';
+      background-color: $grey-dark;
+      height: 100%;
+      width: 1px;
+      position: absolute;
+      right: 0;
+      top: -2px;
+      opacity: 0.4;
+    }
+
+    &:last-child:after {
+      display: none;
+    }
   }
 }
