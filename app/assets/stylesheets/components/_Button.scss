@@ -1,8 +1,9 @@
 .Button {
   position: relative;
   display: inline-block;
-  padding: 8px 16px;
+  padding: 3px 16px;
   margin-right: 5px;
+  margin-bottom: 5px;
   text-align: left;
   border: 1px solid $blue;
   border-radius: 2px;
@@ -15,7 +16,7 @@
 
   > .material-icons {
     position: absolute;
-    top: 6px;
+    top: 1px;
     left: 9px;
   }
 
@@ -93,5 +94,20 @@
   &:hover {
     background-color: $blue-light;
     transform: translateY(-5px);
+  }
+}
+
+@include av-mq(lap-and-up) {
+  .Button {
+    padding: 8px 16px;
+    margin-bottom: 0;
+
+    > .material-icons {
+      top: 6px;
+    }
+  }
+
+  .Button--withIcon {
+    padding-left: 36px;
   }
 }
