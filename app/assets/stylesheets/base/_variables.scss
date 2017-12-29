@@ -1,34 +1,26 @@
-$grey-light: #f4f4f4;
-$grey-med: #c9c9c9;
-$grey: #3a3a3a;
-$grey-med: #b5b5b5;
-$green: #71b429;
-$green-dark: #3b6013;
 $white: #ffffff;
 $black: #000000;
-$red: red;
-$yellow: #efed15;
-$mint: #60f680;
-$blue-light: #283763;
-$blue-med: #23273b;
-$blue-dark: #11141e;
-
-$c-alpha: $yellow;
-$c-beta: $mint;
-$c-gamma: $blue-med;
-$c-gamma-dark: $blue-dark;
-$c-gamma-light: $blue-light;
+$blue: #4E8AE1;
+$blue-light: #4ab6ff;
+$blue-xlight: #eef5ff;
+$blue-grey: #8ea8ce;
+$grey-light: #fcfcfc;
+$grey: #d8d8d8;
+$grey-dark: #aaaaaa;
+$green: #15a032;
+$red: #c70d0d;
 
 $colors:
-  (alpha, $c-alpha),
-  (beta, $c-beta),
-  (gamma, $c-gamma),
-  (gamma-dark, $c-gamma-dark),
-  (grey-light, $grey-light),
-  (grey-med, $grey-med),
-  (green, $green),
-  (green-dark, $green-dark),
   (white, $white),
-  (blue-light, $blue-light);
+  (black, $black),
+  (blue, $blue),
+  (blue-light, $blue-light),
+  (blue-xlight, $blue-xlight),
+  (grey, $grey),
+  (grey-light, $grey-light),
+  (grey-dark, $grey-dark),
+  (green, $green),
+  (red, $red);
 
-$base-spacing: 1rem;
+$base-spacing: 0.8rem;
+$max-width: 1100px;

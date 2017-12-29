@@ -14,9 +14,9 @@ var TagSuggestions = React.createClass({
           { this.props.tagSuggestions.map(function (tag) {
               return (
                 <Tag
-                  isSuggestion="true"
+                  type="add"
                   data={ tag }
-                  addClickHandler={ this.handleTagAddClicked }
+                  tagClickHandler={ this.handleTagAddClicked }
                   key={ tag.id }
                 />
               );

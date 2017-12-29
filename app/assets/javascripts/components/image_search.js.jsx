@@ -27,7 +27,7 @@ var ImageSearch = React.createClass({
 
     getInitialState: function () {
         return {
-            query: 'cars',
+            query: '',
             isOpen: false,
             results: []
         };
@@ -49,12 +49,13 @@ var ImageSearch = React.createClass({
 
     imageClicked: function(image) {
         this.props.onImagePicked(image.thumbnail, image.media_fullsize);
-        this.setState({isOpen: false});
+        this.setState({
+            isOpen: false
+        });
     },
 
     handleKeyUp: function(event) {
         event.preventDefault();
-        console.log(event.target.value);
 
         this.setState({
             query: event.target.value
@@ -74,23 +75,27 @@ var ImageSearch = React.createClass({
 
         return (
             <div>
-                <div onClick={this.openCloseClickHandler} className="Button Button--withIcon">
-                    <i className="material-icons">add_to_photos</i>
-                    Imagesearch
+                <div onClick={this.openCloseClickHandler} className="Button--corner">
+                    <i className="material-icons">edit</i>
                 </div>
                 <div className={classes}>
-                    <input
-                        type='text'
-                        placeholder="Search..."
-                        onKeyUp={ this.handleKeyUp }
-                        />
-                    <div onClick={this.searchImages} className="Button Button--withIcon">
-                        <i className="material-icons">search</i>
-                        Search
+                    <div className="Grid">
+                        <div className="Grid-cell 1-of-3--desk">
+                            <input
+                                className="Qwant__queryInput"
+                                type='text'
+                                placeholder="Search..."
+                                onKeyUp={this.handleKeyUp}
+                            />
+                            <div onClick={this.searchImages} className="Button Button--withIcon">
+                                <i className="material-icons">search</i>
+                                Search
+                            </div>
+                        </div>
                     </div>
-                    <div onClick={this.openCloseClickHandler} className="Button Button--withIcon">
+
+                    <div onClick={this.openCloseClickHandler} className="Button--corner">
                         <i className="material-icons">close</i>
-                        Close
                     </div>
                     <div className="Qwant__results">
                         { resultsList }

@@ -1,8 +1,12 @@
-.u-bg-grad-mint.u-mb-5
+.u-mb-2
   .container.u-py-2
     .Grid
-      .Grid-cell.2-of-3--desk
-        %h2 Popular tags right now
+      .Grid-cell
+        %h2.u-mb-2
+          Popular tags
+          = link_to tag_filter_path, title: 'Filter by tag' do
+            =inline_svg('filter.svg', {class: 'Icon u-ml-05'})
+
         -if @tags
           =render partial: "tags/tag", collection: @tags
         -else
@@ -14,7 +18,12 @@
       Newest lists
     .Grid
       -@lists.each do |list|
-        .Grid-cell.1-of-3--desk
+        .Grid-cell.1-of-2--handheld-and-up.1-of-4--desk
           =render list
+
+    .Grid
+      .Grid-cell
+        = paginate @lists
+
   -else
     %p No lists created yet.

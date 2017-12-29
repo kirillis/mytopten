@@ -1,22 +1,23 @@
-.u-bg-alpha
-  %nav.MainNav.container
-    =link_to root_path, class: 'MainNav-logo' do
-      =inline_svg "logo.svg"
-    %ul.MainNav-links
-      %li.MainNav-link
-        =link_to 'Popular', root_path, class: current_page?(root_path) ? 'is-active' : ''
-      %li.MainNav-link
-        =link_to 'Newest', lists_newest_path, class: current_page?(lists_newest_path) ? 'is-active' : ''
-      %li.MainNav-link
-        =link_to 'Tags', tag_filter_path, class: current_page?(tag_filter_path) ? 'is-active' : ''
-      %li.MainNav-link
-        =link_to 'Search', search_site_path, class: current_page?(search_site_path) ? 'is-active' : ''
+%nav.MainNav.container.js-menu
+  =link_to root_path, class: 'MainNav-logo' do
+    =inline_svg "logo.svg"
+  .MainNav-toggle.js-menu-toggle.u-fw-700
+    Menu
+  %ul.MainNav-links
+    %li.MainNav-link
+      =link_to 'Popular', root_path, class: current_page?(root_path) ? 'is-active' : ''
+    %li.MainNav-link
+      =link_to 'Newest', lists_newest_path, class: current_page?(lists_newest_path) ? 'is-active' : ''
+    %li.MainNav-link
+      =link_to 'Tags', tag_filter_path, class: current_page?(tag_filter_path) ? 'is-active' : ''
+    %li.MainNav-link
+      =link_to 'Search', search_site_path, class: current_page?(search_site_path) ? 'is-active' : ''
 
-      -if logged_in?
-        %li.MainNav-link
-          =link_to current_user.name, user_path(current_user.name)
-        %li.MainNav-link
-          =link_to 'Logout', user_log_out_path, method: :delete
-      -else
-        %li.MainNav-link
-          =link_to 'Login', user_log_in_path, class: current_page?(user_log_in_path) ? 'is-active' : ''
+    -if logged_in?
+      %li.MainNav-link
+        =link_to current_user.name, user_path(current_user.name)
+      %li.MainNav-link
+        =link_to 'Logout', user_log_out_path, method: :delete
+    -else
+      %li.MainNav-link
+        =link_to 'Login', user_log_in_path, class: current_page?(user_log_in_path) ? 'is-active' : ''

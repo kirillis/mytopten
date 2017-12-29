@@ -5,6 +5,7 @@
   font-size: 24px;
   padding: 2px 20px;
   border-radius: 3px;
+  background-color: transparent;
 
   &.is-disabled {
     opacity: 0.6;
@@ -13,17 +14,21 @@
 }
 
 .Likebutton__icon.Icon {
-  width: 22px;
+  width: 23px;
+  margin-bottom: -2px;
 
-  #fill {
+  #inner {
     fill: transparent;
-
-    .Likebutton--has-liked & {
-      fill: $black;
-    }
   }
 
-  #border {
-    fill: $black;
+  #outline {
+    fill: $blue;
+  }
+
+  .Likebutton--has-liked & {
+      #inner {
+        fill: $blue;
+      }
   }
 }
+

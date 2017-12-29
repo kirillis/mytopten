@@ -1,29 +1,33 @@
+=content_for :page_title do
+  =@list.title
+
 .container
   .Grid
-    .Grid-cell.2-of-3--desk
-      .List.u-mt-4.u-mx-3
+    .Grid-cell.3-of-4--desk
+      .List
         -if @list
           .List-header.u-mb-3
-            .List-title.u-pb-2.u-pt-1.u-t-align-center.u-fw-100.u-color-gamma=@list.title
-            %p.List-subtitle.u-t-align-center.u-fw-100
-              %strong
-                =@list.created_at.strftime('%d %B %Y')
-              &mdash; by
-              %span.u-fw-700
+            .u-t-align-center
+              %h1.List-title.u-d-inline-block.u-pt-1.u-fw-100.u-color-gamma
+                =@list.title
+                -if current_user == @user
+                  .List-editButton
+                    =link_to user_list_edit_path(current_user.name, @list) do
+                      =inline_svg 'pen.svg', class: "Icon List-editIcon"
+            %p.List-subtitle.u-t-align-center
+              ="#{@list.created_at.strftime('%d %B %Y')}, created by "
+              %span.u-fw-700.u-c-black
                 =link_to @user.name, user_path(@user.name)
-
-              -if current_user == @user
-                .u-t-align-center.u-mb-3
-                  =link_to 'Edit this list', user_list_edit_path(current_user.name, @list), class: 'Button'
-
-            .List-description.u-fw-100.u-t-align-center.u-pb-2=@list.description.html_safe
-
-            .u-t-align-center  
-              =render partial: "lists/likebutton", locals: { list: @list}
 
             -if @list.tags
               .u-t-align-center
                 =render partial: "tags/tag", collection: @list.tags
+
+            .u-t-align-center.u-mt-2
+              =render partial: "lists/likebutton", locals: { list: @list}
+
+            .List-description.u-fw-400.u-pb-2=@list.description.html_safe
+
           
           .List-itemsContainer
             =render partial: "lists/list_item", collection: @list.list_items
@@ -32,24 +36,23 @@
         -else
           %p No list found.
 
-    .Grid-cell.1-of-3--desk
-      .u-p-1.u-mt-4
-        =render @lists
-
-.u-bg-grey-light.u-mt-5
-  .container
-    .u-py-5
-      %h3 Comment
-      / #disqus_thread.u-color-grey
-      / :javascript
-      /   var disqus_config = function () {
-      /   this.page.url = PAGE_URL;
-      /   this.page.identifier = PAGE_IDENTIFIER;
-      /   };
-
-      /   (function() {
-      /   var d = document, s = d.createElement('script');
-      /   s.src = '//mytopten-1.disqus.com/embed.js';
-      /   s.setAttribute('data-timestamp', +new Date());
-      /   (d.head || d.body).appendChild(s);
-      /   })();
+    .Grid-cell.1-of-4--desk
+      .u-mt-4
+        %h2.u-mb-2
+          Popular tags
+          = link_to tag_filter_path, title: 'Filter by tag' do
+            =inline_svg('filter.svg', {class: 'Icon u-c-blue u-ml-05'})
+        -if @tags
+          =render partial: "tags/tag", collection: @tags
+          =link_to 'more 🡒', tag_filter_path
+      .u-mt-4
+        %h2 Similar lists
+        .Grid
+          -if @related_lists.exists?
+            -@related_lists.each do |list|
+              .Grid-cell.1-of-2--handheld.1-of-4--lap
+                =render partial: "lists/list", locals: { list: list, mod: 'small'}
+          -else
+            -@lists.each do |list|
+              .Grid-cell.1-of-2--handheld.1-of-4--lap
+                =render partial: "lists/list", locals: { list: list, mod: 'small'}

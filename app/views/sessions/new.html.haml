@@ -1,4 +1,4 @@
-.u-bg-beta
+%div
   .container.u-py-4
     .Grid
       .Grid-cell.1-of-4--desk
@@ -13,17 +13,17 @@
 
     = form_tag sessions_path, method: 'post', class: 'Form' do
       .Grid
-        .Grid-cell.1-of-4--desk.u-t-align-right
+        .Grid-cell.1-of-4--desk.u-t-desk-align-right
           = label_tag :name
         .Grid-cell.2-of-4--desk
           = text_field_tag :name, nil, required: true, class: 'validate', autofocus: true
-        .Grid-cell.1-of-4--desk.u-t-align-right
+        .Grid-cell.1-of-4--desk.u-t-desk-align-right
 
-        .Grid-cell.1-of-4--desk.u-t-align-right
+        .Grid-cell.1-of-4--desk.u-t-desk-align-right
           = label_tag :password
         .Grid-cell.2-of-4--desk
           = password_field_tag :password, nil, required: true, class: 'validate'
-        .Grid-cell.1-of-4--desk.u-t-align-right
+        .Grid-cell.1-of-4--desk.u-t-desk-align-right
 
         .Grid-cell.1-of-4--desk
         .Grid-cell.2-of-4--desk
@@ -31,21 +31,22 @@
             Log In
             %i.material-icons send
 
-.u-bg-grey-light
-  .container.u-py-4
-    .Grid
-      .Grid-cell.1-of-4--desk
-      .Grid-cell.2-of-4--desk
-        %h2 Are you new here?
-        %p.u-t-muted Create your own account now!
-      .Grid-cell.1-of-4--desk
+%div.u-bg-blue-xlight
+  %div
+    .container.u-py-4
+      .Grid
+        .Grid-cell.1-of-4--desk
+        .Grid-cell.2-of-4--desk
+          %h2 Are you new here?
+          %p.u-t-muted Create your own account now!
+        .Grid-cell.1-of-4--desk
 
-      .Grid-cell.1-of-4--desk
-      .Grid-cell.2-of-4--desk
-        =link_to user_register_path, class: 'Button Button--withIcon' do
-          %i.material-icons add
-          Create a new account
+        .Grid-cell.1-of-4--desk
+        .Grid-cell.2-of-4--desk
+          =link_to user_register_path, class: 'Button Button--withIcon' do
+            %i.material-icons add
+            Create a new account
 
-.u-bg-alpha
-  .container.u-py-4
-    = render 'forgot_password_form'
+  %div
+    .container.u-py-4
+      = render 'forgot_password_form'

@@ -1,17 +1,9 @@
 .ListItem-wrapper {
   position: relative;
-  border-radius: 3px;
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.05);
 }
 
-.ListItemCondensed-media {
-  max-width: 100px;
-  flex-basis: 100px;
-}
-
-.ListItem-image {
-  width: 100px;
-  max-width: initial;
+.ListItem {
+  border-radius: 4px;
 }
 
 .ListItem-wrapper--condensed {
@@ -33,7 +25,8 @@
 .ListItemCondensed {
   position: relative;
   padding-left: 70px;
-  align-items: center;
+  box-shadow: 0px 4px 11px 0px rgba(10, 10, 10, 0.2);
+  border-radius: 4px;
 }
 
 .ListItemCondensed-dragHandle {
@@ -45,17 +38,28 @@
   left: 0;
   transform: translateY(-50%);
   border: none;
-  background-color: $c-beta;
+  background-color: $blue;
   box-shadow: none;
   cursor: pointer;
+  color: $white;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
 
   &:hover {
-    background-color: $c-gamma;
+    background-color: $blue;
     color: $white;
   }
 }
 
-.ListItemCondensed-button {
-  margin-left: auto;
-  align-self: flex-end;
+.ListItemCondensed-media {
+  max-width: 100px;
+  flex-basis: 100px;
+}
+
+.ListItem-imageWrapper {
+  position: relative;
+}
+
+.ListItemCondensed--title {
+  font-size: 19px;
 }

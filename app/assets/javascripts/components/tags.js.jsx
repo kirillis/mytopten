@@ -3,7 +3,7 @@ var Tags = React.createClass({
 
   emptyCopy: function() {
     if(this.props.tags.length === 0) {
-      return "No tags yet, create some below :-)";
+      return "No tags yet, add existing or create new ones...";
     }
   },
 
@@ -14,8 +14,9 @@ var Tags = React.createClass({
           return (
             <Tag
               data={ tag }
-              removeClickHandler={ this.handleTagRemoveClicked }
+              tagClickHandler={ this.handleTagRemoveClicked }
               key={ tag.id }
+              type='remove'
             />
           );
         }.bind(this))
@@ -33,15 +34,13 @@ var Tags = React.createClass({
 
   render: function() {
     return (
-      <div className="container">
-        <div className="Tags u-border-beta u-p-1">
-          <h2>Tags</h2>
-          <p className='u-t-muted'>
-            { this.emptyCopy() }
-          </p>
-          { this.renderTags() }
-          <TagSearchController listId={ this.props.listId } />
-        </div>
+      <div className="Tags u-bg-blue-xlight u-p-3">
+        <h2>Tags</h2>
+        <p className='u-t-muted'>
+          { this.emptyCopy() }
+        </p>
+        { this.renderTags() }
+        <TagSearchController listId={ this.props.listId } />
       </div>
     );
   }

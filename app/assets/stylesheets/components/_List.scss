@@ -1,14 +1,93 @@
-.List-title {
-  font-size: 50px;
+.List-editButton {
+  position: absolute;
+  top: 0;
+  right: -42px;
+
+  .Icon {
+    width: 28px;
+    height: 28px;
+    margin-top: 20px;
+  }
+
+  #fill {
+    fill: $blue !important;
+  }
 }
 
-.List-subtitle {
-  font-size: 18px;
+.List-title {
+  font-size: 25px;
+  position: relative;
+  max-width: 80%;
+  font-weight: 400;
 }
 
 .List-description {
-  max-width: 700px;
-  margin: 0 auto;
-  font-size: 20px;
   line-height: 1.5;
+}
+
+.List-description,
+.List-itemsContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.List-item {
+  position: relative;
+}
+
+.List-itemMedia {
+  text-align: center;
+}
+
+.List-itemImageLink {
+  padding-bottom: 21px;
+  display: inline-block;
+}
+
+.List-itemCounter {
+  height: 35px;
+  width: 35px;
+  padding: 0;
+  margin: 0 auto;
+  font-size: 24px;
+  color: $blue;
+  border: 1px solid $blue;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.List-itemTitle {
+  text-transform: none;
+  text-decoration: none;
+  letter-spacing: 0;
+  font-size: 16px;
+}
+
+.List-itemDescription {
+  font-size: 14px;
+}
+
+@include av-mq(handheld-and-up) {
+  .List-title {
+    font-size: 44px;
+  }
+
+  .List-itemMedia {
+    text-align: right;
+  }
+
+  .List-itemImageLink {
+    padding-bottom: 0;
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .List-itemCounter {
+    height: 50px;
+    width: 50px;
+    font-size: 33px;
+    position: absolute;
+    left: -44px;
+  }
 }

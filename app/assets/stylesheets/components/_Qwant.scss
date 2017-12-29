@@ -8,15 +8,21 @@
     height: calc(100% - 60px);
     box-sizing: border-box;
     padding: 30px;
-    border-radius: 3px;
-    border: 3px solid $c-gamma;
+    border-radius: 8px;
+    border: 3px solid $blue;
     z-index: 100;
     background-color: white;
     overflow: hidden;
+    box-shadow: 0px 4px 11px 0px rgba(10, 10, 10, 0.2);
 
     &.is-active {
         display: block;
     }
+}
+
+.Qwant__queryInput {
+    width: 60% !important;
+    margin-right: 10px;
 }
 
 .Qwant__results-wrapper {

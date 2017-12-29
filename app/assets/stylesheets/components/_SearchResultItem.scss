@@ -1,0 +1,18 @@
+.SearchResult-item {
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 50%;
+        height: 2px;
+        transform: translateX(-50%);
+        background-color: $blue-light;
+    }
+}
+
+.SearchResult-image {
+    box-shadow: 0px 4px 11px 0px rgba(10, 10, 10, 0.2);
+}

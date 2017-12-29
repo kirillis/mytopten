@@ -1,23 +1,33 @@
+=content_for :page_title do
+  Filter all lists
+
 -if @all_tags
-  #js-react-tagFilterContainer.u-mb-4
+  #js-react-tagFilterContainer.u-mb-1
     :javascript
       $(document).ready(function() {
         window.loadTagFilterView();
       });
 
-
-.container
-  -unless @lists.empty?
-    %h2
-      %span.u-fw-700="#{@lists.size}"
-      lists
+.u-bg-blue-xlight.u-pt-4.u-pb-4
+  .container
     .Grid
-      -@lists.each do |list|
-        .Grid-cell.1-of-3--desk
-          =render list
-  -else
-    %h2
-      No lists found with 
-      %span.u-fw-700 all
-      of these tags.
-    %p You can remove some tags to see better results or try different tag-combinations.
+
+      -if @lists.present?
+
+        -@lists.each do |list|
+          .Grid-cell.1-of-4--desk.2-of-4--handheld-and-up
+            =render list
+
+      -else
+
+        -if @tags.present?
+
+          .Grid-cell
+            .u-bg-blue-light.u-c-white.u-t-align-center.u-py-3.u-px-2.u-fw-100.u-br-3
+              No lists with all of these tags found.
+
+        -else
+
+          .Grid-cell
+            .u-bg-blue-light.u-c-white.u-t-align-center.u-py-3.u-px-2.u-fw-100.u-br-3
+              Click a tag to start filtering. You can combine multiple tags to find the content you are looking for.

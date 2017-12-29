@@ -1,10 +1,10 @@
-%li.ListItem.Grid.u-mb-3
-  .Grid-cell.1-of-4.u-t-align-right
-    %a.ListItem-imageLink.u-mr-2{ href: list_item.image_large_url }
-      %img.ListItem-image{ src: list_item.image_thumb_url }/
-  .Grid-cell.3-of-4
-    %h3=list_item.title
-    %p.ListItem-desciption
-      &mdash; 
-      =list_item.description
-    =link_to "Link", list_item.link
+%li.List-item.Grid.u-mb-3
+  .List-itemMedia.Grid-cell.1-of-4--handheld-and-up
+    %p.List-itemCounter.u-fw-700=list_item_counter+1
+    %a.List-itemImageLink{ href: list_item.image_large_url, target: "_blank" }
+      %img.List-itemImage{ src: list_item.image_thumb_url }/
+  .Grid-cell.3-of-4--handheld-and-up
+    %h3.List-itemTitle.u-fw-700=list_item.title
+    .List-itemDescription
+      =raw list_item.description
+    -#=link_to "Link", list_item.link

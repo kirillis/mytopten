@@ -25,11 +25,6 @@ class TagsController < ApplicationController
         .order(cached_votes_total: :desc)
         .tagged_with(@tags)
         .includes(:user, :list_items)
-    else
-      @lists = List
-        .published
-        .order(cached_votes_total: :desc)
-        .includes(:user, :list_items, :tags)
     end
   end
 end

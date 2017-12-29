@@ -1,10 +1,29 @@
-.u-bg-grad-mint.u-mb-5
+.u-mb-5
   .container.u-py-2
     %h2 Popular tags right now
     -if @tags
       =render partial: "tags/tag", collection: @tags
     -else
       %p No tags found.
+
+    = form_tag search_site_results_path, method: 'get', action: 'site', class: 'Form' do
+      .Grid.u-mt-2
+        .Grid-cell.1-of-4--desk.u-t-align-right
+        .Grid-cell.2-of-4--desk
+          %h2 Search all public lists
+        .Grid-cell.1-of-4--desk.u-t-align-right
+
+        .Grid-cell.1-of-4--desk.u-t-align-right
+          = label_tag :query, 'Search for'
+        .Grid-cell.2-of-4--desk
+          = text_field_tag :query, nil, required: true, class: 'validate'
+        .Grid-cell.1-of-4--desk.u-t-align-right
+
+        .Grid-cell.1-of-4--desk
+        .Grid-cell.2-of-4--desk
+          %button{ type: 'submit', class: 'Button Button--withIcon' }
+            Search
+            %i.material-icons send
 
 .container
   -unless @lists.empty?
@@ -14,7 +33,8 @@
 
     .Grid
       -@lists.each do |list|
-        .Grid-cell.1-of-3--desk
+        .Grid-cell.1-of-4--desk
           =render list
   -else
-    %p No lists created yet.
+    .u-bg-blue-light.u-c-white.u-t-align-center.u-py-3.u-px-2.u-fw-100.u-br-3.u-mb-3
+      No lists found for your search.

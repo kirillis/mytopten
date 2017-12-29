@@ -27,7 +27,7 @@ App.setLoadingState = function (isLoading) {
 };
 
 App.addTagToFilter = function(newTag) {
-  var encodedNewTag = encodeURIComponent(newTag);
+  var encodedNewTag = encodeURIComponent(newTag).replace('%20', '+');
   var currentSearchString = location.search;
   if(currentSearchString === '') return '?tags=' + encodedNewTag;
   var split = currentSearchString.split('=');
@@ -46,7 +46,7 @@ App.removeTagFromFilter = function(oldTag) {
 App.getQueryArray = function(query) {
   if(query == '') return [];
   var split = query.split('=');
-  var tags = split[1];
+  var tags = split[1].replace('+', ' ');
   var tagsArray = decodeURIComponent(tags).split(',');
   return tagsArray;
 }

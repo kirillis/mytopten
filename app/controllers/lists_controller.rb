@@ -18,37 +18,49 @@ class ListsController < ApplicationController
 
   def newest
     @tags = ActsAsTaggableOn::Tag.most_used(20)
-    @lists = List.includes(:user, :list_items, :tags).order(created_at: :desc).limit(50)
+    @lists = List
+      .includes(:user, :list_items, :tags)
+      .order(created_at: :desc)
+      .page params[:page]
     render "lists/newest"
   end
 
   def popular_timeframe
     @tags = ActsAsTaggableOn::Tag.most_used(20)
-    if params[:timeframe] == 'alltime'
+    @timeframe = params[:timeframe]
+    if @timeframe == 'alltime'
       @lists = List
         .published
         .order(cached_votes_total: :desc)
         .includes(:user, :list_items, :tags)
-        .limit(50)
+        .page params[:page]
     else
       @lists = List
         .published
-        .where('created_at >= ?', 1.public_send(params[:timeframe]).ago)
+        .where('created_at >= ?', 1.public_send(@timeframe).ago)
         .order(cached_votes_total: :desc)
         .includes(:user, :list_items, :tags)
-        .limit(50)
+        .page params[:page]
     end
-    render "lists/popular_week"
+    render "lists/popular"
   end
 
   def show
-    @lists = List.includes(:user, :list_items, :tags).limit(50)
+    @tags = ActsAsTaggableOn::Tag.most_used(10)
     @user = User.find_by(name: params[:user_name])
     if @user
       @list = @user.lists.find_by(id: params[:list_id])
     else
       redirect_to root_path, alert: "No such user found."
     end
+
+    @related_lists = @list
+      .find_related_tags
+
+    @lists = List
+      .includes(:user, :list_items, :tags)
+      .order(cached_votes_total: :desc)
+      .limit(10)
 
     if !@list.public and current_user != @user
       redirect_to root_path, alert: "Nothing to see here."

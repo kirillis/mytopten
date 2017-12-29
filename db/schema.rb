@@ -22,10 +22,6 @@ ActiveRecord::Schema.define(version: 20161122160536) do
     t.datetime "updated_at"
     t.string   "image_thumb_url"
     t.string   "link"
-    t.string   "image_main_file_name"
-    t.string   "image_main_content_type"
-    t.integer  "image_main_file_size"
-    t.datetime "image_main_updated_at"
     t.string   "image_large_url"
   end
 
@@ -40,6 +36,8 @@ ActiveRecord::Schema.define(version: 20161122160536) do
     t.boolean  "public"
     t.integer  "cached_votes_total", default: 0
   end
+
+  add_index "lists", ["user_id"], name: "index_lists_on_user_id"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -63,7 +61,7 @@ ActiveRecord::Schema.define(version: 20161122160536) do
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.string   "email",                           null: false
+    t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"

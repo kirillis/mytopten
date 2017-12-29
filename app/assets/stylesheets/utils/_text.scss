@@ -10,6 +10,12 @@
   text-align: right;
 }
 
+@include av-mq(desk) {
+  .u-t-desk-align-right {
+    text-align: right;
+  }
+}
+
 .u-t-align-justify {
   text-align: justify;
 }
@@ -30,4 +36,12 @@
   font-weight: 100;
   font-size: 15px;
   opacity: 0.45;
+}
+
+.u-ff-open {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.u-ff-ptsans {
+  font-family: 'PT Sans', sans-serif;
 }

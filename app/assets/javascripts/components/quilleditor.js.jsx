@@ -1,19 +1,15 @@
 var QuillEditor = React.createClass({
   componentDidMount: function () {
     let self = this;
+
+    // Add getHtml function to get html from editor textarea.
     Quill.prototype.getHtml = function () {
       return this.container.querySelector('.ql-editor').innerHTML;
     };
 
     this.initQuillEditor();
-
     this.quill.clipboard.dangerouslyPasteHTML(this.props.text);
-
-    this.quill.on('text-change', function (delta, oldDelta, source) {
-      if (source == 'user') {
-        self.props.handleInput(self.quill.getHtml());
-      }
-    });
+    this.bindQuillEditorEvent();
   },
 
   initQuillEditor: function () {
@@ -29,9 +25,18 @@ var QuillEditor = React.createClass({
     });
   },
 
+  bindQuillEditorEvent: function () {
+    let self = this;
+    this.quill.on('text-change', function (delta, oldDelta, source) {
+      if (source == 'user') {
+        self.props.handleInput(self.quill.getHtml());
+      }
+    });
+  },
+
   render: function () {
     return (
-      <div>
+      <div className="QuillEditor">
         <div id={this.props.elementId}>
         </div>
       </div>

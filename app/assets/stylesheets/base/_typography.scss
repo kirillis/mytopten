@@ -4,7 +4,7 @@ body {
 }
 
 ::selection {
-  background: $c-alpha;
+  background: rgba($blue, 0.5);
 }
 
 p {
@@ -13,12 +13,13 @@ p {
 }
 
 a {
-  color: $c-gamma;
   text-decoration: none;
+  transition: color 150ms;
+  color: $blue;
 
   &:hover {
-    color: $green-dark;
-  } 
+    color: $blue-light;
+  }
 }
 
 h1, .h1,
@@ -34,16 +35,18 @@ h6, .h6 {
 h2,
 .h2
  {
-  color: $c-gamma;
-  font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 21px;
+  font-weight: 700;
   text-decoration: none;
-  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 h3,
 .h3 {
-  font-weight: 600;
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 700;
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }

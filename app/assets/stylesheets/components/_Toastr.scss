@@ -1,17 +1,23 @@
 #toast-container > div {
   opacity: 1;
-  box-shadow: none;
+  box-shadow: 0px 4px 11px 0px rgba(10, 10, 10, 0.2);
+}
+
+.toast-top-center {
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .toast {
-  background-color: $yellow;
+  background-color: $blue;
 }
 
 .toast-success {
-  background-color: $mint;
+  background-color: $green;
 
   .toast-message {
-    color: $blue-dark;
+    color: $white;
   }
 }
 
@@ -20,9 +26,9 @@
 }
 
 .toast-info {
-  background-color: $blue-light;
+  background-color: $blue;
 }
 
 .toast-warning {
-  background-color: $blue-dark;
+  background-color: $red;
 }
