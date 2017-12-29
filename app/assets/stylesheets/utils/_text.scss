@@ -10,6 +10,12 @@
   text-align: right;
 }
 
+@include av-mq(desk) {
+  .u-t-desk-align-right {
+    text-align: right;
+  }
+}
+
 .u-t-align-justify {
   text-align: justify;
 }
