@@ -13,11 +13,14 @@
   box-shadow: 0px 4px 11px 0px rgba(10, 10, 10, 0.06);
 }
 
-.MainNav-logo svg {
+.MainNav-logo {
   width: 150px;
 
-  .st1 { fill: $blue;}
-  .st2 { fill: $white;}
+  svg {
+    width: 100%;
+    .st1 { fill: $blue;}
+    .st2 { fill: $white;}
+  }
 }
 
 .MainNav-links {
@@ -81,7 +84,7 @@
     box-shadow: none;
   }
 
-  .MainNav-logo svg {
+  .MainNav-logo {
     width: 230px;
   }
 
