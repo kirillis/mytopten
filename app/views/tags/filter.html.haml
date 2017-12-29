@@ -10,12 +10,12 @@
 
 .u-bg-blue-xlight.u-pt-4.u-pb-4
   .container
-    .Grid.Grid--flush
+    .Grid
 
       -if @lists.present?
 
         -@lists.each do |list|
-          .Grid-cell.1-of-4--desk
+          .Grid-cell.1-of-4--desk.2-of-4--handheld-and-up
             =render list
 
       -else

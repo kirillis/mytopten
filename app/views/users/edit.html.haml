@@ -33,7 +33,7 @@
                   %li= msg
 
     .Grid
-      = form_for @user, url: user_update_path(@user), html: {method: "patch", class: 'Form'} do |f|
+      = form_for @user, url: user_update_path(@user), html: {method: "patch", class: 'Form u-mb-4'} do |f|
         .Grid
           .Grid-cell.1-of-4--desk.u-t-align-right
             = f.label :name
