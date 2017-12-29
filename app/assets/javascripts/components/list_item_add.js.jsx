@@ -93,13 +93,13 @@ var ListItemAdd = React.createClass({
                 <h2>Add a new item</h2>
                 <div className='Form'>
                     <div className="Grid">
-                        <div className="Grid-cell 1-of-4--desk">
+                        <div className="Grid-cell 1-of-4--handheld-and-up">
                             <div className="ListItemAdd--imageWrapper">
                                 <img src={this.state.image_thumb_url} className="ListItemAdd--image" /><br />
                                 <ImageSearch onImagePicked={this.handleImagePicked} />
                             </div>
                         </div>
-                        <div className="Grid-cell 3-of-4--desk">
+                        <div className="Grid-cell 3-of-4--handheld-and-up">
 
                             <label htmlFor='title'>Title</label>
                             <input
