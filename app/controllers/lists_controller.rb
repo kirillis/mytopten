@@ -122,7 +122,7 @@ class ListsController < ApplicationController
   def create
     @list = current_user.lists.new(list_params)
     if @list.save
-      redirect_to user_list_path(@list.user.name, @list)
+      redirect_to user_list_edit_path(list_id: @list.id, user_name: current_user.name)
     else
       flash[:error] = 'These fields are required.'
       render 'new'
