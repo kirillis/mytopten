@@ -4,9 +4,7 @@ html {
 
 body {
   position: relative;
-  min-height: 100%;
   padding-top: 63px;
-  padding-bottom: 75px;
   background-color: $white;
 }
 
@@ -14,6 +12,16 @@ body {
   body {
     padding-top: 0;
   }
+}
+
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
 }
 
 .container {
