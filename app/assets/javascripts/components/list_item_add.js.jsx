@@ -18,8 +18,8 @@ var ListItemAdd = React.createClass({
 
     isValid() {
         return this.state.title !== '' &&
-            this.state.description !== '' &&
-            this.state.link !== '';
+            this.state.image_thumb_url !== '' &&
+            this.state.description !== '';
     },
 
     getInitialState: function () {
@@ -77,7 +77,7 @@ var ListItemAdd = React.createClass({
         }
 
         this.getFlux().actions.listItem.add(this.state);
-        this.seState({
+        this.setState({
             title: '',
             description: '',
             link: '',
