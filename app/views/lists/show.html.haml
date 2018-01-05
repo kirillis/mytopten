@@ -26,7 +26,8 @@
             .u-t-align-center.u-mt-2
               =render partial: "lists/likebutton", locals: { list: @list}
 
-            .List-description.u-fw-400.u-pb-2=@list.description.html_safe
+            -if @list.description.present?
+              .List-description.u-fw-400.u-pb-2=@list.description.html_safe
 
           
           .List-itemsContainer
