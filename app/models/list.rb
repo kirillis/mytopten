@@ -8,6 +8,6 @@ class List < ActiveRecord::Base
   scope :published, -> { where(public: true) }
 
   def self.search(search)
-    published.where("title LIKE '%#{search}%' OR description LIKE '%#{search}%'")
+    published.where("LOWER(title) LIKE '%#{search}%' OR LOWER(description) LIKE '%#{search}%'")
   end
 end
