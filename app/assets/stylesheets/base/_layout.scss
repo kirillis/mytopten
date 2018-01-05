@@ -3,8 +3,11 @@ html {
 }
 
 body {
-  background-color: $white;
+  position: relative;
+  min-height: 100%;
   padding-top: 63px;
+  padding-bottom: 75px;
+  background-color: $white;
 }
 
 @include av-mq(lap-and-up) {
