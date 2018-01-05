@@ -1,6 +1,9 @@
+=content_for :page_title do
+  Search results
+
 .u-mb-5
   .container.u-py-2
-    %h2 Popular tags right now
+    %h2 Popular tags
     -if @tags
       =render partial: "tags/tag", collection: @tags
     -else
@@ -29,7 +32,7 @@
   -unless @lists.empty?
     %h2
       Search results for 
-      %span.u-fw-700=params[:query]
+      %span.u-fw-100=params[:query]
 
     .Grid
       -@lists.each do |list|
