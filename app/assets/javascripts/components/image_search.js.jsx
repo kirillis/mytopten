@@ -33,10 +33,16 @@ var ImageSearch = React.createClass({
         };
     },
 
+    componentDidUpdate: function() {
+        if (this.state.isOpen) {
+            this.refs.inputQuery.focus();
+        }
+    },
+
     openCloseClickHandler: function (event) {
         event.preventDefault();
         console.log('openCloseClickHandler');
-        this.setState({ isOpen: !this.state.isOpen })
+        this.setState({ isOpen: !this.state.isOpen });
     },
 
     getResults: function() {
@@ -86,6 +92,7 @@ var ImageSearch = React.createClass({
                                 type='text'
                                 placeholder="Search..."
                                 onKeyUp={this.handleKeyUp}
+                                ref="inputQuery"
                             />
                             <div onClick={this.searchImages} className="Button Button--withIcon">
                                 <i className="material-icons">search</i>
