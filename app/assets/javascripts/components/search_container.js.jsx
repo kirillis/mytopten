@@ -51,7 +51,7 @@ var SearchContainer = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div className="u-mt-2">
         <h2 className="u-mb-2">Amazon suggestions</h2>
         <SearchResultsList listItems={ this.state.listItems } isSearching={ this.state.isSearching } />
       </div>
