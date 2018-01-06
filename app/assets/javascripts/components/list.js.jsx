@@ -123,20 +123,11 @@ var List = React.createClass({
           </div>
 
           <div className="u-mt-4">
-              {listItems.length === 0 ?
-                (
-                  <div>
-                    <h2>Add 3 items to make this list visible to others.</h2>
-                  </div>
-                ) : (
-                  <div>
-                    <h2>
-                      These <strong>{ this.state.listItems.length }</strong> items are on your list:
-                    </h2>
-                    <p className="u-mb-3"><span className="u-fw-700">Note</span>: a list needs at least 3 items to be visible to others.</p>
-                  </div>
-                )
-              }
+            {listItems.length < 3 ?
+              (
+                <p className="u-mb-3"><span className="u-fw-700">Note</span>: a list needs at least 3 items to be visible to others.</p>
+              ) : ('')
+            }
           </div>
         </div>
 
