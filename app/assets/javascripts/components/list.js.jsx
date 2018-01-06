@@ -126,13 +126,15 @@ var List = React.createClass({
               {listItems.length === 0 ?
                 (
                   <div>
-                    <h2>No items on list, yet</h2>
-                    <p>Use the form below to add items to your list.</p>
+                    <h2>Add 3 items to make this list visible to others.</h2>
                   </div>
                 ) : (
-                  <h2 className="u-mb-3">
-                    These <strong>{ this.state.listItems.length }</strong> items are on your list:
-                  </h2>
+                  <div>
+                    <h2>
+                      These <strong>{ this.state.listItems.length }</strong> items are on your list:
+                    </h2>
+                    <p className="u-mb-3"><span className="u-fw-700">Note</span>: a list needs at least 3 items to be visible to others.</p>
+                  </div>
                 )
               }
           </div>
