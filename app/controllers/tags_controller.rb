@@ -22,6 +22,7 @@ class TagsController < ApplicationController
       @tags = Array.new(params[:tags].split(/,/))
       @lists = List
         .published
+        .min_items
         .order(cached_votes_total: :desc)
         .tagged_with(@tags)
         .includes(:user, :list_items)
