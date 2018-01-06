@@ -9,6 +9,7 @@ class List < ActiveRecord::Base
   scope :min_items, -> { where("list_items_count >= 3") }
 
   def self.search(search)
-    published.min_items.where("LOWER(title) LIKE '%#{search}%' OR LOWER(description) LIKE '%#{search}%'")
+    downcase_search_query = search.downcase
+    published.min_items.where("LOWER(title) LIKE '%#{downcase_search_query}%' OR LOWER(description) LIKE '%#{downcase_search_query}%'")
   end
 end
