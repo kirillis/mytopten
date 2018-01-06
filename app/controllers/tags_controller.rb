@@ -7,7 +7,7 @@ class TagsController < ApplicationController
   end
 
   def search
-    @tags = ActsAsTaggableOn::Tag.where("name like ?", "%#{params[:tag_query]}%")
+    @tags = ActsAsTaggableOn::Tag.where("LOWER(name) like ?", "%#{params[:tag_query].downcase}%")
     respond_to do |format|
       format.html
       format.json {
