@@ -58,10 +58,15 @@ class ListsController < ApplicationController
 
     @related_lists = @list
       .find_related_tags
+      .published
+      .min_items
 
     @lists = List
+      .published
+      .min_items
       .includes(:user, :list_items, :tags)
       .order(cached_votes_total: :desc)
+      .where.not(id: @list.id)
       .limit(10)
 
     if !@list.public and current_user != @user
