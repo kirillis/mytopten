@@ -1,5 +1,5 @@
 class ListItem < ActiveRecord::Base
-  belongs_to :list, touch: true
+  belongs_to :list, touch: true, counter_cache: true
   default_scope { order(:rank) }
   before_create :calc_rank
 
