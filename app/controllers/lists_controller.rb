@@ -31,12 +31,14 @@ class ListsController < ApplicationController
     if @timeframe == 'alltime'
       @lists = List
         .published
+        .min_items
         .order(cached_votes_total: :desc)
         .includes(:user, :list_items, :tags)
         .page params[:page]
     else
       @lists = List
         .published
+        .min_items
         .where('created_at >= ?', 1.public_send(@timeframe).ago)
         .order(cached_votes_total: :desc)
         .includes(:user, :list_items, :tags)
