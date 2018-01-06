@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105123006) do
+ActiveRecord::Schema.define(version: 20180106101631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20180105123006) do
     t.integer  "user_id"
     t.boolean  "public"
     t.integer  "cached_votes_total", default: 0
+    t.integer  "list_items_count",   default: 0
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id", using: :btree
