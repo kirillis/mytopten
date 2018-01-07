@@ -11,6 +11,12 @@ var QuillEditor = React.createClass({
     this.quill.clipboard.dangerouslyPasteHTML(this.props.text);
     this.bindQuillEditorEvent();
   },
+  
+  componentWillUpdate: function (nextProps) {
+    if(nextProps.text == '') {
+      this.quill.setContents([{ insert: '\n' }]);
+    }
+  },
 
   initQuillEditor: function () {
     this.quill = new Quill('#' + this.props.elementId, {
@@ -28,6 +34,7 @@ var QuillEditor = React.createClass({
   bindQuillEditorEvent: function () {
     let self = this;
     this.quill.on('text-change', function (delta, oldDelta, source) {
+      console.log(source, delta);
       if (source == 'user') {
         self.props.handleInput(self.quill.getHtml());
       }
