@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180106101631) do
+ActiveRecord::Schema.define(version: 20180107111631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,9 @@ ActiveRecord::Schema.define(version: 20180106101631) do
     t.integer  "list_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_thumb_url"
-    t.string   "link"
-    t.string   "image_large_url"
+    t.text     "image_thumb_url"
+    t.text     "link"
+    t.text     "image_large_url"
   end
 
   add_index "list_items", ["list_id"], name: "index_list_items_on_list_id", using: :btree
