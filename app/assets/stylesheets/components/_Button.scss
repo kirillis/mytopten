@@ -80,8 +80,10 @@
 
 .AddNewButton {
   position: fixed;
-  bottom: 30px;
+  bottom: 95px;
   left: 40px;
+  display: flex;
+  align-items: center;
   padding: 15px 16px;
   background-color: $blue;
   border-radius: 40px;
@@ -90,10 +92,12 @@
   transform: translateY(0);
   color: $white;
   z-index: 100;
+  font-weight: 700;
 
   &:hover {
     background-color: $blue-light;
     transform: translateY(-5px);
+    color: $white;
 
     i {
       color: $white;

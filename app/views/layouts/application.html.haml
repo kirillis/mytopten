@@ -23,12 +23,15 @@
     .Site-content
       = render "layouts/menu_top"
       = yield
+
       -if current_user
         =link_to user_list_new_path(current_user.name), class: 'AddNewButton', title: 'Add new list' do
           %i.material-icons add
+          ADD LIST
       -else
         =link_to user_log_in_path, class: 'AddNewButton' do
           %i.material-icons add
+          ADD LIST
 
     = render "layouts/footer"
 
