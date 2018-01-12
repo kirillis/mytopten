@@ -55,7 +55,6 @@ class ListsController < ApplicationController
       @meta_description = ActionView::Base.full_sanitizer.sanitize(@list.description)
       @meta_title = @list.title
       @meta_url = request.original_url
-      @meta_image_url = request.base_url + "/assets/images/meta_image.jpg"
     else
       redirect_to root_path, alert: "No such user found."
     end
