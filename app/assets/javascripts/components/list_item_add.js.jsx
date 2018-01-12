@@ -27,7 +27,7 @@ var ListItemAdd = React.createClass({
             title: '',
             description: '',
             link: '',
-            image_thumb_url: '/assets/add_placeholder.jpg',
+            image_thumb_url: '/assets/images/add_placeholder.jpg',
             image_large_url: '',
             hasChanged: false
         };
@@ -81,7 +81,7 @@ var ListItemAdd = React.createClass({
             title: '',
             description: '',
             link: '',
-            image_thumb_url: '/assets/add_placeholder.jpg',
+            image_thumb_url: '/assets/images/add_placeholder.jpg',
             image_large_url: '',
             hasChanged: false
         });
