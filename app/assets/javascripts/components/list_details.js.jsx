@@ -63,7 +63,6 @@ var ListDetails = React.createClass({
       .debounce(1000)
       .subscribe(
         (data) => {
-          console.log('300ms debounced.');
           this.saveData();
         }
       );

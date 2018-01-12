@@ -22,7 +22,6 @@ var ListItem = React.createClass({
   },
 
   handleImagePicked: function (image_thumb_url, image_large_url) {
-    console.log(image_thumb_url, image_large_url);
     this.setState({
       hasChanged: true,
       image_thumb_url: image_thumb_url,

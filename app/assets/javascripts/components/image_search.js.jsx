@@ -12,7 +12,6 @@ var ImageSearch = React.createClass({
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-                console.log('success: ', data.data.result.items);
                 this.setState({
                     results: data.data.result.items
                 });
@@ -41,7 +40,6 @@ var ImageSearch = React.createClass({
 
     openCloseClickHandler: function (event) {
         event.preventDefault();
-        console.log('openCloseClickHandler');
         this.setState({ isOpen: !this.state.isOpen });
     },
 

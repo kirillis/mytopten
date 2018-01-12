@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(name: params[:name])
     @lists = @user.lists.includes(:list_items)
+    @liked_lists = @user.find_liked_items
   end
   
   def edit
