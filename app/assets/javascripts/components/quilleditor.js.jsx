@@ -34,7 +34,6 @@ var QuillEditor = React.createClass({
   bindQuillEditorEvent: function () {
     let self = this;
     this.quill.on('text-change', function (delta, oldDelta, source) {
-      console.log(source, delta);
       if (source == 'user') {
         self.props.handleInput(self.quill.getHtml());
       }
