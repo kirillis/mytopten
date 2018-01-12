@@ -29,10 +29,20 @@
           %i.material-icons mode_edit
           Edit your account settings
 
+    %h2 My lists
     -unless @lists.empty?
       .Grid
         -@lists.each do |list|
           .Grid-cell.1-of-2--handheld-and-up.1-of-4--desk
-            =render list
+            =render partial: "lists/list", locals: { list: list, mod: 'small'}
     -else
       %p No lists created yet.
+
+    %h2 My saved lists
+    -unless @liked_lists.empty?
+      .Grid
+        -@liked_lists .each do |liked_list|
+          .Grid-cell.1-of-2--handheld-and-up.1-of-4--desk
+            =render partial: "lists/list", locals: { list: liked_list, mod: 'small'}
+    -else
+      %p No lists saved yet.
