@@ -17,17 +17,23 @@
     = stylesheet_link_tag  "//cdn.quilljs.com/1.3.0/quill.snow.css", media: "all", "data-turbolinks-track" => true
     %script{ src: "//cdn.quilljs.com/1.3.0/quill.js" }
     
-    %meta{ property: "og:type", content: "article" }
+    %meta{ property: "og:type", content: "website" }
     %meta{ property: "og:image", content: @meta_image_url }
 
     -if @meta_description.present?
       %meta{ property: "og:description", content: @meta_description }
+    -else
+      %meta{ property: "og:description", content: "Quicklistmaker.com lets you create lists of your favorite things quickly and beatufilly. Join a growing community of people and share, discover and discuss new things every day." }
 
     -if @meta_title.present?
       %meta{ property: "og:title", content: @meta_title }
+    -else
+      %meta{ property: "og:title", content: "Quicklistmaker.com | All the lists all the time." }
 
     -if @meta_url.present?
       %meta{ property: "og:url", content: @meta_url }
+    -else
+      %meta{ property: "og:url", content: "https://www.quicklistmaker.com" }
 
   %body{ class: (current_user ? 'Site is-loggedin' : 'Site is-guest') }
 
