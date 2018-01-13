@@ -39,7 +39,7 @@ App.listStore = Fluxxor.createStore({
   },
 
   onListUpdate: function(data) {
-    console.log('storeList: onListUpdate', data);
+    // console.log('storeList: onListUpdate', data);
   },
 
   onListUpdateSuccess: function(data) {
@@ -69,7 +69,7 @@ App.listStore = Fluxxor.createStore({
   },
 
   onUpdateMultipleItems: function(payload) {
-    console.log('onUpdateMultipleItems');
+    // console.log('onUpdateMultipleItems');
     //
     // this.emit('change');
   },
@@ -87,7 +87,7 @@ App.listStore = Fluxxor.createStore({
   },
 
   onUpdateItemFailure: function(payload) {
-    console.log(payload);
+    // console.log(payload);
     var list_items = this.list.list_items;
     for(var i = 0; i < list_items.length; i++) {
       var listItem = list_items[i];
@@ -126,14 +126,14 @@ App.listStore = Fluxxor.createStore({
   },
 
   onListTagsUpdateSuccess: function(newListData) {
-    console.log('onListTagsUpdate', newListData);
+    // console.log('onListTagsUpdate', newListData);
     this.list = newListData;
     this.list.isSaving = false;
     this.emit('change');
   },
 
   onListTagsUpdateFailure: function() {
-    console.warn('Error saving tags to list.');
+    // console.warn('Error saving tags to list.');
     this.list.isSaving = false;
     this.emit('change');
   },
@@ -144,14 +144,14 @@ App.listStore = Fluxxor.createStore({
   },
 
   onListTagRemoveSuccess: function(newListData) {
-    console.log('onListTagRemoveSuccess', newListData);
+    // console.log('onListTagRemoveSuccess', newListData);
     this.list = newListData;
     this.list.isSaving = false;
     this.emit('change');
   },
 
   onListTagRemoveFailure: function() {
-    console.warn('Error removing tag to list.');
+    // console.warn('Error removing tag to list.');
     this.list.isSaving = false;
     this.emit('change');
   }

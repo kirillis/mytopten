@@ -50,7 +50,7 @@ var LikeButton = function () {
 
         _this2.updateCount(data.liked);
       }).error(function (jqXHR, textStatus, errorThrown) {
-        console.log('textStatus, errorThrown', textStatus, errorThrown);
+        // console.log('textStatus, errorThrown', textStatus, errorThrown);
       }).always(function () {
         _this2.element.removeClass('is-disabled');
       });

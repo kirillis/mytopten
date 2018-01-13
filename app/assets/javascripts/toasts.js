@@ -13,8 +13,6 @@ $(function() {
     var messageType = messages[i][0];
     var messageText = messages[i][1];
 
-    console.log(messageType, messageText);
-
     toastr[messageType](messageText);
   }
 });

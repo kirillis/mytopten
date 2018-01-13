@@ -13,7 +13,7 @@ App.saveItem = function(payload, successCallback) {
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
-      console.error('Error adding new list item.', jqXHR, textStatus, errorThrown);
+      // console.error('Error adding new list item.', jqXHR, textStatus, errorThrown);
     }
   });
 };
@@ -81,7 +81,7 @@ App.deleteItem = function(itemId) {
     dataType: 'json',
     contentType: 'application/json',
     error: function() {
-      console.error('Error deleting item: ', itemId);
+      // console.error('Error deleting item: ', itemId);
     }
   });
 };
