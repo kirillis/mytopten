@@ -13,13 +13,13 @@
       .Grid
         .Grid-cell.1-of-4--desk.u-t-desk-align-right
         .Grid-cell.2-of-4--desk
-          %h2
-            = pluralize(@user.errors.count, "error")
-            prohibited this user from being saved:
+          .Form-errors.u-my-4.u-p-2.u-bg-red.u-c-white
+            %p.u-fw-700
+              Sorry, we could not create this user.
 
-          %ul
-          - @user.errors.full_messages.each do |msg|
-            %li= msg
+            %ul
+            - @user.errors.full_messages.each do |msg|
+              %li= msg
         .Grid-cell.1-of-4--desk
 
     = form_for @user, html: { class: 'Form'} do |f|
