@@ -7,12 +7,6 @@
       .Grid-cell.1-of-4--desk
       .Grid-cell.3-of-4--desk
         %h2 Log In
-        %p
-          You can use your 
-          %strong username
-          (case-sensitive) or your 
-          %strong email
-          to login.
 
     = form_tag sessions_path, method: 'post', class: 'Form' do
       .Grid
@@ -50,6 +44,7 @@
             %i.material-icons add
             Create a new account
 
-  %div
-    .container.u-py-4
-      = render 'forgot_password_form'
+  -#
+    %div
+      .container.u-py-4
+        = render 'forgot_password_form'

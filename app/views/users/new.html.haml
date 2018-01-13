@@ -42,14 +42,14 @@
         .Grid-cell.2-of-4--desk
           = f.password_field :password_confirmation, required: true, class: 'validate'
         .Grid-cell.1-of-4--desk
-
-        .u-mt-3
-          .Grid-cell.1-of-4--desk.u-t-desk-align-right
-            = f.label :email
-            %p.u-t-muted *optional
-          .Grid-cell.2-of-4--desk
-            = f.email_field :email
-          .Grid-cell.1-of-4--desk
+        -#
+          .u-mt-3
+            .Grid-cell.1-of-4--desk.u-t-desk-align-right
+              = f.label :email
+              %p.u-t-muted *optional
+            .Grid-cell.2-of-4--desk
+              = f.email_field :email
+            .Grid-cell.1-of-4--desk
 
         .Grid-cell.1-of-4--desk.u-t-desk-align-right
         .Grid-cell.2-of-4--desk
